@@ -45,11 +45,12 @@ h1, h2, h3 {
   width: 80%;
   /*height: 80%;*/
   margin: auto;
-  text-align: center;
+  text-align: left;
   border-radius: 10px;
   border-color: #493F0B;
   border: 2px solid;
-  margin-top: 50px; }
+  margin-top: 50px;
+  padding: 3%; }
 
 .inputbox {
   width: 50%;
@@ -57,3 +58,17 @@ h1, h2, h3 {
 
 .clear-fix {
   clear: both; }
+
+div.left {
+  /*background-color: red;
+	border: 2px solid red;*/
+  float: left;
+  width: 48%;
+  margin-left: 0%; }
+
+div.right {
+  /*background-color: blue;
+	border: 2px solid red;*/
+  float: right;
+  width: 48%;
+  margin-right: 0%; }
