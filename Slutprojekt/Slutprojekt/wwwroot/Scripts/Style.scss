@@ -54,6 +54,18 @@ h1,h2,h3 {
 	margin-top: 50px;
 }
 
+.content {
+	background-color: $secondary-bg;
+	width: 80%;
+	/*height: 80%;*/
+	margin: auto;
+	text-align: center;
+	border-radius: 10px;
+	border-color: $primary-header;
+	border: 2px solid;
+	margin-top: 50px;
+}
+
 .inputbox{
 	width:50%;
 	margin: auto;
