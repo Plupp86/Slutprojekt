@@ -2,5 +2,13 @@
   {
     "outputFile": "wwwroot/Scripts/Style.css",
     "inputFile": "wwwroot/Scripts/Style.scss"
+  },
+  {
+    "outputFile": "wwwroot/Scripts/bootstrap_slutprojekt.css",
+    "inputFile": "wwwroot/Scripts/bootstrap_slutprojekt.scss"
+  },
+  {
+    "outputFile": "wwwroot/Scripts/Bootstrap_style.css",
+    "inputFile": "wwwroot/Scripts/Bootstrap_style.scss"
   }
 ]
