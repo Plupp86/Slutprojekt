@@ -51,29 +51,30 @@ namespace Slutprojekt.Controllers
 		public IActionResult Create()
 		{
             //Formulär med användarnamn, lösenord, email
-            return View();
+            return View(new CreateVM());
 
          }
 
         [Route("Create")]
 		[HttpPost]
 		[AllowAnonymous]
-		public IActionResult Create(CreateVM model)
+		public async Task<IActionResult> Create(CreateVM model)
 		{
             //Validera formuläret
 
-            //    if (!ModelState.IsValid)
-            //    {
-            //        return View(model);
-            //    }
+            if (!ModelState.IsValid)
+            {
+                return View(model);
+            }
 
-            //    bool succes = await repository.CreateUserAsync(model);
+            var(succes, mess)= await repository.CreateUserAsync(model);
 
-            //    if (!succes)
-            //    {
-            //        ModelState.AddModelError(nameof(AccountRegisterNewUserVM.PassWord), "Wrong input");
-            //        return View(model);
-            //    }
+            if (!succes)
+            {
+                model.Message = mess;
+                ModelState.AddModelError(nameof(CreateVM.Password), "Wrong input");
+                return View(model);
+            }
             //    return RedirectToAction(nameof(HomeController.Home));
 
             return RedirectToAction(nameof(HomeController.Index));
@@ -92,8 +93,8 @@ namespace Slutprojekt.Controllers
 
 			//SignalR
 			return View();
-		}
-
-
-	}
+        }
+        //@"Data Source=(localdb)\MSSQLLocalDB;Initial Catalog=SlutprojektDB;Integrated Security=True;Connect Timeout=30;Encrypt=False;TrustServerCertificate=False;ApplicationIntent=ReadWrite;MultiSubnetFailover=False"
+        //Scaffold-DbContext "Data Source=(localdb)\MSSQLLocalDB;Initial Catalog=SlutprojektDB;Integrated Security=True;Connect Timeout=30;Encrypt=False;TrustServerCertificate=False;ApplicationIntent=ReadWrite;MultiSubnetFailover=False" Microsoft.EntityFrameworkCore.SqlServer -OutputDir "Models/Entities" -Context "SlutprojektDBContext" -Force
+    }
 }

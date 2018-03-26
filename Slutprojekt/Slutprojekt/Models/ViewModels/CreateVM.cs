@@ -15,8 +15,10 @@ namespace Slutprojekt.Models.ViewModels
 		[DataType(DataType.Password)]
 		public string Password { get; set; }
 
-		[Required]
+		//[Required]
 		[DataType(DataType.EmailAddress)]
 		public string Email { get; set; }
-	}
+
+        public string Message { get; set; }
+    }
 }

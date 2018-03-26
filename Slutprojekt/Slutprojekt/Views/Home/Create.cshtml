@@ -1,5 +1,14 @@
 ﻿@model CreateVM
 
+<h3>Create new user</h3>
+
+<br />
+
+
+@if (!string.IsNullOrEmpty(Model.Message))
+{
+<span style="color:red"> @Model.Message  </span>
+}
 	<div class="create">
 		<h3>Create new user</h3>
 		<br />
