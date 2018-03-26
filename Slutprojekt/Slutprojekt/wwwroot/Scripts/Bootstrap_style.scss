@@ -14,7 +14,7 @@ $backup: #A7C520;
 .navbar-default .navbar-brand {
 	color: $primary-header;
 	font-size: large;
-	font-family: 'Comic Sans MS';
+	font-family: 'Audiowide', cursive;	
 }
 
 .navbar-default .navbar-brand:hover,
@@ -25,14 +25,14 @@ $backup: #A7C520;
 .navbar-default .navbar-nav > li > a {
 	color: $primary-header;
 	font-size: large;
-	font-family: 'Comic Sans MS';
+	font-family: 'Audiowide', cursive;
 }
 
 .navbar-default .navbar-nav > li > a:hover,
 .navbar-default .navbar-nav > li > a:focus {
 	color: $primary-header;
 	font-size: large;
-	font-family: 'Comic Sans MS';
+	font-family: 'Audiowide', cursive;
 }
 
 .navbar-default .navbar-nav > .active > a,
@@ -40,8 +40,8 @@ $backup: #A7C520;
 .navbar-default .navbar-nav > .active > a:focus {
 	color: $primary-header;
 	background-color: darken($secondary-bg, 20%);
-	font-size:large;
-	font-family:'Comic Sans MS';
+	font-size: large;
+	font-family: 'Audiowide', cursive;
 }
 
 .navbar-default .navbar-nav > .open > a,

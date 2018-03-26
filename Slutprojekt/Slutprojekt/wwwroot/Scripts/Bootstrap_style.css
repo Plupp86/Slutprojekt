@@ -7,7 +7,7 @@
 .navbar-default .navbar-brand {
   color: #493F0B;
   font-size: large;
-  font-family: 'Comic Sans MS'; }
+  font-family: 'Audiowide', cursive; }
 
 .navbar-default .navbar-brand:hover,
 .navbar-default .navbar-brand:focus {
@@ -17,13 +17,13 @@
 .navbar-default .navbar-nav > li > a {
   color: #493F0B;
   font-size: large;
-  font-family: 'Comic Sans MS'; }
+  font-family: 'Audiowide', cursive; }
 
 .navbar-default .navbar-nav > li > a:hover,
 .navbar-default .navbar-nav > li > a:focus {
   color: #493F0B;
   font-size: large;
-  font-family: 'Comic Sans MS'; }
+  font-family: 'Audiowide', cursive; }
 
 .navbar-default .navbar-nav > .active > a,
 .navbar-default .navbar-nav > .active > a:hover,
@@ -31,7 +31,7 @@
   color: #493F0B;
   background-color: #9fbd1a;
   font-size: large;
-  font-family: 'Comic Sans MS'; }
+  font-family: 'Audiowide', cursive; }
 
 .navbar-default .navbar-nav > .open > a,
 .navbar-default .navbar-nav > .open > a:hover,
