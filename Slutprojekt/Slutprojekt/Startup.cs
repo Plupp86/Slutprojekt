@@ -11,6 +11,7 @@ using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 using Slutprojekt.Models;
+using Slutprojekt.Models.Entities;
 
 namespace Slutprojekt
 {
@@ -25,10 +26,13 @@ namespace Slutprojekt
 			services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
 			.AddCookie(o => o.LoginPath = "/Index");
 
-			services.AddDbContext<IdentityDbContext>(o =>
+            services.AddDbContext<SlutprojektDBContext>(o =>
+            o.UseSqlServer(connString));
+
+            services.AddDbContext<IdentityDbContext>(o =>
 			o.UseSqlServer(connString));
 
-			services.AddTransient<AccountRepository>();
+            services.AddTransient<AccountRepository>();
 
 			services.AddIdentity<IdentityUser, IdentityRole>(o =>
 			{

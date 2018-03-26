@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
+using Slutprojekt.Models.Entities;
 using Slutprojekt.Models.ViewModels;
 using System;
 using System.Collections.Generic;
@@ -14,20 +15,20 @@ namespace Slutprojekt.Models
 		SignInManager<IdentityUser> signInManager;
 		RoleManager<IdentityRole> roleManager;
 		IdentityDbContext identityContext;
-		//DBDemoContext context;
+        SlutprojektDBContext context;
 
-		public AccountRepository(
+        public AccountRepository(
 			UserManager<IdentityUser> userManager,
 			SignInManager<IdentityUser> signInManager,
 			RoleManager<IdentityRole> roleManager,
-			IdentityDbContext identityContext)
-		//DBDemoContext context)
+			IdentityDbContext identityContext,
+		    SlutprojektDBContext context)
 		{
 			this.userManager = userManager;
 			this.signInManager = signInManager;
 			this.roleManager = roleManager;
 			this.identityContext = identityContext;
-			//this.context = context;
+			this.context = context;
 		}
 
 		public void GenerateDBSchema()
@@ -35,28 +36,17 @@ namespace Slutprojekt.Models
 			identityContext.Database.EnsureCreated();
 		}
 
-		//public async Task<(bool, string)> CreateUser(CreateVM model)
-		//{
-		//	IdentityUser newUser = new IdentityUser(model.UserName);
-		//	var result = await userManager.CreateAsync(
-		//		newUser, model.Password);
-		//	if (result.Succeeded)
-		//	{
-		//		context.User
-		//			.Add(new User
-		//			{
-		//				FirstName = model.FirstName,
-		//				LastName = model.LastName,
-		//				Id = newUser.Id
-		//			});
-		//		context.SaveChanges();
-		//	}
+        public async Task<(bool,string)> CreateUserAsync(CreateVM model)
+        {
+            IdentityUser user = new IdentityUser(model.UserName);
+            var result = await userManager.CreateAsync(user, model.Password);
 
-		//	return (result.Succeeded, result.ToString());
+            return (result.Succeeded, result.ToString());
 
-		//}
 
-		public async Task<SignInResult> ValidateUser(LoginVM model)
+        }
+
+        public async Task<SignInResult> ValidateUser(LoginVM model)
 		{
 
 			return await signInManager.PasswordSignInAsync(

@@ -17,3 +17,8 @@
     <br />
     <input type="submit" value="Create" />
 </form>
+
+@if (!string.IsNullOrEmpty(Model.Message))
+{
+<span style="color:red"> @Model.Message  </span>
+}
