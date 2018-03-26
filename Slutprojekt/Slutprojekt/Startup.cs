@@ -25,7 +25,7 @@ namespace Slutprojekt
             {
                 app.UseDeveloperExceptionPage();
             }
-
+			app.UseStaticFiles();
 			app.UseMvc();
         }
     }

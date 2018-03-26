@@ -1,0 +1,17 @@
+﻿$primary-bg: #F5F6D4;
+$secondary-bg: #CDE855;
+$primary-header: #493F0B;
+$text-color: #493F0B;
+$contrast: #85DB18;
+$backup: #A7C520;
+
+body {
+	background-color: $primary-bg;
+	color: $text-color;
+	font-family: 'Corbel';
+}
+
+h1,h2,h3 {
+	color: $primary-header;
+	font-family: 'Comic Sans MS';
+}
