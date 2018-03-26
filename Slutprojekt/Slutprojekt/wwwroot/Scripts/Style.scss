@@ -11,7 +11,42 @@ body {
 	font-family: 'Corbel';
 }
 
+a{
+	color: $text-color;
+	text-decoration:none;
+}
+
+a:hover{
+	color: black;
+	text-decoration:none;
+}
+
 h1,h2,h3 {
 	color: $primary-header;
 	font-family: 'Comic Sans MS';
+}
+
+.loginspacer{
+	width:33%;
+}
+
+.login {
+	background-color: $secondary-bg;
+	width: 300px;
+	height: 300px;
+	margin:auto;
+	text-align:center;
+	border-radius:10px;
+	border-color:$primary-header;
+	border: 2px solid;
+	margin-top:50px;
+}
+
+.inputbox{
+	width:50%;
+	margin: auto;
+}
+
+.clear-fix {
+	clear: both;
 }
