@@ -2,39 +2,36 @@
 
 <html>
 <head>
-	<meta name="viewport" content="width=device-width" />
-	<title>@ViewBag.Title</title>
-	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-	<link href="~/Scripts/Style.css" rel="stylesheet" />
-	<link href="~/Scripts/Bootstrap_Style.css" rel="stylesheet" />
-	@*<link href="~/Scripts/custom_bootstrap.css" rel="stylesheet" />*@
+    <meta name="viewport" content="width=device-width" />
+    <title>@ViewBag.Title</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <link href="~/Scripts/Style.css" rel="stylesheet" />
+    <link href="~/Scripts/Bootstrap_Style.css" rel="stylesheet" />
+    @*<link href="~/Scripts/custom_bootstrap.css" rel="stylesheet" />*@
 
-	<!-- jQuery library -->
-	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <!-- jQuery library -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 
-	<!-- Latest compiled JavaScript -->
-	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <!-- Latest compiled JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 </head>
 <body>
-	<div class="Nav">
-		<nav class="navbar navbar-default">
-			<div class="container-fluid">
-				<div class="navbar-header">
+    <div class="Nav">
+        <nav class="navbar navbar-default">
+            <div class="container-fluid">
+                <div class="navbar-header">           
+                            <img src="~/Images/prototype_log4_white_smaller.png" width="100" />                       
+                </div>
+                <ul class="nav navbar-nav">
+                    <li><a asp-controller="Home" asp-action="Home">Home</a></li>
+                    <li><a asp-controller="Home" asp-action="Lobby">Games</a></li>
+                    <li><a asp-controller="Home" asp-action="Friends">Friends</a></li>
+                    <li><a asp-controller="Home" asp-action="Rankings">Rankings</a></li>
+                </ul>
+            </div>
+        </nav>
 
-                    <a class="navbar-brand" asp-controller="Home" asp-action="Home">xx
-                        @*<img src="smiley.gif" alt="Smiley face" width="42" height="42">*@
-                    </a>
-				</div>
-				<ul class="nav navbar-nav">
-					<li><a asp-controller="Home" asp-action="Home">Home</a></li>
-					<li><a asp-controller="Home" asp-action="Lobby">Games</a></li>
-					<li><a asp-controller="Home" asp-action="Friends">Friends</a></li>
-					<li><a asp-controller="Home" asp-action="Rankings">Rankings</a></li>
-				</ul>
-			</div>
-		</nav>
-
-	</div>
+    </div>
     <div class="Body">
         @RenderBody()
     </div>
