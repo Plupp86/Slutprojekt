@@ -50,18 +50,33 @@ namespace Slutprojekt.Controllers
 		[AllowAnonymous]
 		public IActionResult Create()
 		{
-			//Formulär med användarnamn, lösenord, email
-			return View();
-		}
+            //Formulär med användarnamn, lösenord, email
+            return View();
 
-		[Route("Create")]
+         }
+
+        [Route("Create")]
 		[HttpPost]
 		[AllowAnonymous]
 		public IActionResult Create(CreateVM model)
 		{
-			//Validera formuläret
+            //Validera formuläret
 
-			return RedirectToAction(nameof(HomeController.Index));
+            //    if (!ModelState.IsValid)
+            //    {
+            //        return View(model);
+            //    }
+
+            //    bool succes = await repository.CreateUserAsync(model);
+
+            //    if (!succes)
+            //    {
+            //        ModelState.AddModelError(nameof(AccountRegisterNewUserVM.PassWord), "Wrong input");
+            //        return View(model);
+            //    }
+            //    return RedirectToAction(nameof(HomeController.Home));
+
+            return RedirectToAction(nameof(HomeController.Index));
 		}
 
 
