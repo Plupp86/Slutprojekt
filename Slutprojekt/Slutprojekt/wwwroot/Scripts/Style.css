@@ -29,6 +29,17 @@ h1, h2, h3 {
   border: 2px solid;
   margin-top: 50px; }
 
+.create {
+  background-color: #CDE855;
+  width: 300px;
+  height: 400px;
+  margin: auto;
+  text-align: center;
+  border-radius: 10px;
+  border-color: #493F0B;
+  border: 2px solid;
+  margin-top: 50px; }
+
 .inputbox {
   width: 50%;
   margin: auto; }

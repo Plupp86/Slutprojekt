@@ -34,12 +34,24 @@ h1,h2,h3 {
 	background-color: $secondary-bg;
 	width: 300px;
 	height: 300px;
-	margin:auto;
-	text-align:center;
-	border-radius:10px;
-	border-color:$primary-header;
+	margin: auto;
+	text-align: center;
+	border-radius: 10px;
+	border-color: $primary-header;
 	border: 2px solid;
-	margin-top:50px;
+	margin-top: 50px;
+}
+
+.create {
+	background-color: $secondary-bg;
+	width: 300px;
+	height: 400px;
+	margin: auto;
+	text-align: center;
+	border-radius: 10px;
+	border-color: $primary-header;
+	border: 2px solid;
+	margin-top: 50px;
 }
 
 .inputbox{
