@@ -1,0 +1,35 @@
+﻿@model RockVM
+
+This is a chat:<br />
+<textarea id="txtChat">
+</textarea>
+<br />
+<input id="txtMessage" type="text" />
+<br />
+<input id="btnSend" type="button" value="send" />
+
+<div id="userName" style="display:none">
+	@Model.UserName
+</div>
+
+@section scriptsSection
+	{
+	<script src="~/Scripts/signalr-client-1.0.0-alpha2-final.min.js"></script>
+	<script>
+		let connection = new signalR.HubConnection('/chat');
+		connection.start();
+
+		var userName = "@Model.UserName.ToString()";
+
+		connection.on('onSend', data => {
+			$("#txtChat").append(userName + ": " + data + "\n");
+		});
+
+		$("#btnSend").click(() => {
+			let message = $("#txtMessage").val();
+			connection.invoke('PrivateChat', message, '@Model.OpponentId', '@Model.UserId');
+			$("#txtMessage").val("");
+		});
+	</script>
+}
+

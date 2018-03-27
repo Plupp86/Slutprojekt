@@ -10,8 +10,11 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
+using Slutprojekt.Hubs;
 using Slutprojekt.Models;
 using Slutprojekt.Models.Entities;
+
+
 
 namespace Slutprojekt
 {
@@ -47,6 +50,7 @@ namespace Slutprojekt
 
 
 			services.AddMvc();
+			services.AddSignalR();
 		}
 
 		// This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -56,10 +60,19 @@ namespace Slutprojekt
 			{
 				app.UseDeveloperExceptionPage();
 			}
+
 			app.UseStaticFiles();
+
+			app.UseSignalR(routes =>
+			{
+				routes.MapHub<Chat>("chat");
+			});
+
 			app.UseAuthentication();
 			app.UseMvc();
 
 		}
+
 	}
 }
+

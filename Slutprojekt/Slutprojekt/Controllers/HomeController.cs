@@ -10,10 +10,10 @@ using Slutprojekt.Models.ViewModels;
 // For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
 namespace Slutprojekt.Controllers
-{	
-	//[Authorize]
-    public class HomeController : Controller
-    {
+{
+	[Authorize]
+	public class HomeController : Controller
+	{
 
 		private readonly AccountRepository repository;
 
@@ -21,28 +21,29 @@ namespace Slutprojekt.Controllers
 		{
 			this.repository = repository;
 		}
-		
+
 
 		[Route("")]
 		[Route("Index")]
 		[HttpGet]
-		//[AllowAnonymous]
+		[AllowAnonymous]
 		public IActionResult Index()
 		{
 			return View();
 		}
 
 		[Route("Index")]
+		[AllowAnonymous]
 		[HttpPost]
-		//[AllowAnonymous]
 		public IActionResult Index(LoginVM model)
 		{
-			//Validering att formuläret är korrekt ifyllt
-
-			//Validering att användare/lösenord är korrekt
-
-
-			return RedirectToAction(nameof(HomeController.Home));
+			var result = repository.ValidateUser(model);
+			if (result.Result.Succeeded)
+			{
+				return RedirectToAction(nameof(HomeController.Home));
+			}
+			else
+				return View(model);
 		}
 
 		[Route("Create")]
@@ -50,34 +51,34 @@ namespace Slutprojekt.Controllers
 		[AllowAnonymous]
 		public IActionResult Create()
 		{
-            //Formulär med användarnamn, lösenord, email
-            return View(new CreateVM());
+			//Formulär med användarnamn, lösenord, email
+			return View(new CreateVM());
 
-         }
+		}
 
-        [Route("Create")]
+		[Route("Create")]
 		[HttpPost]
 		[AllowAnonymous]
 		public async Task<IActionResult> Create(CreateVM model)
 		{
-            //Validera formuläret
+			//Validera formuläret
 
-            if (!ModelState.IsValid)
-            {
-                return View(model);
-            }
+			if (!ModelState.IsValid)
+			{
+				return View(model);
+			}
 
-            var(succes, mess)= await repository.CreateUserAsync(model);
+			var (succes, mess) = await repository.CreateUserAsync(model);
 
-            if (!succes)
-            {
-                model.Message = mess;
-                ModelState.AddModelError(nameof(CreateVM.Password), "Wrong input");
-                return View(model);
-            }
-            //    return RedirectToAction(nameof(HomeController.Home));
+			if (!succes)
+			{
+				model.Message = mess;
+				ModelState.AddModelError(nameof(CreateVM.Password), "Wrong input");
+				return View(model);
+			}
+			//    return RedirectToAction(nameof(HomeController.Home));
 
-            return RedirectToAction(nameof(HomeController.Index));
+			return RedirectToAction(nameof(HomeController.Index));
 		}
 
 
@@ -91,10 +92,20 @@ namespace Slutprojekt.Controllers
 		public IActionResult Lobby()
 		{
 
-			//SignalR
-			return View();
-        }
-        //@"Data Source=(localdb)\MSSQLLocalDB;Initial Catalog=SlutprojektDB;Integrated Security=True;Connect Timeout=30;Encrypt=False;TrustServerCertificate=False;ApplicationIntent=ReadWrite;MultiSubnetFailover=False"
-        //Scaffold-DbContext "Data Source=(localdb)\MSSQLLocalDB;Initial Catalog=SlutprojektDB;Integrated Security=True;Connect Timeout=30;Encrypt=False;TrustServerCertificate=False;ApplicationIntent=ReadWrite;MultiSubnetFailover=False" Microsoft.EntityFrameworkCore.SqlServer -OutputDir "Models/Entities" -Context "SlutprojektDBContext" -Force
-    }
+			var model = new LobbyVM();
+			model.UserName = User.Identity.Name;
+			return View(model);
+			
+		}
+
+		[Route("Rock")]
+		public IActionResult RockPaperScissor()
+		{
+			var model = new RockVM();
+			model.UserName = User.Identity.Name;
+			return View(model);
+		}
+		//@"Data Source=(localdb)\MSSQLLocalDB;Initial Catalog=SlutprojektDB;Integrated Security=True;Connect Timeout=30;Encrypt=False;TrustServerCertificate=False;ApplicationIntent=ReadWrite;MultiSubnetFailover=False"
+		//Scaffold-DbContext "Data Source=(localdb)\MSSQLLocalDB;Initial Catalog=SlutprojektDB;Integrated Security=True;Connect Timeout=30;Encrypt=False;TrustServerCertificate=False;ApplicationIntent=ReadWrite;MultiSubnetFailover=False" Microsoft.EntityFrameworkCore.SqlServer -OutputDir "Models/Entities" -Context "SlutprojektDBContext" -Force
+	}
 }

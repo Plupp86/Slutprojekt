@@ -5,8 +5,11 @@ using System.Threading.Tasks;
 
 namespace Slutprojekt.Models.ViewModels
 {
-    public class LobbyVM
+    public class RockVM
     {
 		public string UserName { get; set; }
+		public string UserId { get; set; }
+		public string OpponentName { get; set; }
+		public string OpponentId { get; set; }
 	}
 }
