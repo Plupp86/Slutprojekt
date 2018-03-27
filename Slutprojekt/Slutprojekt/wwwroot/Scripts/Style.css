@@ -72,3 +72,8 @@ div.right {
   float: right;
   width: 48%;
   margin-right: 0%; }
+
+div.loggo {
+  position: absolute;
+  top: 2px;
+  left: 2px; }
