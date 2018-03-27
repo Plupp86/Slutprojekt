@@ -43,13 +43,14 @@ h1, h2, h3 {
 .content {
   background-color: #CDE855;
   width: 80%;
-  /*height: 80%;*/
+  height: 80%;
   margin: auto;
   text-align: left;
   border-radius: 10px;
   border-color: #493F0B;
   border: 2px solid;
   margin-top: 50px;
+  margin-bottom: 25px;
   padding: 3%; }
 
 .inputbox {
@@ -77,3 +78,30 @@ div.loggo {
   position: absolute;
   top: 2px;
   left: 2px; }
+
+#mainDiv {
+  background-color: #F5F6D4;
+  border: 2px solid #493F0B;
+  float: left;
+  width: 68%;
+  height: 400px;
+  margin-left: 0%;
+  padding: 10px;
+  border-radius: 5px; }
+
+#playerList {
+  background-color: #F5F6D4;
+  border: 2px solid #493F0B;
+  float: right;
+  width: 28%;
+  height: 400px;
+  margin-right: 0%;
+  padding: 10px;
+  border-radius: 5px; }
+
+#chatDiv {
+  background-color: #F5F6D4;
+  border: 2px solid #493F0B;
+  margin: auto;
+  padding: 10px;
+  border-radius: 5px; }

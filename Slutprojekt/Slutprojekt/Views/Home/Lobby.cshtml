@@ -2,38 +2,66 @@
 
 
 <div class="content">
-
-	<h3>This is the Lobby!</h3>
-	This is a chat:<br />
-<textarea id="txtChat">
-</textarea>
-	<br />
-	<input id="txtMessage" type="text" />
-	<br />
-	<input id="btnSend" type="button" value="send" />
-
-	<div id="userName" style="display:none">
-		@Model.UserName
+	<div id="mainDiv">
+		<div id="startDiv">Start Div med knapp och regler
+		<input type="button" value="Start New Game" id="startGame"/>
+		</div>
+		<div id="waitingForPlayers">Waiting for players...</div>
+		<div id="gameDiv">Här spelas spelet</div>
 	</div>
+
+	<div id="playerList">List of players</div>
+	<div class="clear-fix"></div>
+	<br />
+	<div id="chatDiv">
+<textarea id="txtChat" rows="5" cols="190" readonly>
+</textarea>
+		<br />
+		<input id="txtMessage" type="text" size="182" />
+		<input id="btnSend" type="button" value="send" size="8" />
+	</div>
+
+
+
+
+
 
 	@section scriptsSection
 		{
 		<script src="~/Scripts/signalr-client-1.0.0-alpha2-final.min.js"></script>
 		<script>
+
+			$("#waitingForPlayers").hide();
+			$("#gameDiv").hide();
+
+			$("#startGame").click(function () {
+				$("#startDiv").hide();
+				$("#waitingForPlayers").show();
+			});
+
 		let connection = new signalR.HubConnection('/chat');
 		connection.start();
 
 		var userName = "@Model.UserName.ToString()";
 
 		connection.on('onSend', data => {
-			$("#txtChat").append(userName + ": " + data + "\n");
+			$("#txtChat").append(data + "\n");
+			scrollToBottom();
 		});
 
 		$("#btnSend").click(() => {
-			let message = $("#txtMessage").val();
+			let message = userName + ": " + $("#txtMessage").val();
 			connection.invoke('Send', message);
 			$("#txtMessage").val("");
-		});
+			});
+
+			//$("#txtChat").change(function () {
+			//	scrollToBottom();
+			//});
+
+			function scrollToBottom() {
+				$('#txtChat').scrollTop($('#txtChat')[0].scrollHeight);
+			}
 		</script>
 	}
 
