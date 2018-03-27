@@ -8,7 +8,7 @@ namespace Slutprojekt.Models
     public class GameInformation
     {
 		
-		public string OpponentMame { get; set; }
+		public string OpponentName { get; set; }
 		public string Winner { get; set; }
 		public int MarkerPosition { get; set; }
 	}

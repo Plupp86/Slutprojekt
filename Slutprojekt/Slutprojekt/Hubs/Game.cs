@@ -97,8 +97,8 @@ namespace Slutprojekt.Hubs
 
 			if (player.WaitingForMove) return;
 
-			Clients.Client(game.Player1.ConenctionId).addMarkerPlacement(new GameInformation { OpponentName = player.Name, MarkerPosition = position });
-			Clients.Client(game.Player2.ConenctionId).addMarkerPlacement(new GameInformation { OpponentName = player.Name, MarkerPosition = position });
+			Clients.Client(game.Player1.ConnectionId).addMarkerPlacement(new GameInformation { OpponentName = player.Name, MarkerPosition = position });
+			Clients.Client(game.Player2.ConnectionId).addMarkerPlacement(new GameInformation { OpponentName = player.Name, MarkerPosition = position });
 
 			if (game.Play(marker, position))
 			{
@@ -112,8 +112,8 @@ namespace Slutprojekt.Hubs
 			{
 				games.Remove(game);
 				_gamesPlayed += 1;
-				Clients.Client(game.Player1.ConenctionId).gameOver("It's a Draw!");
-				Clients.Client(game.Player2.ConenctionId).gameOver("It's a Draw!");
+				Clients.Client(game.Player1.ConnectionId).gameOver("It's a Draw!");
+				Clients.Client(game.Player2.ConnectionId).gameOver("It's a Draw!");
 			}
 
 			if (!game.IsGameOver)
