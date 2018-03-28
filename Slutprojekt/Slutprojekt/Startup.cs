@@ -9,6 +9,7 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Slutprojekt.Hubs;
 using Slutprojekt.Models;
@@ -20,11 +21,18 @@ namespace Slutprojekt
 {
 	public class Startup
 	{
+		IConfiguration conf;
+		public Startup(IConfiguration conf)
+		{
+			this.conf = conf;
+		}
 		// This method gets called by the runtime. Use this method to add services to the container.
 		// For more information on how to configure your application, visit https://go.microsoft.com/fwlink/?LinkID=398940
 		public void ConfigureServices(IServiceCollection services)
 		{
-			var connString = @"Data Source=(localdb)\MSSQLLocalDB;Initial Catalog=SlutprojektDB;Integrated Security=True;Connect Timeout=30;Encrypt=False;TrustServerCertificate=False;ApplicationIntent=ReadWrite;MultiSubnetFailover=False";
+			//Local DB
+			//var connString = @"Data Source=(localdb)\MSSQLLocalDB;Initial Catalog=SlutprojektDB;Integrated Security=True;Connect Timeout=30;Encrypt=False;TrustServerCertificate=False;ApplicationIntent=ReadWrite;MultiSubnetFailover=False";
+			var connString = conf.GetConnectionString("AzureConnection");
 
 			services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
 			.AddCookie(o => o.LoginPath = "/Index");
