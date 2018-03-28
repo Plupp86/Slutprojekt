@@ -43,7 +43,7 @@
                 $('#debug').append('<li>Waiting for opponents to connect...</li>');
             };
             game.client.addMarkerPlacement = function (message) {
-                if (message.OpponentName !== $('#gamaName').val()) {
+                if (message.OpponentName !== $('#gameName').val()) {
                     $("#" + message.MarkerPosition).addClass("mark2");
                     $("#" + message.MarkerPosition).addClass("marked");
                     $("#information").html("<strong>You're up!</strong>");
