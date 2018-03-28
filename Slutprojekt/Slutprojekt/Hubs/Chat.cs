@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 
 namespace Slutprojekt.Hubs
 {
+
     public class Chat : Hub
     {
 		public Task Send(string message)
