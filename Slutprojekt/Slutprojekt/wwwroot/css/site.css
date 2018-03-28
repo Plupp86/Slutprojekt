@@ -36,9 +36,9 @@
 span.box {
     display: block;
     border: 2px solid black;
-    height: 100px;
-    width: 100px;
+    height: 50px;
+    width: 50px;
     float: left;
-    margin: 10px;
+    margin: 5px;
 }
 
