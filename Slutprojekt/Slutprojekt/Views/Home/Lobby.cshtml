@@ -3,8 +3,9 @@
 
 <div class="content">
 	<div id="mainDiv">
-		<div id="startDiv">Start Div med knapp och regler
-		<input type="button" value="Start New Game" id="startGame"/>
+		<div id="startDiv">
+			Start Div med knapp och regler
+			<input type="button" value="Start New Game" id="startGame" />
 		</div>
 		<div id="waitingForPlayers">Waiting for players...</div>
 		<div id="gameDiv">Här spelas spelet</div>
@@ -20,16 +21,18 @@
 		<input id="txtMessage" type="text" size="182" />
 		<input id="btnSend" type="button" value="send" size="8" />
 	</div>
+</div>
 
 
 
 
 
 
-	@section scriptsSection
-		{
-		<script src="~/Scripts/signalr-client-1.0.0-alpha2-final.min.js"></script>
-		<script>
+@section scriptsSection
+	{
+	<script src="~/Scripts/signalr-client-1.0.0-alpha2-final.min.js"></script>
+	@*<script src="~/js/signalr-client-1.0.0-alpha1-final.js"></script> <!-- SignalR-->*@
+	<script>
 
 			$("#waitingForPlayers").hide();
 			$("#gameDiv").hide();
@@ -62,7 +65,5 @@
 			function scrollToBottom() {
 				$('#txtChat').scrollTop($('#txtChat')[0].scrollHeight);
 			}
-		</script>
-	}
-
-</div>
+	</script>
+}

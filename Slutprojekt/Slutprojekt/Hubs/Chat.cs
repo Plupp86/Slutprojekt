@@ -17,11 +17,5 @@ namespace Slutprojekt.Hubs
 		{
 			return Clients.Group(receiverId).InvokeAsync("onSend", message);
 		}
-
-		public void method()
-		{
-			//var id = Clients.Client(Context.ConnectionId);
-			var id = Context.ConnectionId;
-		}
     }
 }

@@ -34,10 +34,8 @@
 
                 $("#game").html('<div id="information" /><br/>');
                 for (var i = 0; i < 9; i++) {
-
                     $("#game").append("<span id=" + i + " class='box' />");
                 }
-
                 $("#game").show();
             };
             game.client.noOpponents = function (message) {
@@ -57,7 +55,8 @@
                 }
                 $('#debug').append('<li>Marker was placed by ' + message.OpponentName + ' at position ' + message.MarkerPosition + '</li>');
             };
-            game.client.opponentDisconnected = function (message) {
+	game.client.
+		nected = function (message) {
                 $("#gameInformation").html("<strong>Game over! " + message + " left and you won on walk over</strong>");
                 $('#debug').append('<li>Your opponent left! Congratulations you won!</li>');
 

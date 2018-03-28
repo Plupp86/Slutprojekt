@@ -89,7 +89,7 @@ namespace Slutprojekt.Controllers
 		}
 
 		[Route("Lobby")]
-		public IActionResult Lobby()
+		public IActionResult TestLobby()
 		{
 
 			var model = new LobbyVM();

@@ -1,180 +1,128 @@
-﻿using Microsoft.AspNetCore.SignalR;
-using Slutprojekt.Models;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+﻿using Slutprojekt.Models;
 
-namespace Slutprojekt.Hubs
+namespace Slutprojekt
 {
-    public class Game : Hub
-    {
-		private static object _syncRoot = new object();
-		private static int _gamesPlayed = 0;
+	internal class Game
+	{
+		/// <summary>
+		///  Gets or sets the value indicating whether the game is over.
+		/// </summary>
+		public bool IsOver { get; private set; }
 
-		private static readonly List<Client> clients = new List<Client>();
+		/// <summary>
+		/// Gets or sets the value indicating whether the game is draw.
+		/// </summary>
+		public bool IsDraw { get; private set; }
 
-		private static readonly List<TicTacToe> games = new List<TicTacToe>();
+		/// <summary>
+		/// Gets or sets Player 1 of the game
+		/// </summary>
+		public Player Player1 { get; set; }
 
-		private static readonly Random random = new Random();
+		/// <summary>
+		/// Gets or sets Player 2 of the game
+		/// </summary>
+		public Player Player2 { get; set; }
 
-		public Task OnDisconnectedAsync()
+		/// <summary>
+		/// For internal housekeeping, To keep track of value in each of the box in the grid.
+		/// </summary>
+		private readonly int[] field = new int[9];
+
+		/// <summary>
+		/// The number of moves left. We start the game with 9 moves remaining in a 3x3 grid.
+		/// </summary>
+		private int movesLeft = 9;
+
+		/// <summary>
+		/// Initializes a new instance of the <see cref="Game"/> class.
+		/// </summary>
+		public Game()
 		{
-			var game = games.FirstOrDefault(x => x.Player1.ConnectionId == Context.ConnectionId || x.Player2.ConnectionId == Context.ConnectionId);
-			if (game == null)
+			//// Initialize the game
+			for (var i = 0; i < field.Length; i++)
 			{
-				var clientWithoutGame = clients.FirstOrDefault(x => x.ConnectionId == Context.ConnectionId);
-				if (clientWithoutGame != null)
+				field[i] = -1;
+			}
+		}
+
+		/// <summary>
+		/// Place the player number at a given position for a player
+		/// </summary>
+		/// <param name="player">The player number would be 0 or 1</param>
+		/// <param name="position">The position where player number would be placed, should be between 0 and 8, both inclusive</param>
+		/// <returns>Boolean true if game is over and we have a winner.</returns>
+		public bool Play(int player, int position)
+		{
+			if (this.IsOver)
+			{
+				return false;
+			}
+
+			//// Place the player number at the given position
+			this.PlacePlayerNumber(player, position);
+
+			//// Check if we have a winner. If this returns true, 
+			//// game would be over and would have a winner, else game would continue.
+			return this.CheckWinner();
+		}
+
+		/// <summary>
+		/// Checks for the winner by inspecting different combination of winning combinations
+		/// Notice that each position is initialized with -1, meaning no player has placed his number there.
+		/// </summary>
+		/// <returns>Boolean true if we have a winner.</returns>
+		private bool CheckWinner()
+		{
+			//// Given the board below:
+			////  0|1|2
+			////  3|4|5
+			////  6|7|8
+			//// There can be a winner if one of the following positions are occupied by same player, i.e, values of these cells is not -1 and is either 0 or 1
+
+			//// 2,5,8 || 1,4,7 || 0,3,6 || 0,1,2 || 3,4,5 || 6,7,8 || 0,4,8 || 2,4,6
+
+			//// This for loop checks for 2,5,8 || 1,4,7 || 0,3,6 || 0,1,2 || 3,4,5 || 6,7,8 combinations.
+			for (int i = 0; i < 3; i++)
+			{
+				if (((field[i * 3] != -1 && field[(i * 3)] == field[(i * 3) + 1] && field[(i * 3)] == field[(i * 3) + 2]) ||
+					 (field[i] != -1 && field[i] == field[i + 3] && field[i] == field[i + 6])))
 				{
-					clients.Remove(clientWithoutGame);
-					SendStatsUpdate();
+					this.IsOver = true; //// Game is over
+					return true; //// We have a winner
 				}
-				return null;
 			}
 
-			if (game != null)
+			//// Manually check for these combinations 0,4,8 || 2,4,6
+			if ((field[0] != -1 && field[0] == field[4] && field[0] == field[8]) || (field[2] != -1 && field[2] == field[4] && field[2] == field[6]))
 			{
-				games.Remove(game);
+				this.IsOver = true; //// Game is over
+				return true;   //// We have a winner
 			}
 
-			var client = game.Player1.ConnectionId == Context.ConnectionId ? game.Player1 : game.Player2;
-
-			if (client == null)
-			{
-				return null;
-			}
-
-			clients.Remove(client);
-			if (client.Opponent != null)
-			{
-				SendStatsUpdate();
-				return Clients.Client(client.Opponent.ConnectionId).opponentDisconnected(client.Name);
-			}
-
-			return null;
+			return false; //// Game can go on, we still don't have a winner.
 		}
 
-		public Task OnConnected()
+		/// <summary>
+		/// Places the player number at the given position for the player if the position is marked as -1, i.e., not taken
+		/// </summary>
+		/// <param name="player">The player number, i.e, 0 or 1</param>
+		/// <param name="position">The position to place the player number, should be between 0 and 8, both inclusive.</param>
+		private void PlacePlayerNumber(int player, int position)
 		{
-			return SendStatsUpdate();
-		}
+			this.movesLeft -= 1;
 
-		public Task SendStatsUpdate()
-		{
-			return Clients.All.refreshAmountOfPlayers(new { totalGamesPlayed = _gamesPlayed, amountOfGames = games.Count, amountOfClients = clients.Count });
-		}
-
-		public void RegisterClient(string data)
-		{
-			lock (_syncRoot)
+			if (this.movesLeft <= 0)
 			{
-				var client = clients.FirstOrDefault(x => x.ConnectionId == Context.ConnectionId);
-				if (client == null)
-				{
-					client = new Client { ConnectionId = Context.ConnectionId, Name = data };
-					clients.Add(client);
-				}
-				client.IsPlaying = false;
-			}
-			SendStatsUpdate();
-			Clients.Client(Context.ConnectionId).registerComplete();
-		}
-
-		public void Play(int position)
-		{
-			var game = games.FirstOrDefault(x => x.Player1.ConnectionId == Context.ConnectionId || x.Player2.ConnectionId == Context.ConnectionId);
-
-			if (game == null || game.IsGameOver) return;
-
-			int marker = 0;
-
-			if (game.Player2.ConnectionId == Context.ConnectionId)
-			{
-				marker = 1;
+				//// We are out of moves, so game is over and is draw
+				this.IsOver = true;
+				this.IsDraw = true;
 			}
 
-			var player = marker == 0 ? game.Player1 : game.Player2;
-
-			if (player.WaitingForMove) return;
-
-			Clients.Client(game.Player1.ConnectionId).addMarkerPlacement(new GameInformation { OpponentName = player.Name, MarkerPosition = position });
-			Clients.Client(game.Player2.ConnectionId).addMarkerPlacement(new GameInformation { OpponentName = player.Name, MarkerPosition = position });
-
-			if (game.Play(marker, position))
+			if (position < field.Length && field[position] == -1)
 			{
-				games.Remove(game);
-				_gamesPlayed += 1;
-				Clients.Client(game.Player1.ConnectionId).gameOver(player.Name);
-				Clients.Client(game.Player2.ConnectionId).gameOver(player.Name);
+				field[position] = player;
 			}
-
-			if (game.IsGameOver && game.IsDraw)
-			{
-				games.Remove(game);
-				_gamesPlayed += 1;
-				Clients.Client(game.Player1.ConnectionId).gameOver("It's a Draw!");
-				Clients.Client(game.Player2.ConnectionId).gameOver("It's a Draw!");
-			}
-
-			if (!game.IsGameOver)
-			{
-				player.WaitingForMove = !player.WaitingForMove;
-				player.Opponent.WaitingForMove = !player.Opponent.WaitingForMove;
-
-				Clients.Client(player.Opponent.ConnectionId).waitingForMarkerPlacement(player.Name);
-			}
-
-			SendStatsUpdate();
-		}
-
-		public void FindOpponent()
-		{
-			var player = clients.FirstOrDefault(x => x.ConnectionId == Context.ConnectionId);
-			if (player == null) return;
-
-			player.LookingForOpponent = true;
-
-			var opponent = clients.Where(x => x.ConnectionId != Context.ConnectionId && x.LookingForOpponent && !x.IsPlaying).OrderBy(x => Guid.NewGuid()).FirstOrDefault();
-			if (opponent == null)
-			{
-				Clients.Client(Context.ConnectionId).noOpponents();
-				return;
-			}
-
-			player.IsPlaying = true;
-			player.LookingForOpponent = false;
-			opponent.IsPlaying = true;
-			opponent.LookingForOpponent = false;
-
-			player.Opponent = opponent;
-			opponent.Opponent = player;
-
-			Clients.Client(Context.ConnectionId).foundOpponent(opponent.Name);
-			Clients.Client(opponent.ConnectionId).foundOpponent(player.Name);
-
-			if (random.Next(0,5000) % 2 == 0)
-			{
-				player.WaitinForMove = false;
-				opponent.WaitingForMove = true;
-
-				Clients.Client(player.ConnectionId).waitingForMarkerPlacement(opponent.Name);
-				Clients.Client(opponent.ConnectionId).waitingForOpponent(opponent.Name);
-			}
-			else
-			{
-				player.WaitingForMove = true;
-				opponent.WaitingForMove = false;
-
-				Clients.Client(opponent.ConnectionId).waitinfForMarkerPlacement(opponent.Name);
-				Clients.Client(player.ConnectionId).waitingForOpponent(opponent.Name);
-			}
-
-			lock (_syncRoot)
-			{
-				games.Add(new TicTacToe { Player1 = player, Player2 = opponent });
-			}
-
-			SendStatsUpdate();
 		}
 	}
 }
