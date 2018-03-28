@@ -75,14 +75,14 @@ hubConnection.on('waitingForMove', data => {
 });
 
 hubConnection.on('moveMade', data => {
-	if (data.image == playerImage) {
+	if (data.image === playerImage) {
 		$("#" + data.ImagePosition).addClass("notAvailable");
 		$("#" + data.ImagePosition).css('background-image', 'url(' + data.Image + ')');
 		console.log("dataimage == playerimage")
 		$('#divInfo').html("<br/><strong>Waiting for <i>" + data.OpponentName + "</i> to make a move.</strong>");
 	}
 	else {
-		if (data.opponentName == userName) {
+		if (data.opponentName === userName) {
 			$("#" + data.imagePosition).css('background-color', 'red');
 		}
 		else {
