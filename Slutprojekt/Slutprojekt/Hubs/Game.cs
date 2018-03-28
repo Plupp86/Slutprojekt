@@ -97,7 +97,7 @@ namespace Slutprojekt.Hubs
 
 			if (player.WaitingForMove) return;
 
-			Clients.Client(game.Player1.ConnectionId).addMarkerPlacement(new GameInformation { OpponentName = player.Name, MarkerPosition = position });
+            Clients.Client(game.Player1.ConnectionId).addMarkerPlacement(new GameInformation { OpponentName = player.Name, MarkerPosition = position });
 			Clients.Client(game.Player2.ConnectionId).addMarkerPlacement(new GameInformation { OpponentName = player.Name, MarkerPosition = position });
 
 			if (game.Play(marker, position))
@@ -154,7 +154,7 @@ namespace Slutprojekt.Hubs
 
 			if (random.Next(0,5000) % 2 == 0)
 			{
-				player.WaitinForMove = false;
+				player.WaitingForMove = false;
 				opponent.WaitingForMove = true;
 
 				Clients.Client(player.ConnectionId).waitingForMarkerPlacement(opponent.Name);
