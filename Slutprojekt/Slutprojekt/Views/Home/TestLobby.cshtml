@@ -127,6 +127,7 @@
 		$('#divInfo').html("<br/><span><strong> Waiting for <i>" + data + "</i> to make a move.</strong></span>");
 	});
 
+    //
 	hubConnection.on('opponentFound', (data, image) => {
 		$('#divFindOpponentPlayer').hide();
 		$('#divFindingOpponentPlayer').hide();
