@@ -65,7 +65,7 @@ namespace Slutprojekt
 
 			app.UseSignalR(routes =>
 			{
-				routes.MapHub<Chat>("chat");
+				//routes.MapHub<Chat>("chat");
 				routes.MapHub<GameHub>("gameHub");
 			});
 

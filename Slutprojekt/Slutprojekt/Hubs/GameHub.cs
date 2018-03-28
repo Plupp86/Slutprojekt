@@ -4,8 +4,7 @@ using System.Threading.Tasks;
 using System;
 using System.Linq;
 using System.Collections.Concurrent;
-using Slutprojekt.Models;
-using Slutprojekt.Hubs;
+
 
 namespace Slutprojekt
 {

@@ -19,25 +19,30 @@
 
 </head>
 <body>
-    <div class="Nav">
-        <nav class="navbar navbar-default">
-            <div class="container-fluid">
-                <div class="navbar-header">           
-                            <img src="~/Images/prototype_log4_white_smaller.png" width="100" />                       
-                </div>
-                <ul class="nav navbar-nav">
-                    <li><a asp-controller="Home" asp-action="Home">Home</a></li>
-                    <li><a asp-controller="Home" asp-action="Lobby">Games</a></li>
-                    <li><a asp-controller="Home" asp-action="Friends">Friends</a></li>
-                    <li><a asp-controller="Home" asp-action="Rankings">Rankings</a></li>
-                </ul>
-            </div>
-        </nav>
+	<div class="Nav">
+		<nav class="navbar navbar-default">
+			<div class="container-fluid">
+				<div class="navbar-header">
+					<img src="~/Images/prototype_log4_white_smaller.png" width="100" />
+				</div>
+				<ul class="nav navbar-nav">
+					<li><a asp-controller="Home" asp-action="Home">Home</a></li>
+					<li><a asp-controller="Home" asp-action="Lobby">Games</a></li>
+					<li><a asp-controller="Home" asp-action="Friends">Friends</a></li>
+					<li><a asp-controller="Home" asp-action="Rankings">Rankings</a></li>
+				</ul>
+			</div>
+		</nav>
 
-    </div>
-    <div class="Body">
-        @RenderBody()
-    </div>
-	@RenderSection("scriptsSection",false)
+	</div>
+	<div class="Body">
+		@RenderBody()
+	</div>
+
+	
+	<script src="~/js/signalr-clientES5-1.0.0-alpha1-final.js"></script>
+	<script src="~/js/signalr-msgpackprotocol-1.0.0-alpha1-final.js"></script>
+	
+	@RenderSection("scriptsSection", false)
 </body>
 </html>
