@@ -7,7 +7,14 @@ $("#startGame").click(function () {
 });
 
 let connection = new signalR.HubConnection('/chat');
-connection.start();
+connection.start()
+	.done(function () {
+		chat.getConnectedUsers()
+			.done(function () {
+				displayOnlineUsers()
+					.done(function () { chat.joined });
+				});
+	});
 
 connection.on('onSend', data => {
 	$("#txtChat").append(data + "\n");

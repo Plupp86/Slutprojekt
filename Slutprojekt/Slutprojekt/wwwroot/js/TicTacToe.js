@@ -53,7 +53,7 @@ hubConnection.on('opponentFound', (data, image) => {
 	$('#opponentImage').attr('src', opponentImage);
 	$('#divGameInfo').html("<br/><span><strong> Hey " + playerName + "! You are playing against <i>" + data + "</i></strong></span>");
 	for (var i = 0; i < 9; i++) {
-		$("#divGameBoard").append("<span class='marker' id=" + i + " style='display:block;border:2px solid black;height:100px;width:100px;float:left;margin:10px;'>" + i + "</span>");
+		$("#divGameBoard").append("<span class='marker' id=" + i + " style='display:block;border:2px solid black;height:50px;width:50px;float:left;margin:5px;'>" + i + "</span>");
 	}
 });
 
@@ -66,8 +66,8 @@ hubConnection.on('opponentDisconnected', data => {
 	$("#divRegister").hide();
 	$('#divGame').hide();
 	$('#divGameInfo').html(" ");
-	$('#divInfo').html("<br/><span><strong>Hey " + playerName + "! Your opponent disconnected or left the battle! You are the winner ! Hip Hip Hurray!!!</strong></span>");
-
+	$('#divInfo').html("<br/><span><strong>Your opponent disconnected or left the battle! You are the winner ! Hip Hip Hurray!!!</strong></span>");
+	setTimeout(function () { $('#divFindOpponentPlayer').show(); }, 2000);
 });
 
 hubConnection.on('waitingForMove', data => {
@@ -75,23 +75,15 @@ hubConnection.on('waitingForMove', data => {
 });
 
 hubConnection.on('moveMade', data => {
-	if (data.image === playerImage) {
-		$("#" + data.ImagePosition).addClass("notAvailable");
-		$("#" + data.ImagePosition).css('background-image', 'url(' + data.Image + ')');
-		console.log("dataimage == playerimage")
-		$('#divInfo').html("<br/><strong>Waiting for <i>" + data.OpponentName + "</i> to make a move.</strong>");
+	if (data.opponentName === userName) {
+		$("#" + data.imagePosition).css('background-color', 'red');
 	}
 	else {
-		if (data.opponentName === userName) {
-			$("#" + data.imagePosition).css('background-color', 'red');
-		}
-		else {
-			$("#" + data.imagePosition).css('background-color', 'blue');
-		}
-
-		$("#" + data.imagePosition).addClass("notAvailable");
-		$('#divInfo').html("<br/><strong>Waiting for <i>" + data.OpponentName + "</i> to make a move.</strong>");
+		$("#" + data.imagePosition).css('background-color', 'blue');
 	}
+
+	$("#" + data.imagePosition).addClass("notAvailable");
+	$('#divInfo').html("<br/><strong>Waiting for <i>" + data.OpponentName + "</i> to make a move.</strong>");
 });
 
 hubConnection.on('gameOver', data => {
