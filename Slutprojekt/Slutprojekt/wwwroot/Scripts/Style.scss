@@ -63,9 +63,9 @@ h1, h2, h3 {
 	border-radius: 10px;
 	border-color: $primary-header;
 	border: 2px solid;
-	margin-top: 50px;
-	margin-bottom: 25px;
-	padding: 3%;
+	margin-top: 20px;
+	margin-bottom: 5px;
+	padding: 1%;
 }
 
 .inputbox {
@@ -104,7 +104,7 @@ div.loggo {
 	border: 2px solid $primary-header;
 	float: left;
 	width: 68%;
-	height: 400px;
+	height: 380px;
 	margin-left: 0%;
 	padding: 10px;
 	border-radius: 5px;
@@ -115,7 +115,7 @@ div.loggo {
 	border: 2px solid $primary-header;
 	float: right;
 	width: 28%;
-	height: 400px;
+	height: 380px;
 	margin-right: 0%;
 	padding: 10px;
 	border-radius: 5px;
@@ -127,4 +127,84 @@ div.loggo {
 	margin: auto;
 	padding: 10px;
 	border-radius: 5px;
+}
+
+body {
+	padding-bottom: 20px;
+}
+
+/* Wrapping element */
+/* Set some basic padding to keep content from hitting the edges */
+.body-content {
+	padding-left: 15px;
+	padding-right: 15px;
+}
+
+/* Carousel */
+.carousel-caption p {
+	font-size: 20px;
+	line-height: 1.4;
+}
+
+/* Make .svg files in the carousel display properly in older browsers */
+.carousel-inner .item img[src$=".svg"] {
+	width: 100%;
+}
+
+/* QR code generator */
+#qrCode {
+	margin: 15px;
+}
+
+/* Hide/rearrange for smaller screens */
+@media screen and (max-width: 767px) {
+	/* Hide captions */
+	.carousel-caption {
+		display: none;
+	}
+}
+
+span.box {
+	display: block;
+	border: 2px solid black;
+	height: 50px;
+	width: 50px;
+	float: left;
+	margin: 5px;
+}
+
+#txtChat {
+	width: 100%;
+	height: 120px;
+	border-radius: 3px;
+	box-shadow: none;
+}
+
+#txtMessage {
+	width: 89%;
+	height: 25px;
+	border-radius:3px;
+	box-shadow:none;
+}
+
+.notAvailable {
+	background: center;
+	background-size: 50px 50px;
+	background-repeat: no-repeat;
+	height: 50px;
+	width: 50px;
+}
+
+.findPlayerBtn {
+	background-color: $backup;
+	border-color: $primary-header;
+	color: $primary-header;
+	font-weight: 700;
+}
+
+.submitBtn {
+	background-color: $backup;
+	border-color: $primary-header;
+	color: $primary-header;
+	font-weight: 700;
 }

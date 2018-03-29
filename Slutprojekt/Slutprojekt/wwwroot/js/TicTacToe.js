@@ -77,10 +77,10 @@ hubConnection.on('waitingForMove', data => {
 
 hubConnection.on('moveMade', data => {
 	if (data.opponentName === userName) {
-		$("#" + data.imagePosition).css('background-color', 'red');
+		$("#" + data.imagePosition).css('background-image', 'url("/Images/cross.png")');
 	}
 	else {
-		$("#" + data.imagePosition).css('background-color', 'blue');
+		$("#" + data.imagePosition).css('background-image', 'url("/Images/circle.png")');
 	}
 
 	$("#" + data.imagePosition).addClass("notAvailable");
