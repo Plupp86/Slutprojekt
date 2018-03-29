@@ -1,6 +1,6 @@
 ﻿@model LobbyVM
 <div class="content">
-	<div id="mainDiv">
+	<div style="padding:25px" id="mainDiv">
 <form class="form-horizontal">
 	<div id="divPreviewImage">
 		<fieldset>
@@ -21,7 +21,7 @@
 		<fieldset>
 			<legend>Find a player to play against!</legend>
 			<div class="form-group">
-				<input type="button" class="btn btn-primary" id="btnFindOpponentPlayer" value="Find Opponent Player" />
+                <span style="margin:50px"><input type="button" class="btn btn-primary btn-block" id="btnFindOpponentPlayer" value="Find Opponent Player" /></span>
 			</div>
 		</fieldset>
 	</div>
@@ -57,7 +57,7 @@
 	</textarea>
 			<br />
 			<input id="txtMessage" type="text" size="182" />
-			<input id="btnSend" type="button" value="send" size="8" />
+			<input class="btn" id="btnSend" type="button" value="send" size="8" />
 		</div>
 	</div>
 <link href="~/css/site.css" rel="stylesheet" />

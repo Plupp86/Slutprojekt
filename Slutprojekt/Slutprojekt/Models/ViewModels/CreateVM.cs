@@ -9,10 +9,12 @@ namespace Slutprojekt.Models.ViewModels
     public class CreateVM
     {
 		[Required]
-		public string UserName { get; set; }
+        [StringLength(60, MinimumLength = 3)]
+        public string UserName { get; set; }
 
 		[Required]
-		[DataType(DataType.Password)]
+        [StringLength(100, ErrorMessage = "The {0} must be at least {2} characters long.", MinimumLength = 6)]
+        [DataType(DataType.Password)]
 		public string Password { get; set; }
 
 		//[Required]

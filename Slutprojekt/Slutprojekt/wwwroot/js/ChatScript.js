@@ -38,11 +38,11 @@ chat.on('onSend', data => {
 });
 
 $("#btnSend").click(() => {
-	let message = userName + ": " + $("#txtMessage").val();
-	if ($("#txtMessage").val() != "") {
-		chat.invoke('Send', message);
-		$("#txtMessage").val("");
-	}
+    let message = userName + ": " + $("#txtMessage").val();
+    if ($("#txtMessage").val() != "") {
+	    connection.invoke('Send', message);
+	    $("#txtMessage").val("");
+    }
 });
 
 $(document).ready(function () {

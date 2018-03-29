@@ -41,3 +41,21 @@ span.box {
     margin: 5px;
 }
 
+#txtChat {
+    width: 100%;
+    height: 150px;
+}
+
+#txtMessage {
+    width: 89%;
+    height: 25px;
+}
+
+/*#btnFindOpponentPlayer {
+    margin-left: 25px;
+    margin-right: 25px;
+    margin:0;
+    padding: 5px;
+    width: 90%;
+    height: 25px;
+}*/
