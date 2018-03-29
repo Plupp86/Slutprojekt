@@ -9,8 +9,6 @@ $("#startGame").click(function () {
 let connection = new signalR.HubConnection('/chat');
 connection.start();
 
-//var userName = "@Model.UserName.ToString()";
-
 connection.on('onSend', data => {
 	$("#txtChat").append(data + "\n");
 	scrollToBottom();
@@ -31,7 +29,6 @@ inputtxtMessage.addEventListener("keyup", function (event) {
         document.getElementById("btnSend").click();
     }
 });
-
 
 
 function scrollToBottom() {

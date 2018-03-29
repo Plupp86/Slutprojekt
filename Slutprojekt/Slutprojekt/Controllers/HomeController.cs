@@ -73,7 +73,7 @@ namespace Slutprojekt.Controllers
 			if (!succes)
 			{
 				model.Message = mess;
-				ModelState.AddModelError(nameof(CreateVM.Password), "Wrong input");
+				ModelState.AddModelError(nameof(CreateVM.Password), "Bad input");
 				return View(model);
 			}
 			//    return RedirectToAction(nameof(HomeController.Home));

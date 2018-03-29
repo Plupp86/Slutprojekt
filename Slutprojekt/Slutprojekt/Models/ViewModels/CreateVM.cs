@@ -9,7 +9,8 @@ namespace Slutprojekt.Models.ViewModels
     public class CreateVM
     {
 		[Required]
-		public string UserName { get; set; }
+        [StringLength(60, MinimumLength = 3)]
+        public string UserName { get; set; }
 
 		[Required]
 		[DataType(DataType.Password)]
