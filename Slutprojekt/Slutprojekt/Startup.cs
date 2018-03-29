@@ -46,11 +46,14 @@ namespace Slutprojekt
 
             services.AddTransient<AccountRepository>();
 
-			services.AddIdentity<IdentityUser, IdentityRole>(o =>
+            services.AddIdentity<IdentityUser, IdentityRole>(o =>
 			{
 				o.Password.RequireNonAlphanumeric = false;
 				o.Password.RequiredLength = 6;
-			})
+                o.Password.RequireDigit = true;
+                o.Password.RequireLowercase = true;
+                o.Password.RequireUppercase = true;
+            })
 				.AddEntityFrameworkStores<IdentityDbContext>()
 				.AddDefaultTokenProviders();
 
