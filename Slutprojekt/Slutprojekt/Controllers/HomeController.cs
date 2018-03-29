@@ -95,7 +95,7 @@ namespace Slutprojekt.Controllers
 			var model = new LobbyVM();
 			model.UserName = User.Identity.Name;
 			return View(model);
-			
+
 		}
 
 		[Route("Rock")]
@@ -105,7 +105,5 @@ namespace Slutprojekt.Controllers
 			model.UserName = User.Identity.Name;
 			return View(model);
 		}
-		//@"Data Source=(localdb)\MSSQLLocalDB;Initial Catalog=SlutprojektDB;Integrated Security=True;Connect Timeout=30;Encrypt=False;TrustServerCertificate=False;ApplicationIntent=ReadWrite;MultiSubnetFailover=False"
-		//Scaffold-DbContext "Data Source=(localdb)\MSSQLLocalDB;Initial Catalog=SlutprojektDB;Integrated Security=True;Connect Timeout=30;Encrypt=False;TrustServerCertificate=False;ApplicationIntent=ReadWrite;MultiSubnetFailover=False" Microsoft.EntityFrameworkCore.SqlServer -OutputDir "Models/Entities" -Context "SlutprojektDBContext" -Force
 	}
 }
