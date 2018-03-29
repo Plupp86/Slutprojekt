@@ -121,3 +121,7 @@ $(document).on('click', '.marker', function () {
 	console.log("Klick klick klick!!!");
 	hubConnection.invoke('MakeAMove', $(this)[0].id); //// Cell is valid, send details to hub.
 });
+
+
+
+
