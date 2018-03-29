@@ -11,7 +11,7 @@ namespace Slutprojekt.Hubs
 
     public class Chat : Hub
     {
-		private static readonly ConcurrentBag<ChatUser> chatters = new ConcurrentBag<ChatUser>();
+		private static ConcurrentBag<ChatUser> chatters = new ConcurrentBag<ChatUser>();
 
 		public Task Send(string message)
 		{ 
@@ -23,10 +23,24 @@ namespace Slutprojekt.Hubs
 			return Clients.Group(receiverId).InvokeAsync("onSend", message);
 		}
 
-		public override Task OnConnectedAsync()
+		public override Task OnDisconnectedAsync(Exception exception)
 		{
+			var disconnectedChatUser = chatters
+				.SingleOrDefault(c => c.ConnectionId == Context.ConnectionId);
 
-			return base.OnConnectedAsync();
+			if (disconnectedChatUser!= null)
+			{
+				chatters = Remove<ChatUser>(chatters, disconnectedChatUser);
+				return Clients.All.InvokeAsync("listOfChatUsers", chatters);
+			}
+
+
+			return base.OnDisconnectedAsync(exception);
+		}
+
+		private ConcurrentBag<T> Remove<T>(ConcurrentBag<T> chatters, T disconnectedChatUser)
+		{
+			return chatters =  new ConcurrentBag<T>(chatters?.Except(new[] { disconnectedChatUser }));
 		}
 
 		public Task RegisterChatUser(string userName)

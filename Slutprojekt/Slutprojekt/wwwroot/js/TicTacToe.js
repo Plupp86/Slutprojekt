@@ -52,8 +52,9 @@ hubConnection.on('opponentFound', (data, image) => {
 	opponentImage = image;
 	$('#opponentImage').attr('src', opponentImage);
 	$('#divGameInfo').html("<br/><span><strong> Hey " + playerName + "! You are playing against <i>" + data + "</i></strong></span>");
+	$("#divGameBoard").html(" ");
 	for (var i = 0; i < 9; i++) {
-		$("#divGameBoard").append("<span class='marker' id=" + i + " style='display:block;border:2px solid black;height:50px;width:50px;float:left;margin:5px;'>" + i + "</span>");
+		$("#divGameBoard").append("<span class='marker' id=" + i + " style='display:block;border:2px solid black;height:50px;width:50px;float:left;margin:5px;'> </span>");
 	}
 });
 

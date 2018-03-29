@@ -15,6 +15,7 @@ chat.start();
 	//});
 
 
+
 chat.on('listOfChatUsers', data => {
 	$("#onlineUsers").empty();
 	data.forEach(function (element) {
@@ -40,7 +41,7 @@ chat.on('onSend', data => {
 $("#btnSend").click(() => {
     let message = userName + ": " + $("#txtMessage").val();
     if ($("#txtMessage").val() != "") {
-	    connection.invoke('Send', message);
+	    chat.invoke('Send', message);
 	    $("#txtMessage").val("");
     }
 });

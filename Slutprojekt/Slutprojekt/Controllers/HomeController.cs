@@ -89,21 +89,13 @@ namespace Slutprojekt.Controllers
 		}
 
 		[Route("Lobby")]
-		public IActionResult TestLobby()
+		public IActionResult Lobby()
 		{
 
 			var model = new LobbyVM();
 			model.UserName = User.Identity.Name;
 			return View(model);
 
-		}
-
-		[Route("Rock")]
-		public IActionResult RockPaperScissor()
-		{
-			var model = new RockVM();
-			model.UserName = User.Identity.Name;
-			return View(model);
 		}
 	}
 }

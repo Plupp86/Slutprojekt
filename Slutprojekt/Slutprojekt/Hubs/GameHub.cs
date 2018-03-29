@@ -16,12 +16,12 @@ namespace Slutprojekt
 		/// <summary>
 		///  To keep the list of all the connected players registered with the game hub.
 		/// </summary>
-		private static readonly ConcurrentBag<Player> players = new ConcurrentBag<Player>();
+		private static ConcurrentBag<Player> players = new ConcurrentBag<Player>();
 
 		/// <summary>
 		///  The list of games going on.
 		/// </summary>
-		private static readonly ConcurrentBag<Game> games = new ConcurrentBag<Game>();
+		private static ConcurrentBag<Game> games = new ConcurrentBag<Game>();
 
 		/// <summary>
 		///  To simulate the coin toss. Like heads and tails, 0 belongs to one player and 1 to opponent.
@@ -56,7 +56,7 @@ namespace Slutprojekt
 				if (playerWithoutGame != null)
 				{
 					//// Remove this player from our player list.
-					Remove<Player>(players, playerWithoutGame);
+					players = Remove<Player>(players, playerWithoutGame);
 				}
 
 				return null;
@@ -65,7 +65,7 @@ namespace Slutprojekt
 			//// We have a game in which the player got disconnected, so lets remove that game from our list.
 			if (game != null)
 			{
-				Remove<Game>(games, game);
+				games = Remove<Game>(games, game);
 			}
 
 			//// Though we have removed the game from our list, we still need to notify the opponent that he has a walkover.
@@ -78,7 +78,7 @@ namespace Slutprojekt
 			}
 
 			//// Remove this player as he is disconnected and was in the game.
-			Remove<Player>(players, player);
+			players = Remove<Player>(players, player);
 
 			//// Check if there was an opponent of the player. If yes, tell him, he won/ got a walk over.
 			if (player.Opponent != null)
@@ -281,9 +281,9 @@ namespace Slutprojekt
 			games.Add(new Game { Player1 = player, Player2 = opponent });
 		}
 
-		private void Remove<T>(ConcurrentBag<T> players, T playerWithoutGame)
+		private ConcurrentBag<T> Remove<T>(ConcurrentBag<T> players, T playerWithoutGame)
 		{
-			players = new ConcurrentBag<T>(players?.Except(new[] { playerWithoutGame }));
+			return new ConcurrentBag<T>(players?.Except(new[] { playerWithoutGame }));
 		}
 	}
 }
