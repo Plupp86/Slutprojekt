@@ -17,14 +17,22 @@ connection.on('onSend', data => {
 });
 
 $("#btnSend").click(() => {
-	let message = userName + ": " + $("#txtMessage").val();
-	connection.invoke('Send', message);
-	$("#txtMessage").val("");
+    let message = userName + ": " + $("#txtMessage").val();
+    if ($("#txtMessage").val() != "") {
+	    connection.invoke('Send', message);
+	    $("#txtMessage").val("");
+    }
 });
 
-//$("#txtChat").change(function () {
-//	scrollToBottom();
-//});
+let inputtxtMessage = document.getElementById("txtMessage");
+inputtxtMessage.addEventListener("keyup", function (event) {
+    event.preventDefault();
+    if (event.keyCode === 13) {
+        document.getElementById("btnSend").click();
+    }
+});
+
+
 
 function scrollToBottom() {
 	$('#txtChat').scrollTop($('#txtChat')[0].scrollHeight);
