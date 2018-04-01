@@ -120,5 +120,5 @@ $(document).on('click', '.marker', function () {
 		return;
 	}
 	console.log("Klick klick klick!!!");
-	hubConnection.invoke('MakeAMove', $(this)[0].id); //// Cell is valid, send details to hub.
+	mathConnection.invoke('MakeAMove', $(this)[0].id); //// Cell is valid, send details to hub.
 });

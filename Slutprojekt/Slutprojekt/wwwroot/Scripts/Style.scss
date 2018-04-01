@@ -21,7 +21,7 @@ a:hover {
 	text-decoration: none;
 }
 
-h1, h2, h3 {
+h1, h2, h3, h4 {
 	color: $primary-header;
 	font-family: 'Audiowide', cursive;
 }
@@ -207,4 +207,8 @@ span.box {
 	border-color: $primary-header;
 	color: $primary-header;
 	font-weight: 700;
+}
+
+span.marker {
+	text-align: center;
 }

@@ -88,8 +88,18 @@ namespace Slutprojekt.Controllers
 			return View();
 		}
 
-		[Route("Lobby")]
+		[Route("TicLobby")]
 		public IActionResult Lobby()
+		{
+
+			var model = new LobbyVM();
+			model.UserName = User.Identity.Name;
+			return View(model);
+
+		}
+
+		[Route("MathLobby")]
+		public IActionResult MathLobby()
 		{
 
 			var model = new LobbyVM();

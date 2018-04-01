@@ -11,7 +11,7 @@ a:hover {
   color: black;
   text-decoration: none; }
 
-h1, h2, h3 {
+h1, h2, h3, h4 {
   color: #493F0B;
   font-family: 'Audiowide', cursive; }
 
@@ -172,3 +172,6 @@ span.box {
   border-color: #493F0B;
   color: #493F0B;
   font-weight: 700; }
+
+span.marker {
+  text-align: center; }

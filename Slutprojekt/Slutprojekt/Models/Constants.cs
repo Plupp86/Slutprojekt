@@ -49,5 +49,9 @@ namespace Slutprojekt
 		///  Stores the gameOver method of the client.
 		/// </summary>
 		public const string GameOver = "gameOver";
+
+		public const string CorrectAnswer = "correctAnswer";
+
+		public const string WrongAnswer = "wrongAnswer";
 	}
 }
