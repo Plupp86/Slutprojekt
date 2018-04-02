@@ -1,73 +1,76 @@
 ﻿@model LobbyVM
 <div class="content">
-	<div style="padding:25px" id="mainDiv">
-		<form class="form-horizontal">
-			<div id="divPreviewImage">
-				<fieldset>
-					<div class="form-group">
-						<div class="col-lg-2">
-							<image src="Images/granny.png" id="previewImage" style="height:100px;width:100px;border:solid 2px dotted; float:left" />
-						</div>
-						<div class="col-lg-10" id="divOpponentPlayer">
-							<image src="" id="opponentImage" style="height:100px;width:100px;border:solid 2px dotted; float:right;" />
-						</div>
-					</div>
-				</fieldset>
-			</div>
-			<div id="divRegister">
-				<h3>Connecting .... </h3>
-			</div>
-			<div id="divFindOpponentPlayer">
-				<fieldset>
-					<legend>Find a player to play against!</legend>
-					<div class="form-group">
-						<span style="margin:50px"><input type="button" class="btn btn-block findPlayerBtn" id="btnFindOpponentPlayer" value="Find Opponent Player" /></span>
-					</div>
-				</fieldset>
-			</div>
-			<div id="divFindingOpponentPlayer">
-				<fieldset>
-					<legend>Its lonely here!</legend>
-					<div class="form-group">
-						Looking for an opponent player. Waiting for someone to join!
-					</div>
-				</fieldset>
-			</div>
-			<div id="divGameInformation" class="form-group">
-				<div class="form-group" id="divGameInfo"></div>
-				<div class="form-group" id="divInfo"></div>
-			</div>
-			<div id="divGame" style="clear:both">
-				<fieldset>
-					<legend>Game On</legend>
-					<div id="divGameBoard" style="width:190px">
-					</div>
-				</fieldset>
-			</div>
-		</form>
-	</div>
+    <div style="padding:25px" id="mainDiv">
+        <form class="form-horizontal">
+            <div id="divPreviewImage">
+                <fieldset>
+                    <div class="form-group">
+                        <div class="col-lg-2">
+                            <image src="Images/granny.png" id="previewImage" style="height:100px;width:100px;border:solid 2px dotted; float:left" />
+                        </div>
+                        <div class="col-lg-10" id="divOpponentPlayer">
+                            <image src="" id="opponentImage" style="height:100px;width:100px;border:solid 2px dotted; float:right;" />
+                        </div>
+                    </div>
+                </fieldset>
+            </div>
+            <div id="divRegister">
+                <h3>Connecting .... </h3>
+            </div>
+            <div id="divFindOpponentPlayer">
+                <fieldset>
+                    <legend>Find a player to play against!</legend>
+                    <div class="form-group">
+                        <span style="margin:50px"><input type="button" class="btn btn-block findPlayerBtn" id="btnFindOpponentPlayer" value="Find Opponent Player" /></span>
+                        <span style="margin:50px"><input type="button" class="btn btn-block findPlayerBtn" id="btnFindOpponentPlayerMemory" value="Find Opponent Player Memory" /></span>
+                    </div>
+                </fieldset>
+            </div>
+            <div id="divFindingOpponentPlayer">
+                <fieldset>
+                    <legend>Its lonely here!</legend>
+                    <div class="form-group">
+                        Looking for an opponent player. Waiting for someone to join!
+                    </div>
+                </fieldset>
+            </div>
+            <div id="divGameInformation" class="form-group">
+                <div class="form-group" id="divGameInfo"></div>
+                <div class="form-group" id="divInfo"></div>
+            </div>
+            <div id="divGame" style="clear:both">
+                <fieldset>
+                    <legend>Game On</legend>
+                    <div id="divGameBoard" style="width:190px">
+                        <div id="divGameBoardMemory" style="width:190px">
 
-	<div id="playerList">
-		<strong>List of players:</strong>
-		<div id="onlineUsers">onlineplayers div</div>
-	</div>
-	<div class="clear-fix"></div>
-	<br />
-	<div id="chatDiv">
-		<div class="form-group">
-			<textarea id="txtChat" readonly></textarea>
-		</div>
+                        </div>
+                     </div>
+                </fieldset>
+            </div>
+        </form>
+    </div>
 
-		<input type="text" id="txtMessage">
-		<button type="submit" class="btn submitBtn" id="btnSend">Submit</button>
+    <div id="playerList">
+        <strong>List of players:</strong>
+        <div id="onlineUsers">onlineplayers div</div>
+    </div>
+    <div class="clear-fix"></div>
+    <br />
+    <div id="chatDiv">
+        <div class="form-group">
+            <textarea id="txtChat" readonly></textarea>
+        </div>
+
+        <input type="text" id="txtMessage">
+        <button type="submit" class="btn submitBtn" id="btnSend">Submit</button>
 
 
 
 
 
-	</div>
+    </div>
 </div>
-
 
 
 <script src="~/lib/jquery/dist/jquery.js"></script>
@@ -80,4 +83,4 @@
 
 <script src="~/js/TicTacToe.js"></script>
 <script src="~/js/ChatScript.js"></script>
-
+<script src="~/js/Memory.js"></script>

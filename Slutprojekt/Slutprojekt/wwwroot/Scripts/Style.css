@@ -172,3 +172,7 @@ span.box {
   border-color: #493F0B;
   color: #493F0B;
   font-weight: 700; }
+
+#gameSnake {
+  width: 100%;
+  height: 100%; }

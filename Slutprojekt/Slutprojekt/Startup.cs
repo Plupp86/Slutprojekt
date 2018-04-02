@@ -32,8 +32,8 @@ namespace Slutprojekt
 		public void ConfigureServices(IServiceCollection services)
 		{
 			//Local DB
-			//var connString = @"Data Source=(localdb)\MSSQLLocalDB;Initial Catalog=SlutprojektDB;Integrated Security=True;Connect Timeout=30;Encrypt=False;TrustServerCertificate=False;ApplicationIntent=ReadWrite;MultiSubnetFailover=False";
-			var connString = conf.GetConnectionString("AzureConnection");
+			var connString = @"Data Source=(localdb)\MSSQLLocalDB;Initial Catalog=SlutprojektDB;Integrated Security=True;Connect Timeout=30;Encrypt=False;TrustServerCertificate=False;ApplicationIntent=ReadWrite;MultiSubnetFailover=False";
+			//var connString = conf.GetConnectionString("AzureConnection");
 
 			services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
 			.AddCookie(o => o.LoginPath = "/Index");
@@ -79,7 +79,9 @@ namespace Slutprojekt
 			{
 				routes.MapHub<Chat>("chat");
 				routes.MapHub<GameHub>("gameHub");
-			});
+                routes.MapHub<GameHubMemory>("gameHubMemory");
+
+            });
 
 			app.UseAuthentication();
 			app.UseMvc();
