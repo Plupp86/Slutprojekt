@@ -62,6 +62,9 @@ namespace Slutprojekt
         public const string WaitingforMoveCheck = "waitingforMoveCheck";
         public const string CorrectAnswer = "correctAnswer";
         public const string WrongAnswer = "wrongAnswer";
+        public const string ShowOpponentMove = "showOpponentMove";
+
+        
 
     }
 }
