@@ -1,0 +1,79 @@
+﻿@model LobbyVM
+
+
+<div class="content">
+	<div style="padding:25px" id="mainDiv">
+
+		<div id="divConnecting">
+			<h3>Connecting...</h3>
+		</div>
+
+		<div id="knappDiv">
+			<fieldset>
+				<legend>The MathGame</legend>
+				<div class="form-group">
+					<span style="margin:50px"><input type="button" class="btn btn-block findPlayerBtn" id="btnFindOpponentPlayer" value="Find Opponent Player" /></span>
+				</div>
+			</fieldset>
+		</div>
+		<div id="divWaiting"><h3>Waiting for opponent</h3></div>
+		<div id="divWinner"></div>
+
+
+
+		@*<div id="divRegister">
+				<h3>Connecting .... </h3>
+			</div>
+			<div id="divFindOpponentPlayer">
+				<fieldset>
+					<legend>Find a player to play against!</legend>
+					<div class="form-group">
+						<span style="margin:50px"><input type="button" class="btn btn-block findPlayerBtn" id="btnFindOpponentPlayer" value="Find Opponent Player" /></span>
+					</div>
+				</fieldset>
+			</div>
+			<div id="divFindingOpponentPlayer">
+				<fieldset>
+					<legend>Its lonely here!</legend>
+					<div class="form-group">
+						Looking for an opponent player. Waiting for someone to join!
+					</div>
+				</fieldset>
+			</div>*@
+
+
+		<div id="divGame" style="clear:both">
+			<div id="divQuestion">
+			</div>
+			<div id="divGameBoard" style="width:190px">
+			</div>
+		</div>
+	</div>
+	<div id="playerList">
+		<strong>List of players:</strong>
+		<div id="onlineUsers">onlineplayers div</div>
+	</div>
+	<div class="clear-fix"></div>
+	<br />
+	<div id="chatDiv">
+		<div class="form-group">
+			<textarea id="txtChat" readonly></textarea>
+		</div>
+		<input type="text" id="txtMessage">
+		<button type="submit" class="btn submitBtn" id="btnSend">Submit</button>
+	</div>
+</div>
+
+
+
+<script src="~/lib/jquery/dist/jquery.js"></script>
+<script src="~/js/signalr-clientES5-1.0.0-alpha1-final.js"></script>
+<script src="~/js/signalr-msgpackprotocol-1.0.0-alpha1-final.js"></script>
+<script src="~/js/signalr-client-1.0.0-alpha1-final.js"></script>
+<script>
+	var userName = '@Model.UserName.ToString()';
+</script>
+
+<script src="~/js/MathGame.js"></script>
+<script src="~/js/ChatScript.js"></script>
+

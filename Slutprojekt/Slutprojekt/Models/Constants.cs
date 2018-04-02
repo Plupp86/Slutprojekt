@@ -57,16 +57,11 @@ namespace Slutprojekt
         /// </summary>
         public const string GameOver = "gameOver";
         public const string GameOverMemory = "gameOverMemory";
-
         public const string NoMAtch = "noMatch";
         public const string GetPositionsArrayMemory = "getPositionsArrayMemory";
         public const string WaitingforMoveCheck = "waitingforMoveCheck";
-
-        
-
-
-
-
+        public const string CorrectAnswer = "correctAnswer";
+        public const string WrongAnswer = "wrongAnswer";
 
     }
 }
