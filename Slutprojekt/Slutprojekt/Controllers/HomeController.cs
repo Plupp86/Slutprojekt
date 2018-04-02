@@ -107,5 +107,15 @@ namespace Slutprojekt.Controllers
 			return View(model);
 
 		}
-	}
+
+        [Route("MemoryLobby")]
+        public IActionResult MemoryLobby()
+        {
+
+            var model = new LobbyVM();
+            model.UserName = User.Identity.Name;
+            return View(model);
+
+        }
+    }
 }
