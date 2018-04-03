@@ -55,9 +55,9 @@ namespace Slutprojekt
             }
             Array.Copy(field0, 0, field, 0,8);
             Array.Copy(field0, 0, field, 8,8);
-            FieldList = field;
             Random rnd = new Random();
-            //FieldList.OrderBy(c => rnd.Next()).ToArray();
+            FieldList = field;//.OrderBy(c => rnd.Next()).ToArray(); ;
+            
         }
         /// <summary>
         /// Place the player number at a given position for a player

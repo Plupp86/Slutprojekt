@@ -28,7 +28,7 @@ hubConnectionMemory.on('getPositionsArrayMemory', data => {
 });
 
 hubConnectionMemory.on('waitingForOpponentMemory', data => {
-    $('#divInfo').html("<br/><span><strong> Waiting for <i>" + data + "</i> to make a move.</strong></span>");
+    $('#divInfo').html("<br/><span><strong> Waiting for <i>"  + data + "</i> to make a move.</strong></span>");
 });
 
 //Finish your turn
@@ -37,7 +37,7 @@ hubConnectionMemory.on('waitingForMoveMemory', data => {
 });
 
 hubConnectionMemory.on('showOpponentMove', data => {
-    //if (data.opponentName !== userName) {
+
     console.log(data + " showOpponentMove data");
     $("#" + data.imagePosition).css("background-color", data.image);
 
@@ -57,8 +57,8 @@ hubConnectionMemory.on('showOpponentMove', data => {
 
 //What character you will be shown
 hubConnectionMemory.on('moveMadeMemory', data => {
-    console.log("Vilken user är jag: " + userName)
-    if (data.opponentName === userName) {
+    console.log("Vilken user är jag: " + userName);
+    if (data.opponentName !== userName) {
         console.log(userName + " if movemade");
         console.log(data.imagePosition + " if movemade");
         $("#" + data.imagePosition).css('background-color', 'blue');
@@ -77,7 +77,7 @@ hubConnectionMemory.on('moveMadeMemory', data => {
 
 hubConnectionMemory.on('waitingforMoveCheck', data => {
     waitingforMoveCheckAnswer = data;
-    console.log("hubConnectionMemory.on('waitingforMoveCheck' " + data)
+    console.log("hubConnectionMemory.on('waitingforMoveCheck' " + data);
 });
 
 //// Triggers on clicking the grid cell.
@@ -205,7 +205,7 @@ $(document).on('click', '.marker', function () {
                 $("#" + array[0]).css('background-color', '#F5F6D4');
                 $("#" + array[1]).css('background-color', '#F5F6D4');
                 //positionsArray = [];
-            };
+            }
         }
 
 
@@ -215,22 +215,6 @@ $(document).on('click', '.marker', function () {
     return;
 }
 );
-
-//positionsarray[x,y] skickas till C# 
-function callOnMakeAMoveMemory(a, b) {
-
-    console.log("callOnMakeAMoveMemory har anropas, detta är positionsarray1: " + positionsArray[0] + positionsArray[1]);
-    console.log("callOnMakeAMoveMemory har anropas, detta är positionsarray2: " + positionsArray);
-    console.log("callOnMakeAMoveMemory har anropas, detta är positionsarray3: " + arguments);
-    console.log("callOnMakeAMoveMemory har anropas, detta är positionsarray4: " + arguments[0]);
-    console.log("callOnMakeAMoveMemory har anropas, detta är positionsarray5: " + arguments[1]);
-    console.log("callOnMakeAMoveMemory har anropas, detta är positionsarray6: " + a + "" + b);
-    //console.log("callOnMakeAMoveMemory har anropas, detta är positionsarray7: " + a[0]);
-    hubConnectionMemory.invoke('MakeAMoveMemory', positionsArray);
-    $("#" + positionsArray[0]).css('background-color', '#F5F6D4');
-    $("#" + positionsArray[1]).css('background-color', '#F5F6D4');
-    //positionsArray = [];
-};
 
 hubConnectionMemory.on('noMatch', data => {
     $('#divInfo').html("<br/><span><strong>No match for player: " + playerName + "! " + data + " </strong></span>");
@@ -264,7 +248,7 @@ function imageIsLoaded(e) {
         $('#previewImage').attr('src', e.target.result);
         $("#divPreviewImage").show();
     }
-};
+}
 
 hubConnectionMemory.on('registrationCompleteMemory', data => {
     $("#divRegister").hide();
@@ -303,7 +287,7 @@ function registerFuncMemory() {
     playerImage = $('#previewImage').attr('src');
     var data = playerName.concat(hash, playerImage);
     hubConnectionMemory.invoke('RegisterPlayerMemory', data);
-};
+}
 
 $("#btnFindOpponentPlayerMemory").click(function () {
     hubConnectionMemory.invoke('FindOpponentMemory');

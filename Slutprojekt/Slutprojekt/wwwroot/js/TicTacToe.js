@@ -32,7 +32,7 @@ function imageIsLoaded(e) {
 		$('#previewImage').attr('src', e.target.result);
 		$("#divPreviewImage").show();
 	}
-};
+}
 
 hubConnection.on('registrationComplete', data => {
 	$("#divRegister").hide();
@@ -107,7 +107,7 @@ function registerFunc() {
 	playerImage = $('#previewImage').attr('src');
 	var data = playerName.concat(hash, playerImage);
 	hubConnection.invoke('RegisterPlayer', data);
-};
+}
 
 
 

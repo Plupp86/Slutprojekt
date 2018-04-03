@@ -262,14 +262,14 @@ namespace Slutprojekt
                     Clients.Client(game.Player1.ConnectionId).InvokeAsync(Constants.MoveMadeMemory, new MoveInformationMemory { OpponentName = player.Name, ImagePosition = positions[0], Image = player.Image });
                     Clients.Client(game.Player1.ConnectionId).InvokeAsync(Constants.MoveMadeMemory, new MoveInformationMemory { OpponentName = player.Name, ImagePosition = positions[1], Image = player.Image });
 
-                    player.WaitingForMove = !player.WaitingForMove;
-                    player.Opponent.WaitingForMove = !player.Opponent.WaitingForMove;
+                    //player.WaitingForMove = !player.WaitingForMove;
+                    //player.Opponent.WaitingForMove = !player.Opponent.WaitingForMove;
 
                     Clients.Client(game.Player2.ConnectionId).InvokeAsync(Constants.MoveMadeMemory, new MoveInformationMemory { OpponentName = player.Name, ImagePosition = positions[0], Image = player.Image });
                     Clients.Client(game.Player2.ConnectionId).InvokeAsync(Constants.MoveMadeMemory, new MoveInformationMemory { OpponentName = player.Name, ImagePosition = positions[1], Image = player.Image });
 
-                    player.WaitingForMove = !player.WaitingForMove;
-                    player.Opponent.WaitingForMove = !player.Opponent.WaitingForMove;
+                    //player.WaitingForMove = !player.WaitingForMove;
+                    //player.Opponent.WaitingForMove = !player.Opponent.WaitingForMove;
                 }
                 else
                 {
