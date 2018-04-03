@@ -199,7 +199,7 @@ namespace Slutprojekt
 
 			if (!game.IsOver)
 			{
-				player.WaitingForMove = !player.WaitingForMove;
+				player.WaitingForMove= !player.WaitingForMove;
 				player.Opponent.WaitingForMove = !player.Opponent.WaitingForMove;
 
 				Clients.Client(player.Opponent.ConnectionId).InvokeAsync(Constants.WaitingForOpponent, player.Opponent.Name);

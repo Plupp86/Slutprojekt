@@ -5,6 +5,7 @@ $("#divGame").hide();
 $("#divGameInformation").hide();
 $("#divPreviewImage").hide();
 $("#divOpponentPlayer").hide();
+
 let hubUrl = '/gameHub';
 let httpConnection = new signalR.HttpConnection(hubUrl);
 let hubConnection = new signalR.HubConnection(httpConnection);
@@ -119,6 +120,9 @@ $(document).on('click', '.marker', function () {
 	if ($(this).hasClass("notAvailable")) { //// Cell is already taken.
 		return;
 	}
-	console.log("Klick klick klick!!!");
-	mathConnection.invoke('MakeAMove', $(this)[0].id); //// Cell is valid, send details to hub.
+	hubConnection.invoke('MakeAMove', $(this)[0].id); //// Cell is valid, send details to hub.
 });
+
+
+
+
