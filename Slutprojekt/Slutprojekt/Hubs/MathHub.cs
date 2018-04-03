@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.SignalR;
 using Slutprojekt.Hubs;
+using Slutprojekt.Stats;
 using System;
 using System.Collections.Concurrent;
 using System.Collections.Generic;
@@ -10,6 +11,13 @@ namespace Slutprojekt
 {
     public partial class MathHub : Hub
     {
+		private readonly StatsRepository statsRep;
+
+		public MathHub(StatsRepository statsRep)
+		{
+			this.statsRep = statsRep;
+		}
+
 		private static ConcurrentBag<MathGame> mathGames = new ConcurrentBag<MathGame>();
 
 		private static ConcurrentBag<Player> mathPlayers = new ConcurrentBag<Player>();
@@ -38,6 +46,15 @@ namespace Slutprojekt
 				if (game.CheckForWinner())
 				{
 					var winner = game.Player1Score > game.Player2Score ? game.Player1.Name : game.Player2.Name;
+
+					var match = new Match();
+					match.Draw = false;
+					match.Player1 = statsRep.GetId(game.Player1.Name);
+					match.Player2 = statsRep.GetId(game.Player2.Name);
+					match.Winner = statsRep.GetId(winner);
+					match.Game = "MathGame";
+
+					statsRep.ReportMatch(match);
 
 					Clients.Client(game.Player1.ConnectionId).InvokeAsync("winner", winner);
 					Clients.Client(game.Player2.ConnectionId).InvokeAsync("winner", winner);

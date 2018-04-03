@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Slutprojekt.Models;
 using Slutprojekt.Models.ViewModels;
+using Slutprojekt.Stats;
 
 // For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
@@ -16,10 +17,12 @@ namespace Slutprojekt.Controllers
 	{
 
 		private readonly AccountRepository repository;
+		private readonly StatsRepository statsRep;
 
-		public HomeController(AccountRepository repository)
+		public HomeController(AccountRepository repository, StatsRepository statsRep)
 		{
 			this.repository = repository;
+			this.statsRep = statsRep;
 		}
 
 
@@ -29,6 +32,8 @@ namespace Slutprojekt.Controllers
 		[AllowAnonymous]
 		public IActionResult Index()
 		{
+			//var users = repository.GetAllUserNames();
+			//statsRep.MoveExistingUsers(users);
 			return View();
 		}
 
@@ -108,14 +113,14 @@ namespace Slutprojekt.Controllers
 
 		}
 
-        [Route("MemoryLobby")]
-        public IActionResult MemoryLobby()
-        {
+		[Route("MemoryLobby")]
+		public IActionResult MemoryLobby()
+		{
 
-            var model = new LobbyVM();
-            model.UserName = User.Identity.Name;
-            return View(model);
+			var model = new LobbyVM();
+			model.UserName = User.Identity.Name;
+			return View(model);
 
-        }
-    }
+		}
+	}
 }

@@ -40,7 +40,7 @@ chat.on('onSend', data => {
 
 $("#btnSend").click(() => {
     let message = userName + ": " + $("#txtMessage").val();
-    if ($("#txtMessage").val() != "") {
+    if ($("#txtMessage").val() !== "") {
         chat.invoke('Send', message);
         $("#txtMessage").val("");
     }

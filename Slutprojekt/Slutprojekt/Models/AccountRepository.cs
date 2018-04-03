@@ -15,14 +15,14 @@ namespace Slutprojekt.Models
 		SignInManager<IdentityUser> signInManager;
 		RoleManager<IdentityRole> roleManager;
 		IdentityDbContext identityContext;
-        SlutprojektDBContext context;
+		SlutprojektDBContext context;
 
-        public AccountRepository(
+		public AccountRepository(
 			UserManager<IdentityUser> userManager,
 			SignInManager<IdentityUser> signInManager,
 			RoleManager<IdentityRole> roleManager,
 			IdentityDbContext identityContext,
-		    SlutprojektDBContext context)
+			SlutprojektDBContext context)
 		{
 			this.userManager = userManager;
 			this.signInManager = signInManager;
@@ -36,17 +36,24 @@ namespace Slutprojekt.Models
 			identityContext.Database.EnsureCreated();
 		}
 
-        public async Task<(bool,string)> CreateUserAsync(CreateVM model)
-        {
-            IdentityUser user = new IdentityUser(model.UserName);
-            var result = await userManager.CreateAsync(user, model.Password);
+		public async Task<(bool, string)> CreateUserAsync(CreateVM model)
+		{
+			IdentityUser user = new IdentityUser(model.UserName);
+			var result = await userManager.CreateAsync(user, model.Password);
 
-            return (result.Succeeded, result.ToString());
+			return (result.Succeeded, result.ToString());
 
 
-        }
+		}
 
-        public async Task<SignInResult> ValidateUser(LoginVM model)
+		public string[] GetAllUserNames()
+		{
+			return context.AspNetUsers
+				.Select(u => u.UserName)
+				.ToArray();
+		}
+
+		public async Task<SignInResult> ValidateUser(LoginVM model)
 		{
 
 			return await signInManager.PasswordSignInAsync(
