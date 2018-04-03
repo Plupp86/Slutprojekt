@@ -28,7 +28,7 @@ hubConnectionMemory.on('getPositionsArrayMemory', data => {
 });
 
 hubConnectionMemory.on('waitingForOpponentMemory', data => {
-    $('#divInfo').html("<br/><span><strong> Waiting for <i>"  + data + "</i> to make a move.</strong></span>");
+    $('#divInfo').html("<br/><span><strong> Waiting for <i>" + data + "</i> to make a move.</strong></span>");
 });
 
 //Finish your turn
@@ -44,7 +44,7 @@ hubConnectionMemory.on('showOpponentMove', data => {
     var inputShowOpponentPOS = data.imagePosition;
     var inputShowOpponentIMAGE = data.image;
 
-    setTimeout(function () { removeTiles(inputShowOpponentPOS); }, 2500);
+    setTimeout(function () { removeTiles(inputShowOpponentPOS); }, 1500);
 
     function removeTiles(a) {
         $("#" + a).css('background-color', '#F5F6D4');
@@ -96,6 +96,8 @@ $(document).on('click', '.marker', function () {
 
         if (positionsArray[0] == null) {
             positionsArray.push($(this)[0].id);
+            $($(this)).addClass("notAvailable");
+
             let index = positionsArray[0];
             //$("#" + positionsArray[0]).css('background-color', 'yellow');
             console.log("värde på positionsArray[0]: " + positionsArray[0]);
@@ -146,75 +148,96 @@ $(document).on('click', '.marker', function () {
             return;
 
         }
-        else {
+        else
+        {
             positionsArray.push($(this)[0].id);
+            $($(this)[0].id).addClass("notAvailable");
             let index2 = positionsArray[1];
             console.log("klick 2, onclickmarker");
             console.log(positionsArray);
-            if (positionsArrarRealValue[index2] == 0) {
-                $("#" + positionsArray[1]).css('background-color', 'yellow');
-                hubConnectionMemory.invoke('ShowOpponentMove', positionsArray[1], 'yellow');
-            }
-            else if (positionsArrarRealValue[index2] == 1) {
-                $("#" + positionsArray[1]).css('background-color', 'brown');
-                hubConnectionMemory.invoke('ShowOpponentMove', positionsArray[1], 'brown');
+            if (positionsArray[0] == positionsArray[1])
+            {
 
-            }
-            else if (positionsArrarRealValue[index2] == 2) {
-                $("#" + positionsArray[1]).css('background-color', 'purple');
-                hubConnectionMemory.invoke('ShowOpponentMove', positionsArray[1], 'purple');
+                console.log("positionsArray[0] == positionsArray[1]" + positionsArray[0] + positionsArray[1])
+                positionsArray[1] = null;
 
-            }
-            else if (positionsArrarRealValue[index2] == 3) {
-                $("#" + positionsArray[1]).css('background-color', 'pink');
-                hubConnectionMemory.invoke('ShowOpponentMove', positionsArray[1], 'pink');
+                return;
+            } else
+            {
+                    console.log("positionsArray[0] != positionsArray[1]")
 
-            }
-            else if (positionsArrarRealValue[index2] == 4) {
-                $("#" + positionsArray[1]).css('background-color', 'orange');
-                hubConnectionMemory.invoke('ShowOpponentMove', positionsArray[1], 'orange');
+                    if (positionsArrarRealValue[index2] == 0) {
+                        $("#" + positionsArray[1]).css('background-color', 'yellow');
+                        hubConnectionMemory.invoke('ShowOpponentMove', positionsArray[1], 'yellow');
+                    }
+                    else if (positionsArrarRealValue[index2] == 1) {
+                        $("#" + positionsArray[1]).css('background-color', 'brown');
+                        hubConnectionMemory.invoke('ShowOpponentMove', positionsArray[1], 'brown');
 
-            }
-            else if (positionsArrarRealValue[index2] == 5) {
-                $("#" + positionsArray[1]).css('background-color', 'black');
-                hubConnectionMemory.invoke('ShowOpponentMove', positionsArray[1], 'black');
+                    }
+                    else if (positionsArrarRealValue[index2] == 2) {
+                        $("#" + positionsArray[1]).css('background-color', 'purple');
+                        hubConnectionMemory.invoke('ShowOpponentMove', positionsArray[1], 'purple');
 
-            }
-            else if (positionsArrarRealValue[index2] == 6) {
-                $("#" + positionsArray[1]).css('background-color', 'cyan');
-                hubConnectionMemory.invoke('ShowOpponentMove', positionsArray[1], 'cyan');
+                    }
+                    else if (positionsArrarRealValue[index2] == 3) {
+                        $("#" + positionsArray[1]).css('background-color', 'pink');
+                        hubConnectionMemory.invoke('ShowOpponentMove', positionsArray[1], 'pink');
 
-            }
-            else if (positionsArrarRealValue[index2] == 7) {
-                $("#" + positionsArray[1]).css('background-color', 'Darkgreen');
-                hubConnectionMemory.invoke('ShowOpponentMove', positionsArray[1], 'Darkgreen');
+                    }
+                    else if (positionsArrarRealValue[index2] == 4) {
+                        $("#" + positionsArray[1]).css('background-color', 'orange');
+                        hubConnectionMemory.invoke('ShowOpponentMove', positionsArray[1], 'orange');
 
-            }
-            console.log($(this)[0].id + "klick 2, onclickmarker");
-            console.log("positionsArray precis innan callmakeamovememory " + positionsArray);
-            var input0 = positionsArray[0];
-            var input1 = positionsArray[1];
+                    }
+                    else if (positionsArrarRealValue[index2] == 5) {
+                        $("#" + positionsArray[1]).css('background-color', 'black');
+                        hubConnectionMemory.invoke('ShowOpponentMove', positionsArray[1], 'black');
 
-            setTimeout(function () { callOnMakeAMoveMemory(input0, input1); }, 3000);
-            function callOnMakeAMoveMemory(a, b) {
+                    }
+                    else if (positionsArrarRealValue[index2] == 6) {
+                        $("#" + positionsArray[1]).css('background-color', 'cyan');
+                        hubConnectionMemory.invoke('ShowOpponentMove', positionsArray[1], 'cyan');
 
-                console.log("callOnMakeAMoveMemory har anropas, detta är positionsarray6: " + a + " " + b);
-                let array = [a, b];
-                console.log("callOnMakeAMoveMemory har anropas, detta är positionsarray7: " + array);
-                hubConnectionMemory.invoke('MakeAMoveMemory', array);
-                $("#" + array[0]).css('background-color', '#F5F6D4');
-                $("#" + array[1]).css('background-color', '#F5F6D4');
-                //positionsArray = [];
-            }
+                    }
+                    else if (positionsArrarRealValue[index2] == 7) {
+                        $("#" + positionsArray[1]).css('background-color', 'Darkgreen');
+                        hubConnectionMemory.invoke('ShowOpponentMove', positionsArray[1], 'Darkgreen');
+
+                    }
+                    console.log($(this)[0].id + "klick 2, onclickmarker");
+                    console.log("positionsArray precis innan callmakeamovememory " + positionsArray);
+                    var input0 = positionsArray[0];
+                    var input1 = positionsArray[1];
+
+                    waitingforMoveCheckAnswer = false;
+
+                    setTimeout(function () { callOnMakeAMoveMemory(input0, input1); }, 2200);
+
+                    function callOnMakeAMoveMemory(a, b) {
+
+                        console.log("callOnMakeAMoveMemory har anropas, detta är positionsarray6: " + a + " " + b);
+                        let array = [a, b];
+                        console.log("callOnMakeAMoveMemory har anropas, detta är positionsarray7: " + array);
+                        hubConnectionMemory.invoke('MakeAMoveMemory', array);
+                        $("#"+array[0]).addClass("marker");
+                        $("#" + array[1]).addClass("marker");
+
+
+                        $("#" + array[0]).css('background-color', '#F5F6D4');
+                        $("#" + array[1]).css('background-color', '#F5F6D4');
+                        //positionsArray = [];
+                    }
+                }
         }
 
 
         waitingforMoveCheckAnswer = false;
         positionsArray = [];
     }
+    waitingforMoveCheckAnswer = false;
     return;
-}
-);
+});
 
 hubConnectionMemory.on('noMatch', data => {
     $('#divInfo').html("<br/><span><strong>No match for player: " + playerName + "! " + data + " </strong></span>");
