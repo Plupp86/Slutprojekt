@@ -55,7 +55,9 @@ namespace Slutprojekt
             }
             Array.Copy(field0, 0, field, 0,8);
             Array.Copy(field0, 0, field, 8,8);
-            FieldList = field;
+            Random rnd = new Random();
+            FieldList = field;//.OrderBy(c => rnd.Next()).ToArray(); ;
+            
         }
         /// <summary>
         /// Place the player number at a given position for a player
@@ -116,8 +118,8 @@ namespace Slutprojekt
                 this.IsOver = true;
                 this.IsDraw = true;
             }
-
-            if (field[positions[0]] == field[positions[1]])
+            //ev ett fel här? på array
+            if (FieldList[positions[0]] == FieldList[positions[1]])
             {
                 //you have a match
                 return 1;

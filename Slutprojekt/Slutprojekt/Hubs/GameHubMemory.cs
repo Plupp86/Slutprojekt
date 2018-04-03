@@ -38,10 +38,28 @@ namespace Slutprojekt
             return base.OnConnectedAsync();
         }
 
+        public void ShowOpponentMove(int index, string color)
+        {
+            int symbol = 0;
+
+            var game = games?.FirstOrDefault(x => x.Player1.ConnectionId == Context.ConnectionId || x.Player2.ConnectionId == Context.ConnectionId);
+
+            if (game.Player2.ConnectionId == Context.ConnectionId)
+            {
+                //// Designate 1 for player 2.
+                symbol = 1;
+            }
+            var player = symbol == 0 ? game.Player1 : game.Player2;
+
+            Clients.Client(game.Player1.ConnectionId).InvokeAsync(Constants.ShowOpponentMove, new MoveInformationMemory { OpponentName = player.Name, ImagePosition = index, Image = color });
+            Clients.Client(game.Player2.ConnectionId).InvokeAsync(Constants.ShowOpponentMove, new MoveInformationMemory { OpponentName = player.Opponent.Name, ImagePosition = index, Image = color });
+
+        }
+
         public void GetPositionsArrayMemory()
         {
             var game = games?.FirstOrDefault(x => x.Player1.ConnectionId == Context.ConnectionId || x.Player2.ConnectionId == Context.ConnectionId);
-            var returnList=game.FieldList;
+            var returnList = game.FieldList;
             //return returnList;
             Clients.Client(game.Player1.ConnectionId).InvokeAsync(Constants.GetPositionsArrayMemory, returnList);
             Clients.Client(game.Player2.ConnectionId).InvokeAsync(Constants.GetPositionsArrayMemory, returnList);
@@ -153,7 +171,7 @@ namespace Slutprojekt
         public async void WaitingforMoveCheck()
         {
             int symbol = 0;
-            GameMemory game = ( games?.FirstOrDefault(x => x.Player1.ConnectionId == Context.ConnectionId || x.Player2.ConnectionId == Context.ConnectionId));
+            GameMemory game = (games?.FirstOrDefault(x => x.Player1.ConnectionId == Context.ConnectionId || x.Player2.ConnectionId == Context.ConnectionId));
 
             if (game.Player2.ConnectionId == Context.ConnectionId)
             {
@@ -170,7 +188,7 @@ namespace Slutprojekt
             }
             else
             {
-               await Clients.Client(player.ConnectionId).InvokeAsync(Constants.WaitingforMoveCheck, true);
+                await Clients.Client(player.ConnectionId).InvokeAsync(Constants.WaitingforMoveCheck, true);
 
                 //return true;
             }
@@ -236,7 +254,7 @@ namespace Slutprojekt
 
             if (!game.IsOver)
             {
-
+                //måste nog ha in två olika pos för att kunna jämnföra
                 int matchOrNot = game.AreThisPairAMatch(symbol, positions);
                 //matchOrNot>0 =match                
                 if (matchOrNot > 0)
@@ -244,14 +262,14 @@ namespace Slutprojekt
                     Clients.Client(game.Player1.ConnectionId).InvokeAsync(Constants.MoveMadeMemory, new MoveInformationMemory { OpponentName = player.Name, ImagePosition = positions[0], Image = player.Image });
                     Clients.Client(game.Player1.ConnectionId).InvokeAsync(Constants.MoveMadeMemory, new MoveInformationMemory { OpponentName = player.Name, ImagePosition = positions[1], Image = player.Image });
 
-                    player.WaitingForMove = !player.WaitingForMove;
-                    player.Opponent.WaitingForMove = !player.Opponent.WaitingForMove;
+                    //player.WaitingForMove = !player.WaitingForMove;
+                    //player.Opponent.WaitingForMove = !player.Opponent.WaitingForMove;
 
                     Clients.Client(game.Player2.ConnectionId).InvokeAsync(Constants.MoveMadeMemory, new MoveInformationMemory { OpponentName = player.Name, ImagePosition = positions[0], Image = player.Image });
                     Clients.Client(game.Player2.ConnectionId).InvokeAsync(Constants.MoveMadeMemory, new MoveInformationMemory { OpponentName = player.Name, ImagePosition = positions[1], Image = player.Image });
 
-                    player.WaitingForMove = !player.WaitingForMove;
-                    player.Opponent.WaitingForMove = !player.Opponent.WaitingForMove;
+                    //player.WaitingForMove = !player.WaitingForMove;
+                    //player.Opponent.WaitingForMove = !player.Opponent.WaitingForMove;
                 }
                 else
                 {

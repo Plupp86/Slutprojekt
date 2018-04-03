@@ -179,3 +179,11 @@ span.box {
 
 span.marker {
   text-align: center; }
+
+#divInfo {
+  margin-left: 5%;
+  width: 80%; }
+
+#divGameInfo {
+  margin-left: 5%;
+  width: 80%; }
