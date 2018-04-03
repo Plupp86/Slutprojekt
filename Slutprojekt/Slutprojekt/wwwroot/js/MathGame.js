@@ -16,7 +16,7 @@ mathConnection.start();
 
 
 
-//MumboJumbo to fins opponents and start game
+//MumboJumbo to find opponents and start game
 
 $(document).ready(function () {
 	setTimeout(function () {
@@ -37,7 +37,6 @@ mathConnection.on('opponentNotFound', data => {
 	console.log(data);
 });
 
-
 mathConnection.on('registrationComplete', data => {
 	console.log("Registration complete");
 });
@@ -53,21 +52,9 @@ $("#btnFindOpponentPlayer").click(function () {
 	$("#divWaiting").show();
 });
 
-
-
-//The actual MathGame
-//$("#startMathBtn").click(function () {
-//	mathConnection.invoke('FindOpponent');
-//});
-
 mathConnection.on('hello', data => {
 	console.log("hello")
 });
-
-//mathConnection.on('startMathGame', data => {
-//	console.log("hej hej")
-//	console.log(data);
-//});
 
 mathConnection.on('winner', data => {
 	console.log(data);
@@ -105,7 +92,7 @@ mathConnection.on('wrongAnswer', data => {
 
 mathConnection.on('correctAnswer', data => {
 	console.log("correct answer");
-	$(".marker").addClass('notAvailable');
+	$(".marker").addClass('MathNotAvailable');
 	$("#" + data).css('background-color', 'green');
 });
 
@@ -125,8 +112,12 @@ mathConnection.on('nextQuestion', data => {
 });
 
 $(document).on('click', '.marker', function () {
-	if ($(this).hasClass("notAvailable")) { //// Cell is already taken.
+	if ($(this).hasClass("MathNotAvailable") || $(this).hasClass("tempNotAvailable")) { //// Cell is already taken.
 		return;
 	}
-	mathConnection.invoke('MakeAGuess', $(this)[0].id); //// Cell is valid, send details to hub.
+	$(".marker").addClass('tempNotAvailable');
+	mathConnection.invoke('MakeAGuess', $(this)[0].id);
+	setTimeout(function () { $(".marker").removeClass('tempNotAvailable');}, 1000);
+
+	//// Cell is valid, send details to hub.
 });
