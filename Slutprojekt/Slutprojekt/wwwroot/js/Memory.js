@@ -223,7 +223,7 @@ $(document).on('click', '.marker', function () {
                 var input0 = positionsArray[0];
                 var input1 = positionsArray[1];
 
-
+                waitingforMoveCheckAnswer = "noOne";
                 setTimeout(function () { callOnMakeAMoveMemory(input0, input1); }, 2200);
 
                 function callOnMakeAMoveMemory(a, b) {
