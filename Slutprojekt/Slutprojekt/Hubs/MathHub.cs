@@ -47,13 +47,13 @@ namespace Slutprojekt
 				{
 					var winner = game.Player1Score > game.Player2Score ? game.Player1.Name : game.Player2.Name;
 
+					mathGames = Remove<MathGame>(mathGames, game);
 					var match = new Match();
 					match.Draw = false;
 					match.Player1 = game.Player1.Name;
 					match.Player2 = game.Player2.Name;
 					match.Winner = winner;
 					match.Game = "MathGame";
-
 					statsRep.ReportMatch(match);
 
 					Clients.Client(game.Player1.ConnectionId).InvokeAsync("winner", winner);
@@ -225,7 +225,6 @@ namespace Slutprojekt
 			match.Draw = false;
 			match.Game = "MathGame";
 			match.Winner = opponent.Name;
-
 			statsRep.ReportMatch(match);
 
 			OnOpponentDisconnected(opponent.ConnectionId, player.Name);
