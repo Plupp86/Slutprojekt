@@ -24,18 +24,21 @@ namespace Slutprojekt.Stats
             {
                 entity.ToTable("Match", "Stats");
 
-                entity.Property(e => e.Game).HasMaxLength(50);
+                entity.Property(e => e.Game)
+                    .IsRequired()
+                    .HasMaxLength(50);
 
-                entity.HasOne(d => d.Player1Navigation)
-                    .WithMany(p => p.MatchPlayer1Navigation)
-                    .HasForeignKey(d => d.Player1)
-                    .OnDelete(DeleteBehavior.ClientSetNull)
-                    .HasConstraintName("FK_Player1");
+                entity.Property(e => e.Player1)
+                    .IsRequired()
+                    .HasMaxLength(50);
 
-                entity.HasOne(d => d.Player2Navigation)
-                    .WithMany(p => p.MatchPlayer2Navigation)
-                    .HasForeignKey(d => d.Player2)
-                    .HasConstraintName("FK_Player2");
+                entity.Property(e => e.Player2)
+                    .IsRequired()
+                    .HasMaxLength(50);
+
+                entity.Property(e => e.Winner)
+                    .IsRequired()
+                    .HasMaxLength(50);
             });
 
             modelBuilder.Entity<User>(entity =>

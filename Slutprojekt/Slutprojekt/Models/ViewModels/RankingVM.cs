@@ -6,11 +6,10 @@ using System.Threading.Tasks;
 
 namespace Slutprojekt.Models.ViewModels
 {
-    public class HomeVM
+    public class RankingVM
     {
-		public string User { get; set; }
-
-		public Match[] recentMatches { get; set; }
-
+		public User[] MathUsers { get; set; }
+		public User[] TicUsers { get; set; }
+		public User[] MemoryUsers { get; set; }
 	}
 }

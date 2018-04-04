@@ -8,7 +8,10 @@ $backup: #A7C520;
 /* navbar */
 .navbar-default {
 	background-color: $secondary-bg;
-	border-color: $primary-header;
+	border: 2px solid $primary-header;
+	border-bottom-left-radius: 5px;
+	border-bottom-right-radius: 5px;
+	/*border-color: $primary-header;*/
 }
 /* Title */
 .navbar-default .navbar-brand {

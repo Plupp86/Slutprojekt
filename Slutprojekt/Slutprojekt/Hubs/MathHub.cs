@@ -49,12 +49,12 @@ namespace Slutprojekt
 
 					var match = new Match();
 					match.Draw = false;
-					match.Player1 = statsRep.GetId(game.Player1.Name);
-					match.Player2 = statsRep.GetId(game.Player2.Name);
-					match.Winner = statsRep.GetId(winner);
+					match.Player1 = game.Player1.Name;
+					match.Player2 = game.Player2.Name;
+					match.Winner = winner;
 					match.Game = "MathGame";
 
-					statsRep.ReportMatch(match);
+					statsRep.ReportMathMatch(match);
 
 					Clients.Client(game.Player1.ConnectionId).InvokeAsync("winner", winner);
 					Clients.Client(game.Player2.ConnectionId).InvokeAsync("winner", winner);

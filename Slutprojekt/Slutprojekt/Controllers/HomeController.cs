@@ -90,7 +90,10 @@ namespace Slutprojekt.Controllers
 		[Route("Home")]
 		public IActionResult Home()
 		{
-			return View();
+			var model = new HomeVM();
+			model.User = User.Identity.Name;
+			model.recentMatches = statsRep.GetRecentMatches();
+			return View(model);
 		}
 
 		[Route("TicLobby")]
@@ -120,7 +123,16 @@ namespace Slutprojekt.Controllers
 			var model = new LobbyVM();
 			model.UserName = User.Identity.Name;
 			return View(model);
+		}
 
+		[Route("Ranking")]
+		public IActionResult Ranking()
+		{
+			var model = new RankingVM();
+			model.MathUsers = statsRep.GetMathUsers();
+			model.MemoryUsers = statsRep.GetMemoryUsers();
+			model.TicUsers = statsRep.GetTicUsers();
+			return View(model);
 		}
 	}
 }

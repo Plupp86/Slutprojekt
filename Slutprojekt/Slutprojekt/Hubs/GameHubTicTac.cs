@@ -4,7 +4,7 @@ using System.Threading.Tasks;
 using System;
 using System.Linq;
 using System.Collections.Concurrent;
-
+using Slutprojekt.Stats;
 
 namespace Slutprojekt
 {
@@ -13,6 +13,11 @@ namespace Slutprojekt
 	/// </summary>
 	public class GameHub : Hub
 	{
+		private readonly StatsRepository statsRep;
+		public GameHub(StatsRepository statsRep)
+		{
+			this.statsRep = statsRep;
+		}
 		/// <summary>
 		///  To keep the list of all the connected players registered with the game hub.
 		/// </summary>
@@ -176,6 +181,14 @@ namespace Slutprojekt
 			//// Place the symbol and look for a winner after every move.
 			if (game.Play(symbol, position))
 			{
+				var match = new Match();
+				match.Player1 = game.Player1.Name;
+				match.Player2 = game.Player2.Name;
+				match.Draw = false;
+				match.Winner = player.Name;
+				match.Game = "Tic-Tac-Toe";
+				statsRep.ReportMathMatch(match);
+
 				Remove<Game>(games, game);
 				Clients.Client(game.Player1.ConnectionId).InvokeAsync(Constants.GameOver, $"The winner is {player.Name}");
 				Clients.Client(game.Player2.ConnectionId).InvokeAsync(Constants.GameOver, $"The winner is {player.Name}");
@@ -189,6 +202,15 @@ namespace Slutprojekt
 			if (game.IsOver && game.IsDraw)
 			{
 				Remove<Game>(games, game);
+
+				var match = new Match();
+				match.Player1 = game.Player1.Name;
+				match.Player2 = game.Player2.Name;
+				match.Draw = true;
+				match.Winner = "none";
+				match.Game = "Tic-Tac-Toe";
+				statsRep.ReportMathMatch(match);
+
 				Clients.Client(game.Player1.ConnectionId).InvokeAsync(Constants.GameOver, "Its a tame draw!!!");
 				Clients.Client(game.Player2.ConnectionId).InvokeAsync(Constants.GameOver, "Its a tame draw!!!");
 				player.IsPlaying = false;

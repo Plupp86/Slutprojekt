@@ -1,7 +1,10 @@
 ﻿/* navbar */
 .navbar-default {
   background-color: #CDE855;
-  border-color: #493F0B; }
+  border: 2px solid #493F0B;
+  border-bottom-left-radius: 5px;
+  border-bottom-right-radius: 5px;
+  /*border-color: $primary-header;*/ }
 
 /* Title */
 .navbar-default .navbar-brand {

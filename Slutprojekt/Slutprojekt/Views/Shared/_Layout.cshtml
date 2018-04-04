@@ -23,17 +23,17 @@
 </head>
 <body>
 	<div class="Nav">
-		<nav class="navbar navbar-default">
+		<nav class="navbar navbar-default navbar-fixed-top">
 			<div class="container-fluid">
 				<div class="navbar-header">
 					<img src="~/Images/prototype_log4_white_smaller.png" width="100" />
 				</div>
 				@*<ul class="nav navbar-nav">
-					<li><a href="/Home">Home</a></li>
-					<li><a href="/Lobby">Games</a></li>
-					<li><a href="#">Friends</a></li>
-					<li><a href="#">Rankings</a></li>
-				</ul>*@
+						<li><a href="/Home">Home</a></li>
+						<li><a href="/Lobby">Games</a></li>
+						<li><a href="#">Friends</a></li>
+						<li><a href="#">Rankings</a></li>
+					</ul>*@
 				<ul class="nav navbar-nav">
 					<li><a href="/Home">Home</a></li>
 					<li class="dropdown">
@@ -41,15 +41,15 @@
 							Games
 							<span class="caret"></span>
 						</a>
-                        <ul class="dropdown-menu">
-                            <li><a href="/TicLobby">Tic-Tac-Toe</a></li>
-                            <li><a href="/MathLobby">MathGame</a></li>
-                            <li><a href="/MemoryLobby">Colour Memory</a></li>
-                        </ul>
+						<ul class="dropdown-menu">
+							<li><a href="/TicLobby">Tic-Tac-Toe</a></li>
+							<li><a href="/MathLobby">MathGame</a></li>
+							<li><a href="/MemoryLobby">Colour Memory</a></li>
+						</ul>
 					</li>
-					
-					@*<li><a href="#">Friends</a></li>
-					<li><a href="#">Rankings</a></li>*@
+
+					@*<li><a href="#">Friends</a></li>*@
+					<li><a href="/Ranking">Rankings</a></li>
 				</ul>
 			</div>
 		</nav>
@@ -59,10 +59,11 @@
 		@RenderBody()
 	</div>
 
-	
-	<script src="~/js/signalr-clientES5-1.0.0-alpha1-final.js"></script>
+
+	@*<script src="~/js/signalr-clientES5-1.0.0-alpha1-final.js"></script>*@
+	<script src="~/js/signalr-client-1.0.0-alpha2-final.js"></script>
 	<script src="~/js/signalr-msgpackprotocol-1.0.0-alpha1-final.js"></script>
-	
+
 	@RenderSection("scriptsSection", false)
 </body>
 </html>
