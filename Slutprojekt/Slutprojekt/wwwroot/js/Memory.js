@@ -224,7 +224,7 @@ $(document).on('click', '.marker', function () {
                 var input0 = positionsArray[0];
                 var input1 = positionsArray[1];
 
-                setTimeout(function () { callOnMakeAMoveMemory(input0, input1, waitingforMoveCheckAnswer); }, 2200);
+                setTimeout(function () { callOnMakeAMoveMemory(input0, input1, waitingforMoveCheckAnswer); }, 2500);
 
                 function callOnMakeAMoveMemory(a, b,c) {
 
