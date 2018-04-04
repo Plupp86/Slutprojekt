@@ -27,7 +27,7 @@ namespace Slutprojekt.Stats
 			context.SaveChanges();
 		}
 
-		public void ReportMathMatch(Match match)
+		public void ReportMatch(Match match)
 		{
 			var player1 = context.User
 				.FirstOrDefault(u => u.UserName == match.Player1);

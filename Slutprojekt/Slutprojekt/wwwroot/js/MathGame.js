@@ -3,6 +3,7 @@ $("#divGame").hide();
 $("#divWaiting").hide();
 $("#divConnecting").show();
 $("#divWinner").hide();
+$("#divOppDisc").hide();
 
 
 let hubUrl = '/mathHub';
@@ -43,6 +44,15 @@ mathConnection.on('registrationComplete', data => {
 
 mathConnection.on('opponentDisconnected', data => {
 	console.log("opp disc")
+	$("#divGame").hide();
+	$("#divOppDisc").html(" ");
+	$("#divOppDisc").append("<h3>" + data + " disconnected. You win!");
+	$("#divOppDisc").show();
+	setTimeout(function () {
+		$("#divOppDisc").hide();
+		$("#knappDiv").show();
+	}, 2000);
+
 });
 
 
@@ -117,7 +127,7 @@ $(document).on('click', '.marker', function () {
 	}
 	$(".marker").addClass('tempNotAvailable');
 	mathConnection.invoke('MakeAGuess', $(this)[0].id);
-	setTimeout(function () { $(".marker").removeClass('tempNotAvailable');}, 1000);
+	setTimeout(function () { $(".marker").removeClass('tempNotAvailable');}, 2000);
 
 	//// Cell is valid, send details to hub.
 });

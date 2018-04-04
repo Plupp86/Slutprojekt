@@ -13,7 +13,7 @@ a:hover {
 
 h1, h2, h3, h4 {
   color: #493F0B;
-  font-family: 'Audiowide', cursive; }
+  font-family: "Audiowide", cursive; }
 
 .loginspacer {
   width: 33%; }
@@ -168,13 +168,15 @@ span.box {
   background-color: #A7C520;
   border-color: #493F0B;
   color: #493F0B;
-  font-weight: 700; }
+  font-weight: 700;
+  font-family: 'Audiowide', cursive; }
 
 .submitBtn {
   background-color: #A7C520;
   border-color: #493F0B;
   color: #493F0B;
-  font-weight: 700; }
+  font-weight: 700;
+  font-family: 'Audiowide', cursive; }
 
 #gameSnake {
   width: 100%;

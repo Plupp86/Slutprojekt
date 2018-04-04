@@ -187,7 +187,7 @@ namespace Slutprojekt
 				match.Draw = false;
 				match.Winner = player.Name;
 				match.Game = "Tic-Tac-Toe";
-				statsRep.ReportMathMatch(match);
+				statsRep.ReportMatch(match);
 
 				Remove<Game>(games, game);
 				Clients.Client(game.Player1.ConnectionId).InvokeAsync(Constants.GameOver, $"The winner is {player.Name}");
@@ -209,7 +209,7 @@ namespace Slutprojekt
 				match.Draw = true;
 				match.Winner = "none";
 				match.Game = "Tic-Tac-Toe";
-				statsRep.ReportMathMatch(match);
+				statsRep.ReportMatch(match);
 
 				Clients.Client(game.Player1.ConnectionId).InvokeAsync(Constants.GameOver, "Its a tame draw!!!");
 				Clients.Client(game.Player2.ConnectionId).InvokeAsync(Constants.GameOver, "Its a tame draw!!!");
