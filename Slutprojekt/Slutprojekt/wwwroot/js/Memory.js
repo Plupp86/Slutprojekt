@@ -78,6 +78,7 @@ hubConnectionMemory.on('moveMadeMemory', data => {
     }
     $("#" + data.imagePosition).addClass("notAvailable");
     $('#divInfo').html("<br/><strong>Waiting for <i>" + data.opponentName + "</i> to make a move.</strong>");
+    waitingforMoveCheckAnswer = data.opponentName;
 });
 
 //Is it your turn to move?
@@ -223,15 +224,15 @@ $(document).on('click', '.marker', function () {
                 var input0 = positionsArray[0];
                 var input1 = positionsArray[1];
 
-                waitingforMoveCheckAnswer = "noOne";
-                setTimeout(function () { callOnMakeAMoveMemory(input0, input1); }, 2200);
+                setTimeout(function () { callOnMakeAMoveMemory(input0, input1, waitingforMoveCheckAnswer); }, 2200);
 
-                function callOnMakeAMoveMemory(a, b) {
+                function callOnMakeAMoveMemory(a, b,c) {
 
                     console.log("callOnMakeAMoveMemory har anropas, detta är positionsarray6: " + a + " " + b);
                     let array = [a, b];
+                    nameOfPlayersTurn = c;
                     console.log("callOnMakeAMoveMemory har anropas, detta är positionsarray7: " + array);
-                    hubConnectionMemory.invoke('MakeAMoveMemory', array);
+                    hubConnectionMemory.invoke('MakeAMoveMemory', array,nameOfPlayersTurn);
 
                     $("#" + array[0]).addClass("marker");
                     $("#" + array[0]).removeClass("notAvailable");
@@ -244,6 +245,9 @@ $(document).on('click', '.marker', function () {
                     $("#" + array[0]).css('background-color', '#F5F6D4');
                     $("#" + array[1]).css('background-color', '#F5F6D4');
                 }
+
+                waitingforMoveCheckAnswer = "noOne";
+
 
             }
         }
@@ -309,7 +313,7 @@ hubConnectionMemory.on('opponentFoundMemory', (data, image) => {
     $("#divGameBoard").html(" ");
     $("#divGameBoardMemory").html(" ");
     for (var i = 0; i < 16; i++) {
-        $("#divGameBoard").append("<span class='marker' id=" + i + " style='display:block;border:2px solid black;height:25px;width:25px;float:left;margin:5px;'> </span>");
+        $("#divGameBoard").append("<span class='marker' id=" + i + " style='display:block;border:2px solid black;height:35px;width:35px;float:left;margin:5px;'> </span>");
     }
     hubConnectionMemory.invoke('GetPositionsArrayMemory');
     hubConnectionMemory.invoke('WaitingforMoveCheck');

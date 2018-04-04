@@ -200,7 +200,7 @@ namespace Slutprojekt
         /// Invoked by the player to make a move on the board.
         /// </summary>
         /// <param name="position">The position to place the player</param>
-        public void MakeAMoveMemory(int[] positions)
+        public void MakeAMoveMemory(int[] positions, string userName)
         {
             //// Lets find a game from our list of games where one of the player has the same connection Id as the current connection has.
             var game = games?.FirstOrDefault(x => x.Player1.ConnectionId == Context.ConnectionId || x.Player2.ConnectionId == Context.ConnectionId);
@@ -271,14 +271,14 @@ namespace Slutprojekt
                 //matchOrNot>0 =match                
                 if (matchOrNot > 0)
                 {
-                    Clients.Client(game.Player1.ConnectionId).InvokeAsync(Constants.MoveMadeMemory, new MoveInformationMemory { OpponentName = player.Name, ImagePosition = positions[0], Image = player.Image });
-                    Clients.Client(game.Player1.ConnectionId).InvokeAsync(Constants.MoveMadeMemory, new MoveInformationMemory { OpponentName = player.Name, ImagePosition = positions[1], Image = player.Image });
+                    Clients.Client(game.Player1.ConnectionId).InvokeAsync(Constants.MoveMadeMemory, new MoveInformationMemory { OpponentName = player.Name, ImagePosition = positions[0], Image = player.Image },userName);
+                    Clients.Client(game.Player1.ConnectionId).InvokeAsync(Constants.MoveMadeMemory, new MoveInformationMemory { OpponentName = player.Name, ImagePosition = positions[1], Image = player.Image }, userName);
 
                     //player.WaitingForMove = !player.WaitingForMove;
                     //player.Opponent.WaitingForMove = !player.Opponent.WaitingForMove;
 
-                    Clients.Client(game.Player2.ConnectionId).InvokeAsync(Constants.MoveMadeMemory, new MoveInformationMemory { OpponentName = player.Name, ImagePosition = positions[0], Image = player.Image });
-                    Clients.Client(game.Player2.ConnectionId).InvokeAsync(Constants.MoveMadeMemory, new MoveInformationMemory { OpponentName = player.Name, ImagePosition = positions[1], Image = player.Image });
+                    Clients.Client(game.Player2.ConnectionId).InvokeAsync(Constants.MoveMadeMemory, new MoveInformationMemory { OpponentName = player.Name, ImagePosition = positions[0], Image = player.Image }, userName);
+                    Clients.Client(game.Player2.ConnectionId).InvokeAsync(Constants.MoveMadeMemory, new MoveInformationMemory { OpponentName = player.Name, ImagePosition = positions[1], Image = player.Image }, userName);
 
                     //player.WaitingForMove = !player.WaitingForMove;
                     //player.Opponent.WaitingForMove = !player.Opponent.WaitingForMove;

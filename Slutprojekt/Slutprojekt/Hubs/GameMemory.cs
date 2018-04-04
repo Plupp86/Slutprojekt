@@ -56,7 +56,7 @@ namespace Slutprojekt
             Array.Copy(field0, 0, field, 0,8);
             Array.Copy(field0, 0, field, 8,8);
             Random rnd = new Random();
-            FieldList = field;//.OrderBy(c => rnd.Next()).ToArray(); ;
+            FieldList = field.OrderBy(c => rnd.Next()).ToArray(); ;
             
         }
         /// <summary>
