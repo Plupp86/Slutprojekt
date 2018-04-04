@@ -168,7 +168,7 @@ namespace Slutprojekt
         }
 
 
-        public async void WaitingforMoveCheck()
+        public void WaitingforMoveCheck()
         {
             int symbol = 0;
             GameMemory game = (games?.FirstOrDefault(x => x.Player1.ConnectionId == Context.ConnectionId || x.Player2.ConnectionId == Context.ConnectionId));
@@ -179,19 +179,15 @@ namespace Slutprojekt
                 symbol = 1;
             }
             var player = symbol == 0 ? game.Player1 : game.Player2;
-            if (player.WaitingForMove)
+            if (!player.WaitingForMove)
             {
-                //Clients.Client(game.Player1.ConnectionId).InvokeAsync(Constants.WaitingforMoveCheck, false);
-                await Clients.Client(player.ConnectionId).InvokeAsync(Constants.WaitingforMoveCheck, false);
-
-                //return false;
+                Clients.Client(player.ConnectionId).InvokeAsync(Constants.WaitingforMoveCheck, player.Name);
             }
             else
             {
-                await Clients.Client(player.ConnectionId).InvokeAsync(Constants.WaitingforMoveCheck, true);
-
-                //return true;
+                Clients.Client(player.ConnectionId).InvokeAsync(Constants.WaitingforMoveCheck, player.Opponent.Name);
             }
+
         }
 
         /// <summary>
@@ -279,6 +275,10 @@ namespace Slutprojekt
 
                     Clients.Client(player.Opponent.ConnectionId).InvokeAsync(Constants.WaitingForOpponentMemory, player.Opponent.Name);
                     Clients.Client(player.ConnectionId).InvokeAsync(Constants.WaitingForOpponentMemory, player.Opponent.Name);
+
+                    Clients.Client(player.Opponent.ConnectionId).InvokeAsync(Constants.WaitingforMoveCheck, player.Opponent.Name);
+                    Clients.Client(player.ConnectionId).InvokeAsync(Constants.WaitingforMoveCheck, player.Opponent.Name);
+
                 }
             }
         }
