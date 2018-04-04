@@ -13,7 +13,7 @@ a:hover {
 
 h1, h2, h3, h4 {
   color: #493F0B;
-  font-family: 'Audiowide', cursive; }
+  font-family: "Audiowide", cursive; }
 
 .loginspacer {
   width: 33%; }
@@ -49,9 +49,12 @@ h1, h2, h3, h4 {
   border-radius: 10px;
   border-color: #493F0B;
   border: 2px solid;
-  margin-top: 20px;
+  margin-top: 85px;
   margin-bottom: 5px;
-  padding: 1%; }
+  padding-left: 1%;
+  padding-right: 1%;
+  padding-top: 10px;
+  padding-bottom: 10px; }
 
 .inputbox {
   width: 50%;
@@ -165,13 +168,15 @@ span.box {
   background-color: #A7C520;
   border-color: #493F0B;
   color: #493F0B;
-  font-weight: 700; }
+  font-weight: 700;
+  font-family: 'Audiowide', cursive; }
 
 .submitBtn {
   background-color: #A7C520;
   border-color: #493F0B;
   color: #493F0B;
-  font-weight: 700; }
+  font-weight: 700;
+  font-family: 'Audiowide', cursive; }
 
 #gameSnake {
   width: 100%;
@@ -193,3 +198,27 @@ span.marker {
 
 .mathNotAvailable {
   background-color: gray; }
+
+table.ranking {
+  /*border: none; //1px solid beige;
+	border-collapse: collapse;
+	text-align: center;
+	padding: 2px;
+	padding-left: 8px;
+	padding-right: 8px;
+	font-size: 14px;
+	text-align: left;
+	color: #2F343B;*/ }
+  table.ranking td {
+    /*padding-left: 4px;
+		padding-right: 4px;*/ }
+  table.ranking tr:nth-child(2) {
+    background-color: #ebedaa; }
+
+.rankingDiv {
+  background-color: #F5F6D4;
+  border: 2px solid #493F0B;
+  /*margin-left: 0%;*/
+  padding: 10px;
+  border-radius: 5px;
+  margin-bottom: 10px; }

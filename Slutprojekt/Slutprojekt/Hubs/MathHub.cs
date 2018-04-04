@@ -9,8 +9,8 @@ using System.Threading.Tasks;
 
 namespace Slutprojekt
 {
-    public partial class MathHub : Hub
-    {
+	public partial class MathHub : Hub
+	{
 		private readonly StatsRepository statsRep;
 
 		public MathHub(StatsRepository statsRep)
@@ -49,9 +49,9 @@ namespace Slutprojekt
 
 					var match = new Match();
 					match.Draw = false;
-					match.Player1 = statsRep.GetId(game.Player1.Name);
-					match.Player2 = statsRep.GetId(game.Player2.Name);
-					match.Winner = statsRep.GetId(winner);
+					match.Player1 = game.Player1.Name;
+					match.Player2 = game.Player2.Name;
+					match.Winner = winner;
 					match.Game = "MathGame";
 
 					statsRep.ReportMatch(match);
@@ -88,7 +88,7 @@ namespace Slutprojekt
 
 			if (player == null)
 			{
-				player = new Player { ConnectionId = Context.ConnectionId, Name = userName, IsPlaying = false, IsSearchingOpponent = false, RegisterTime = DateTime.UtcNow};
+				player = new Player { ConnectionId = Context.ConnectionId, Name = userName, IsPlaying = false, IsSearchingOpponent = false, RegisterTime = DateTime.UtcNow };
 				if (!mathPlayers.Any(j => j.Name == userName))
 				{
 					mathPlayers.Add(player);
@@ -201,21 +201,35 @@ namespace Slutprojekt
 
 			//// Though we have removed the game from our list, we still need to notify the opponent that he has a walkover.
 			//// If the current connection Id matches the player 1 connection Id, its him who disconnected else its player 2
-			var player = game.Player1.ConnectionId == Context.ConnectionId ? game.Player1 : game.Player2;
+			Player player;
+			Player opponent;
 
-			if (player == null)
+			if (game.Player1.ConnectionId == Context.ConnectionId)
 			{
-				return null;
+				player = game.Player1;
+				opponent = game.Player2;
 			}
+			else
+			{
+				player = game.Player2;
+				opponent = game.Player1;
+			}
+			
 
 			//// Remove this player as he is disconnected and was in the game.
 			mathPlayers = Remove<Player>(mathPlayers, player);
 
-			//// Check if there was an opponent of the player. If yes, tell him, he won/ got a walk over.
-			if (player.Opponent != null)
-			{
-				return OnOpponentDisconnected(player.Opponent.ConnectionId, player.Name);
-			}
+			var match = new Match();
+			match.Player1 = opponent.Name;
+			match.Player2 = player.Name;
+			match.Draw = false;
+			match.Game = "MathGame";
+			match.Winner = opponent.Name;
+
+			statsRep.ReportMatch(match);
+
+			OnOpponentDisconnected(opponent.ConnectionId, player.Name);
+
 
 			return base.OnDisconnectedAsync(exception);
 		}

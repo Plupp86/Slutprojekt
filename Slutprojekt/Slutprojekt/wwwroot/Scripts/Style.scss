@@ -4,6 +4,8 @@ $primary-header: #493F0B;
 $text-color: #493F0B;
 $contrast: #85DB18;
 $backup: #A7C520;
+$header-font: 'Audiowide', cursive;
+$text-font: corbel;
 
 body {
 	background-color: $primary-bg;
@@ -23,7 +25,7 @@ a:hover {
 
 h1, h2, h3, h4 {
 	color: $primary-header;
-	font-family: 'Audiowide', cursive;
+	font-family: $header-font;
 }
 
 .loginspacer {
@@ -63,9 +65,12 @@ h1, h2, h3, h4 {
 	border-radius: 10px;
 	border-color: $primary-header;
 	border: 2px solid;
-	margin-top: 20px;
+	margin-top: 85px;
 	margin-bottom: 5px;
-	padding: 1%;
+	padding-left: 1%;
+	padding-right: 1%;
+	padding-top:10px;
+	padding-bottom:10px;
 }
 
 .inputbox {
@@ -200,6 +205,7 @@ span.box {
 	border-color: $primary-header;
 	color: $primary-header;
 	font-weight: 700;
+	font-family: 'Audiowide', cursive;
 }
 
 .submitBtn {
@@ -207,6 +213,7 @@ span.box {
 	border-color: $primary-header;
 	color: $primary-header;
 	font-weight: 700;
+	font-family: 'Audiowide', cursive;
 }
 
 #gameSnake {
@@ -236,4 +243,37 @@ span.marker {
 
 .mathNotAvailable {
 	background-color: gray;
+}
+
+table.ranking {
+	/*border: none; //1px solid beige;
+	border-collapse: collapse;
+	text-align: center;
+	padding: 2px;
+	padding-left: 8px;
+	padding-right: 8px;
+	font-size: 14px;
+	text-align: left;
+	color: #2F343B;*/
+
+	td {
+		/*padding-left: 4px;
+		padding-right: 4px;*/
+	}
+
+	tr:nth-child(2) {
+		background-color: darken($primary-bg, 10%)
+		/*padding-left: 4px;
+		padding-right: 4px;
+		text-align: left;*/
+	}
+}
+
+.rankingDiv {
+	background-color: $primary-bg;
+	border: 2px solid $primary-header;
+	/*margin-left: 0%;*/
+	padding: 10px;
+	border-radius: 5px;
+	margin-bottom: 10px;
 }

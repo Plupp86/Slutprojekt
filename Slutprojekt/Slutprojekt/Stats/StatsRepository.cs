@@ -30,20 +30,54 @@ namespace Slutprojekt.Stats
 		public void ReportMatch(Match match)
 		{
 			var player1 = context.User
-				.FirstOrDefault(u => u.Id == match.Player1);
+				.FirstOrDefault(u => u.UserName == match.Player1);
 			var player2 = context.User
-				.FirstOrDefault(u => u.Id == match.Player2);
+				.FirstOrDefault(u => u.UserName == match.Player2);
 
-			player1.MathMatches++;
-			player2.MathMatches++;
 
-			if (player1.Id == match.Winner)
+			switch (match.Game)
 			{
-				player1.MathWon++;
-			}
-			else
-			{
-				player2.MathWon++;
+				case "MathGame":
+					player1.MathMatches++;
+					player2.MathMatches++;
+
+					if (player1.UserName == match.Winner)
+					{
+						player1.MathWon++;
+					}
+					else
+					{
+						player2.MathWon++;
+					}
+					break;
+				case "Tic-Tac-Toe":
+					player1.TicMatches++;
+					player2.TicMatches++;
+
+					if (player1.UserName == match.Winner)
+					{
+						player1.TicWon++;
+					}
+					else if (player2.UserName == match.Winner)
+					{
+						player2.TicWon++;
+					}
+					break;
+				case "Memory":
+					player1.MemoryMatches++;
+					player2.MemoryMatches++;
+
+					if (player1.UserName == match.Winner)
+					{
+						player1.MemoryWon++;
+					}
+					else if (player2.UserName == match.Winner)
+					{
+						player2.MemoryWon++;
+					}
+					break;
+				default:
+					break;
 			}
 
 			context.Match.Add(match);
@@ -55,7 +89,39 @@ namespace Slutprojekt.Stats
 			var user = context.User
 				.FirstOrDefault(u => u.UserName == userName);
 			return user.Id;
-				
+
+		}
+
+		public Match[] GetRecentMatches()
+		{
+			return context.Match
+				.OrderByDescending(m => m.Id)
+				.Take(5)
+				.ToArray();
+		}
+
+		public User[] GetMathUsers()
+		{
+			return context.User
+				.Where(u => u.MathMatches > 0)
+				.OrderByDescending(u => u.MathWon)
+				.ToArray();
+		}
+
+		public User[] GetTicUsers()
+		{
+			return context.User
+				.Where(u => u.TicMatches > 0)
+				.OrderByDescending(u => u.TicWon)
+				.ToArray();
+		}
+
+		public User[] GetMemoryUsers()
+		{
+			return context.User
+				.Where(u => u.MemoryMatches > 0)
+				.OrderByDescending(u => u.MemoryWon)
+				.ToArray();
 		}
 
 	}

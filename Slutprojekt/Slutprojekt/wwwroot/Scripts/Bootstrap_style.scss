@@ -4,17 +4,22 @@ $primary-header: #493F0B;
 $text-color: #493F0B;
 $contrast: #85DB18;
 $backup: #A7C520;
+$header-font: 'Audiowide', cursive;
+$text-font: corbel;
 
 /* navbar */
 .navbar-default {
 	background-color: $secondary-bg;
-	border-color: $primary-header;
+	border: 2px solid $primary-header;
+	border-bottom-left-radius: 5px;
+	border-bottom-right-radius: 5px;
+	/*border-color: $primary-header;*/
 }
 /* Title */
 .navbar-default .navbar-brand {
 	color: $primary-header;
 	font-size: large;
-	font-family: 'Audiowide', cursive;	
+	font-family: $header-font;
 }
 
 .navbar-default .navbar-brand:hover,
@@ -25,14 +30,14 @@ $backup: #A7C520;
 .navbar-default .navbar-nav > li > a {
 	color: $primary-header;
 	font-size: large;
-	font-family: 'Audiowide', cursive;
+	font-family: $header-font;
 }
 
 .navbar-default .navbar-nav > li > a:hover,
 .navbar-default .navbar-nav > li > a:focus {
 	color: $primary-header;
 	font-size: large;
-	font-family: 'Audiowide', cursive;
+	font-family: $header-font;
 }
 
 .navbar-default .navbar-nav > .active > a,
@@ -41,14 +46,14 @@ $backup: #A7C520;
 	color: $primary-header;
 	background-color: darken($secondary-bg, 20%);
 	font-size: large;
-	font-family: 'Audiowide', cursive;
+	font-family: $header-font;
 }
 
 .navbar-default .navbar-nav > .open > a,
 .navbar-default .navbar-nav > .open > a:hover,
 .navbar-default .navbar-nav > .open > a:focus {
 	color: $primary-header;
-	background-color: $contrast;
+	background-color: $backup;
 	//background-color: darken($secondary-bg, 50);
 }
 /* Caret */
@@ -92,4 +97,26 @@ $backup: #A7C520;
 	.navbar-default .navbar-nav .open .dropdown-menu > li > a:focus {
 		color: #333;
 	}
+}
+
+.dropdown-menu {
+	/*display: block;*/
+	padding: 1px;
+	clear: both;
+	font-size: 16px;
+	/*line-height: 1.42857143;*/
+	white-space: nowrap;
+	background-color: $secondary-bg;
+	color: $primary-header;
+	border: 2px solid $primary-header;
+	border-radius: 5px;
+	font-family: $header-font;
+
+	li {
+		width:100%;
+	}
+}
+
+.dropdown-menu > li > a:hover {
+	background-color: $backup;//darken($secondary-bg,10%);
 }

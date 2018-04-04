@@ -1,0 +1,61 @@
+﻿@model RankingVM
+
+<div class="content">
+	<h1>Rankings</h1>
+	<div class="rankingDiv">
+		<h3>Tic-Tac-Toe</h3>
+		<table class="table table-responsive ranking">
+			<tr>
+				<th>User Name</th>
+				<th>Games Played</th>
+				<th>Games Won</th>
+			</tr>
+			@foreach (var item in Model.TicUsers)
+			{
+				<tr>
+					<td>@item.UserName</td>
+					<td>@item.TicMatches</td>
+					<td>@item.TicWon</td>
+				</tr>
+			}
+		</table>
+	</div>
+
+	<div class="rankingDiv">
+		<h3>The MathGame</h3>
+		<table class="table table-responsive ranking">
+			<tr>
+				<th>User Name</th>
+				<th>Games Played</th>
+				<th>Games Won</th>
+			</tr>
+			@foreach (var item in Model.MathUsers)
+	{
+		<tr>
+			<td>@item.UserName</td>
+			<td>@item.MathMatches</td>
+			<td>@item.MathWon</td>
+		</tr>
+}
+		</table>
+	</div>
+	<div class="rankingDiv">
+		<h3>Memory</h3>
+		<table class="table table-responsive ranking">
+			<tr>
+				<th>User Name</th>
+				<th>Games Played</th>
+				<th>Games Won</th>
+			</tr>
+			@foreach (var item in Model.MemoryUsers)
+	{
+		<tr>
+			<td>@item.UserName</td>
+			<td>@item.MemoryMatches</td>
+			<td>@item.MemoryWon</td>
+		</tr>
+}
+		</table>
+	</div>
+
+</div>
