@@ -5,6 +5,7 @@ using System;
 using System.Linq;
 using System.Collections.Concurrent;
 using Slutprojekt.Models;
+using Slutprojekt.Stats;
 
 namespace Slutprojekt
 {
@@ -13,7 +14,12 @@ namespace Slutprojekt
     /// </summary>
     public class GameHubMemory : Hub
     {
+		private readonly StatsRepository statsRep;
 
+		public GameHubMemory(StatsRepository statsRep)
+		{
+			this.statsRep = statsRep;
+		}
         /// <summary>
         ///  To keep the list of all the connected players registered with the game hub.
         /// </summary>
@@ -227,6 +233,16 @@ namespace Slutprojekt
             //if true end of game
             if (game.Play(symbol, positions))
             {
+				var match = new Match();
+				match.Draw = false;
+				match.Player1 = game.Player1.Name;
+				match.Player2 = game.Player2.Name;
+				match.Winner = player.Name;
+				match.Game = "Memory";
+
+				statsRep.ReportMatch(match);
+				
+
                 Remove<GameMemory>(games, game);
                 Clients.Client(game.Player1.ConnectionId).InvokeAsync(Constants.GameOverMemory, $"The winner is {player.Name}");
                 Clients.Client(game.Player2.ConnectionId).InvokeAsync(Constants.GameOverMemory, $"The winner is {player.Name}");

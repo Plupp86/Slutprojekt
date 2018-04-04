@@ -32,10 +32,20 @@ namespace Slutprojekt.Controllers
 		[AllowAnonymous]
 		public IActionResult Index()
 		{
-			//var users = repository.GetAllUserNames();
-			//statsRep.MoveExistingUsers(users);
 			return View();
 		}
+
+
+		//[Route("UpdateDB")]
+		//[HttpGet]
+		//[AllowAnonymous]
+		//public IActionResult UpdateDB()
+		//{
+		//	var users = repository.GetAllUserNames();
+		//	statsRep.MoveExistingUsers(users);
+		//	return RedirectToAction(nameof(HomeController.Index));
+		//}
+
 
 		[Route("Index")]
 		[AllowAnonymous]
