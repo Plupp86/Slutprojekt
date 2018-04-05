@@ -32,6 +32,12 @@ h1, h2, h3, h4 {
 	width: 33%;
 }
 
+.logo {
+	width: 100px;
+	margin-top: 5px;
+	padding-right: 10px;
+}
+
 .login {
 	background-color: $secondary-bg;
 	width: 300px;
@@ -83,19 +89,26 @@ h1, h2, h3, h4 {
 }
 
 div.left {
-	/*background-color: red;
-	border: 2px solid red;*/
+	/*background-color: $primary-bg;
+	border: 2px solid $primary-header;
+	border-radius:5px;*/
 	float: left;
 	width: 48%;
-	margin-left: 0%;
+	margin-left: 1%;
+	padding: 10px;
+
+	
 }
 
 div.right {
-	/*background-color: blue;
-	border: 2px solid red;*/
+	background-color: $primary-bg;
+	border: 2px solid $primary-header;
+	border-radius: 5px;
 	float: right;
 	width: 48%;
-	margin-right: 0%;
+	margin-right: 1%;
+	padding: 10px;
+
 }
 
 div.loggo {
@@ -261,7 +274,7 @@ table.ranking {
 		padding-right: 4px;*/
 	}
 
-	tr:nth-child(2) {
+	tr:nth-child(even) {
 		background-color: darken($primary-bg, 10%)
 		/*padding-left: 4px;
 		padding-right: 4px;
@@ -276,4 +289,29 @@ table.ranking {
 	padding: 10px;
 	border-radius: 5px;
 	margin-bottom: 10px;
+}
+
+.date {
+	float:right;
+	margin-right:0;
+	font-weight:bold;
+	text-align: right;
+}
+
+.author {
+	float:left;
+	margin-left: 0;
+	font-weight: bold;
+	text-align:left;
+}
+
+.newsStory {
+	clear: both;
+}
+
+.news {
+	background-color: $primary-bg;
+	border: 2px solid $primary-header;
+	border-radius:5px;
+	padding: 10px;
 }

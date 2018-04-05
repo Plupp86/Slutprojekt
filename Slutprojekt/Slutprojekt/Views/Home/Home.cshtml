@@ -3,23 +3,48 @@
 
 
 <div class="content">
-	<h3>Welcome Home!</h3>
+	<h3>Welcome!</h3>
 	<br />
 
 	<div class="left">
 		<p>
-			<strong>Welcome to our game portal</strong><br />
-			This awsome portal are made the greatest people on planet Earth, we can move mountains and create thunderbolts from our hands so dont mess with us!! We created this portal to show and improva our abilities in prgramingskills and to get a first hand on SignalR.
-			<br />Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.
-			<br />Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.
 
+			@foreach (var item in Model.RecentNews)
+			{
+				<div class="news">
+					<div class="author">@item.Author</div><div class="date">@item.Date</div><br />
+					<div class="newsStory">@item.Story</div>
+				</div>
+				<br />
+			}
+
+
+			@if (Model.OldNews != null)
+			{
+				<span id="toggleOldNews" style="cursor:pointer">Load more news</span>
+			}
+
+
+			<div id="oldNews">
+				@if (Model.OldNews != null)
+				{
+					@foreach (var item in Model.OldNews)
+					{
+						<div class="news">
+							<div class="author">@item.Author</div><div class="date">@item.Date</div><br />
+							<div class="newsStory">@item.Story</div>
+						</div>
+						<br />
+					}
+				}
+			</div>
 		</p>
 
 	</div>
 
 	<div class="right">
 		<center>
-			<img src="~/Images/granny.png" width="200px" />
+			<img src="~/Images/prototype_log4_white_smaller.png" />
 		</center><br />
 		<p>
 			<strong>Recent Games:</strong><br />
@@ -68,3 +93,11 @@
 	@*<span> Welcome user: @Model.User </span>*@
 	<br />
 </div>
+
+<script src="~/lib/jquery/dist/jquery.js"></script>
+<script>
+	$("#oldNews").hide();
+	$("#toggleOldNews").on('click', function () {
+		$("#oldNews").toggle();
+	});
+</script>

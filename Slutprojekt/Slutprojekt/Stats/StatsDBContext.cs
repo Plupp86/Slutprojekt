@@ -7,6 +7,7 @@ namespace Slutprojekt.Stats
     public partial class StatsDBContext : DbContext
     {
         public virtual DbSet<Match> Match { get; set; }
+        public virtual DbSet<News> News { get; set; }
         public virtual DbSet<User> User { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
@@ -39,6 +40,19 @@ namespace Slutprojekt.Stats
                 entity.Property(e => e.Winner)
                     .IsRequired()
                     .HasMaxLength(50);
+            });
+
+            modelBuilder.Entity<News>(entity =>
+            {
+                entity.ToTable("News", "Stats");
+
+                entity.Property(e => e.Author)
+                    .IsRequired()
+                    .HasMaxLength(50);
+
+                entity.Property(e => e.Date).HasColumnType("datetime");
+
+                entity.Property(e => e.Story).IsRequired();
             });
 
             modelBuilder.Entity<User>(entity =>

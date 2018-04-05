@@ -84,13 +84,12 @@ mathConnection.on('startMathGame', data => {
 	$("#divGameBoard").html(" ");
 	$("#divQuestion").html(" ");
 
-
 	console.log(data);
 	$("#divQuestion").append("<h3>" + data.player1.name + ": " + data.player1Score + " <br>")
 	$("#divQuestion").append("<h3>" + data.player2.name + ": " + data.player2Score + " <br>")
 	$("#divQuestion").append("<h3>" + data.questions[0].number1 + " x " + data.questions[0].number2 + " = </h3>")
 	for (var i = 0; i < 9; i++) {
-		$("#divGameBoard").append("<span class='marker' id='" + i + "' style='display:block;border:2px solid black;height:50px;width:50px;float:left;margin:5px;'><h4>" + data.questions[0].answers[i] + "</h4></span>");
+		$("#divGameBoard").append("<span class='marker' id='" + i + "' style='display:block;border:2px solid #493F0B;border-radius:5px;height:50px;width:50px;float:left;margin:5px;'><h4>" + data.questions[0].answers[i] + "</h4></span>");
 	}
 });
 
@@ -114,7 +113,7 @@ mathConnection.on('nextQuestion', data => {
 		$("#divQuestion").append("<h3>" + data.player2.name + ": " + data.player2Score + " <br>")
 		$("#divQuestion").append("<h3>" + data.questions[r].number1 + " x " + data.questions[r].number2 + " = </h3> ")
 		for (var i = 0; i < 9; i++) {
-			$("#divGameBoard").append("<span class='marker' id='" + i + "' style='display:block;border:2px solid black;height:50px;width:50px;float:left;margin:5px;text-align:center;'><h4>" + data.questions[r].answers[i] + "</h4></span>");
+			$("#divGameBoard").append("<span class='marker' id='" + i + "' style='display:block;border:2px solid #493F0B;border-radius:5px;height:50px;width:50px;float:left;margin:5px;text-align:center;'><h4>" + data.questions[r].answers[i] + "</h4></span>");
 		}
 	}, 2000);
 

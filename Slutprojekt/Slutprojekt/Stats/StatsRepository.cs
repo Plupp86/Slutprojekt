@@ -1,4 +1,5 @@
 ﻿using Slutprojekt.Models.Entities;
+using Slutprojekt.Models.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -124,5 +125,38 @@ namespace Slutprojekt.Stats
 				.ToArray();
 		}
 
+		internal void ReportTheNews(AddNewsVM model)
+		{
+			var news = new News()
+			{
+				Author = model.UserName,
+				Story = model.TheNews,
+				Date = DateTime.Now
+			};
+			context.News.Add(news);
+			context.SaveChanges();
+		}
+
+		internal News[] GetTheNews()
+		{
+			return context.News
+				.OrderByDescending(n => n.Date)
+				.Take(5)
+				.ToArray();
+		}
+
+		internal News[] GetOldNews()
+		{
+			if (context.News.Count() < 6)
+			{
+				return null;
+			}
+
+			return context.News
+				.OrderByDescending(n => n.Date)
+				.Skip(5)
+				.Take(5)
+				.ToArray();
+		}
 	}
 }

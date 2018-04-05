@@ -178,4 +178,55 @@ $text-font: corbel;
 	.create {
 		margin-top: 130px;
 	}
+
+	/* Link */
+	.navbar-default .navbar-nav > li > a {
+		color: $primary-header;
+		font-size: 14px;
+		font-family: $header-font;
+	}
+	.navbar-default .navbar-nav > li > a:hover {
+		color: $primary-header;
+		font-size: 14px;
+		font-family: $header-font;
+	}
+
+	.logo{
+		width: 75px;
+		margin-top:10px;
+		padding-right:10px;
+	}
+
+	.navbar-default .navbar-brand {
+		color: $contrast;
+		font-size: 14px;
+		font-family: $header-font;
+	}
+
+	.navbar-default .navbar-brand:hover,
+	.navbar-default .navbar-brand:focus {
+		color: $contrast;
+	}
+
+	div.left {
+		/*background-color: red;
+	border: 2px solid red;*/
+		float: none;
+		width: 95%;
+		margin-left: auto;
+		margin-right: auto;
+		margin-bottom: 5px;
+		margin-top: 5px;
+	}
+
+	div.right {
+		/*background-color: blue;
+	border: 2px solid red;*/
+		float: none;
+		width: 95%;
+		margin-left: auto;
+		margin-right: auto;
+		margin-bottom: 5px;
+		margin-top: 5px;
+	}
 }
