@@ -24,9 +24,6 @@ namespace Slutprojekt
 
 		public void MakeAGuess(int pos)
 		{
-			//// Lets find a game from our list of games where one of the player has the same connection Id as the current connection has.
-
-			//var game = mathGames?.FirstOrDefault(x => x.Player1.ConnectionId == Context.ConnectionId || x.Player2.ConnectionId == Context.ConnectionId);
 
 			var game = mathGames
 				.FirstOrDefault(g => g.Player1.ConnectionId == Context.ConnectionId || g.Player2.ConnectionId == Context.ConnectionId);

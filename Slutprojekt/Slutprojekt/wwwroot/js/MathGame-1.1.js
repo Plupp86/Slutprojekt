@@ -94,10 +94,9 @@ mathConnection.on('startMathGame', data => {
 	}
 });
 
-mathConnection.on('wrongAnswer', data => {
-	console.log("wrong answer");
-	$("#" + data).css('background-color', 'red');
-});
+
+
+
 
 
 mathConnection.on('correctAnswer', data => {
@@ -122,12 +121,18 @@ mathConnection.on('nextQuestion', data => {
 });
 
 $(document).on('click', '.marker', function () {
-	if ($(this).hasClass("MathNotAvailable") || $(this).hasClass("tempNotAvailable")) { //// Cell is already taken.
-		return;
+	if ($(this).hasClass("MathNotAvailable") || $(this).hasClass("tempNotAvailable")) {
+		return; //Marker not Available
 	}
-	$(".marker").addClass('tempNotAvailable');
-	mathConnection.invoke('MakeAGuess', $(this)[0].id);
-	setTimeout(function () { $(".marker").removeClass('tempNotAvailable');}, 2000);
 
-	//// Cell is valid, send details to hub.
+	$(".marker").addClass('tempNotAvailable');
+	mathConnection.invoke('MakeAGuess', $(this)[0].id); 
+	setTimeout(function () { $(".marker").removeClass('tempNotAvailable');}, 2000);
+});
+
+
+
+mathConnection.on('wrongAnswer', data => {
+	console.log("wrong answer");
+	$("#" + data).css('background-color', 'red');
 });

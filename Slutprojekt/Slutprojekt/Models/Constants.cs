@@ -10,6 +10,16 @@ namespace Slutprojekt
 	/// </summary>
 	public class Constants
 	{
+
+		public const string CorrectAnswer = "correctAnswer";
+		public const string WrongAnswer = "wrongAnswer";
+
+
+
+
+		public const string ShowOpponentMove = "showOpponentMove";
+
+
 		/// <summary>
 		///  Stores the registrationComplete method of the client.
 		/// </summary>
@@ -60,9 +70,9 @@ namespace Slutprojekt
         public const string NoMAtch = "noMatch";
         public const string GetPositionsArrayMemory = "getPositionsArrayMemory";
         public const string WaitingforMoveCheck = "waitingforMoveCheck";
-        public const string CorrectAnswer = "correctAnswer";
-        public const string WrongAnswer = "wrongAnswer";
-        public const string ShowOpponentMove = "showOpponentMove";
+
+
+
 
         
 
