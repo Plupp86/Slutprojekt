@@ -10,6 +10,17 @@ let chat = new signalR.HubConnection('/chat');
 
 chat.start();
 
+$(document).ready(function () {
+	setTimeout(function () { chat.invoke('GetOnlineUsers'); }, 1000);
+});
+
+$(document).ready(function () {
+	setTimeout(function () {
+		var userAndGame = userName + " - " + gameName;
+		chat.invoke('RegisterChatUser', userAndGame);
+	}, 1500);
+});
+
 chat.on('listOfChatUsers', data => {
     $("#onlineUsers").empty();
     data.forEach(function (element) {
@@ -39,16 +50,7 @@ $("#btnSend").click(() => {
     }
 });
 
-$(document).ready(function () {
-    setTimeout(function () { chat.invoke('GetOnlineUsers'); }, 500);
-});
 
-$(document).ready(function () {
-	setTimeout(function () {
-		var userAndGame = userName + " - " + gameName;
-		chat.invoke('RegisterChatUser', userAndGame);
-	}, 1000);
-});
 
 $("#listbtn").click(() => {
     chat.invoke('GetOnlineUsers');

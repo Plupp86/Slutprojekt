@@ -1,7 +1,7 @@
 ﻿body {
   background-color: #F5F6D4;
   color: #493F0B;
-  font-family: 'Corbel'; }
+  font-family: corbel; }
 
 a {
   color: #493F0B;
@@ -38,7 +38,7 @@ h1, h2, h3, h4 {
   border-radius: 10px;
   border-color: #493F0B;
   border: 2px solid;
-  margin-top: 50px; }
+  margin-top: 90px; }
 
 .content {
   background-color: #CDE855;
