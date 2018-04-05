@@ -3,68 +3,88 @@
 
 
 <div class="content">
-	<h3>Welcome Home!</h3>
-	<br />
+    <h3>Welcome</h3>
+    <br />
 
-	<div class="left">
-		<p>
-			<strong>Welcome to our game portal</strong><br />
-			This awsome portal are made the greatest people on planet Earth, we can move mountains and create thunderbolts from our hands so dont mess with us!! We created this portal to show and improva our abilities in prgramingskills and to get a first hand on SignalR.
-			<br />Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.
-			<br />Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.
+    <div class="left">
+        <p>
+            <strong>Welcome to SpelPortalen</strong><br />
+            <br />
+            <strong>2018-04-04</strong>
+            All rejoice!! SpelPortalen is now out of beta and in production.
+            <br />
+            <strong>2018-04-02</strong>
+            Try the new game Colour Memory!!
+            <br />
+            <strong>2018-04-01</strong>
+            The official beta of SpelPortalen is released.
+            <br />
+            <strong>2018-04-01</strong>
+            The MathGame is now online!!
+            <br />
+            <strong>2018-03-30</strong>
+            Tic-Tac-Toe is now realesed!!
+            <br />
+            <strong>2018-03-30</strong>
+            Now introducing our Chat!!
+            <br />
+            <strong>2018-03-29</strong>
+            First Alpha of SpelPortalen is up!
+            <br />
 
-		</p>
+        </p>
 
-	</div>
+    </div>
 
-	<div class="right">
-		<center>
-			<img src="~/Images/granny.png" width="200px" />
-		</center><br />
-		<p>
-			<strong>Recent Games:</strong><br />
-		</p>
-		<ul>
-			@foreach (var item in Model.recentMatches)
-			{
-				@if (item.Player1 == item.Winner)
-				{
-					<li>
-						<strong>@(item.Player1)</strong> played against <strong>@(item.Player2)</strong> in a game of @(item.Game).
-						@if (item.Draw)
-						{
-							<span>The game ended in a draw.</span>
-						}
-						else
-						{
-							<span>The winner was <strong>@(item.Winner)</strong>.</span>
-						}
-					</li>
+    <div class="right">
+        <center>
+            @*<img src="~/Images/granny.png" width="200px" />*@
+            <img src="~/Images/prototype_log4_white_smaller.v1.png" />
+        </center><br />
+        <p>
+            <strong>Recent Games:</strong><br />
+        </p>
+        <ul>
+            @foreach (var item in Model.recentMatches)
+            {
+                @if (item.Player1 == item.Winner)
+                {
+                    <li>
+                        <strong>@(item.Player1)</strong> played against <strong>@(item.Player2)</strong> in a game of @(item.Game).
+                        @if (item.Draw)
+                        {
+                            <span>The game ended in a draw.</span>
+                        }
+                        else
+                        {
+                            <span>The winner was <strong>@(item.Winner)</strong>.</span>
+                        }
+                    </li>
 
-				}
-				else
-				{
-					<li>
-						<strong>@(item.Player1)</strong> played against	<strong>@(item.Player2)</strong>
-						in a game of @(item.Game).
+                }
+                else
+                {
+                    <li>
+                        <strong>@(item.Player1)</strong> played against	<strong>@(item.Player2)</strong>
+                        in a game of @(item.Game).
 
-						@if (item.Draw)
-						{
-							<span>The game ended in a draw.</span>
-						}
-						else
-						{
-							<span>The winner was <strong>@(item.Winner)</strong>.</span>
-						}
-					</li>
+                        @if (item.Draw)
+                        {
+                            <span>The game ended in a draw.</span>
+                        }
+                        else
+                        {
+                            <span>The winner was <strong>@(item.Winner)</strong>.</span>
+                        }
+                    </li>
 
-				}
+                }
 
-			}
-		</ul>
-	</div>
-	<div class="clear-fix"></div>
+            }
+        </ul>
+    </div>
 
-	@*<span> Welcome user: @Model.User </span>*@
-	<br />
+    <div class="clear-fix"></div>
+    @*<span> Welcome user: @Model.User </span>*@
+    <br />
 </div>

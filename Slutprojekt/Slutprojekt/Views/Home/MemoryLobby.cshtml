@@ -19,7 +19,7 @@
             </div>
             <div id="divFindOpponentPlayer" style="font-family:Corbel">
                 <fieldset>
-                    <legend>Find a player to play against!</legend>
+                    <h3>Find a player to play against!</h3>
                     <div class="form-group">
                         <span style="margin:50px"><input type="button" class="btn btn-block findPlayerBtn" id="btnFindOpponentPlayerMemory" value="Find Opponent Player" /></span>
                     </div>
@@ -27,7 +27,7 @@
             </div>
             <div id="divFindingOpponentPlayer" style="font-family:Corbel">
                 <fieldset>
-                    <legend>Its lonely here!</legend>
+                    <h3>Its lonely here!</h3>
                     <div class="form-group">
                         Looking for an opponent player. Waiting for someone to join!
                     </div>
@@ -39,7 +39,6 @@
             </div>
             <div id="divGame" style="clear:both;font-family:Corbel">
                 <fieldset>
-                    @*<legend>Game On</legend>*@
                     <div id="divGameBoard" style="width:190px">
                         <div id="divGameBoardMemory" style="width:190px">
 
@@ -68,8 +67,6 @@
 
 
 <script src="~/lib/jquery/dist/jquery.js"></script>
-@*<script src="~/js/signalr-clientES5-1.0.0-alpha1-final.js"></script>
-<script src="~/js/signalr-msgpackprotocol-1.0.0-alpha1-final.js"></script>*@
 <script src="~/js/signalr-client-1.0.0-alpha2-final.js"></script>
 <script>
 	var userName = '@Model.UserName.ToString()';

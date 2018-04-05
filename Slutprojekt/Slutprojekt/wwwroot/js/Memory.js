@@ -25,7 +25,6 @@ let myTurntoMove;
 hubConnectionMemory.start();
 
 hubConnectionMemory.on('getPositionsArrayMemory', data => {
-    console.log("Så här ser min getPositionsArrayMemory ut: " + data);
     positionsArrarRealValue = data;
 });
 
@@ -65,15 +64,11 @@ hubConnectionMemory.on('showOpponentMove', data => {
 
 //What colour you and your opponent will be shown when you have a matched pair
 hubConnectionMemory.on('moveMadeMemory', data => {
-    console.log("Vilken user är jag: " + userName);
+    //console.log("Vilken user är jag: " + userName);
     if (data.opponentName !== userName) {
-        //console.log(userName + " if movemade USername");
-        //console.log(data.imagePosition + " if movemade data.imagepos");
         $("#" + data.imagePosition).css('background-color', 'blue');
     }
     else {
-        console.log(userName + " else movemade");
-        console.log(data.imagePosition + " else movemade");
         $("#" + data.imagePosition).css('background-color', 'red');
     }
     $("#" + data.imagePosition).addClass("notAvailable");
@@ -84,20 +79,14 @@ hubConnectionMemory.on('moveMadeMemory', data => {
 //Is it your turn to move?
 hubConnectionMemory.on('waitingforMoveCheck', data => {
     //string name from make a move
-    console.log("hubConnectionMemory.on('waitingforMoveCheckAnswer') " + data);
-
     waitingforMoveCheckAnswer = data;
 });
 
 //Triggers on clicking the grid cell.
 $(document).on('click', '.marker', function () {
-    //waitingforMoveCheckAnswer = 0;
-    //hubConnectionMemory.invoke('WaitingforMoveCheck');
-    console.log('just before if(waitingforMoveCheckAnswer) ' + waitingforMoveCheckAnswer);
 
     if (waitingforMoveCheckAnswer == userName)
     {
-        //if (myChoosedBox.hasClass("notAvailable")) { //// Cell is already taken.
         if ($(this).hasClass("notAvailable")) { //// Cell is already taken.
             return;
         }
@@ -105,14 +94,8 @@ $(document).on('click', '.marker', function () {
         if (positionsArray[0] == null) {
             $($(this)).addClass("notAvailable");
             positionsArray.push($(this)[0].id);
-            //positionsArray.push(myChoosedBoxThisId);
-
-            //$(myChoosedBox).addClass("notAvailable");
 
             let index = positionsArray[0];
-            console.log("värde på positionsArray[0]: " + positionsArray[0]);
-            console.log("värde på positionsArrarRealValue[index]: " + positionsArrarRealValue[index]);
-            console.log("felsök " + positionsArray[0]);
 
             if (positionsArrarRealValue[index] == 0) {
                 $("#" + positionsArray[0]).css('background-color', 'yellow');
@@ -152,33 +135,22 @@ $(document).on('click', '.marker', function () {
                 hubConnectionMemory.invoke('ShowOpponentMove', positionsArray[0], 'Darkgreen');
             }
 
-            //console.log($(this)[0].id);
-            console.log($(this)[0].id + " klick 1, onclickmarker");
             return;
 
         }
         else {
-            //if (myChoosedBox.hasClass("notAvailable")) { //// Cell is already taken.
             if ($(this).hasClass("notAvailable")) { //// Cell is already taken.
                 return;
             }
-            //positionsArray.push(myChoosedBoxThisId);
             positionsArray.push($(this)[0].id);
-
-            //$(myChoosedBoxThisId).addClass("notAvailable");
             $($(this)[0].id).addClass("notAvailable");
 
             let index2 = positionsArray[1];
-            console.log("klick 2, onclickmarker");
-            console.log(positionsArray);
             if (positionsArray[0] == positionsArray[1]) {
-
-                console.log("positionsArray[0] == positionsArray[1]" + positionsArray[0] + positionsArray[1])
                 positionsArray[1] = null;
 
                 return;
             } else {
-                console.log("positionsArray[0] != positionsArray[1]")
 
                 if (positionsArrarRealValue[index2] == 0) {
                     $("#" + positionsArray[1]).css('background-color', 'yellow');
@@ -219,19 +191,15 @@ $(document).on('click', '.marker', function () {
                     hubConnectionMemory.invoke('ShowOpponentMove', positionsArray[1], 'Darkgreen');
 
                 }
-                console.log($(this)[0].id + "klick 2, onclickmarker");
-                console.log("positionsArray precis innan callmakeamovememory " + positionsArray);
                 var input0 = positionsArray[0];
                 var input1 = positionsArray[1];
 
-                setTimeout(function () { callOnMakeAMoveMemory(input0, input1, waitingforMoveCheckAnswer); }, 2500);
+                setTimeout(function () { callOnMakeAMoveMemory(input0, input1, waitingforMoveCheckAnswer); }, 2000);
 
                 function callOnMakeAMoveMemory(a, b,c) {
 
-                    console.log("callOnMakeAMoveMemory har anropas, detta är positionsarray6: " + a + " " + b);
                     let array = [a, b];
                     nameOfPlayersTurn = c;
-                    console.log("callOnMakeAMoveMemory har anropas, detta är positionsarray7: " + array);
                     hubConnectionMemory.invoke('MakeAMoveMemory', array,nameOfPlayersTurn);
 
                     $("#" + array[0]).addClass("marker");
@@ -239,16 +207,11 @@ $(document).on('click', '.marker', function () {
                     $("#" + array[1]).addClass("marker");
                     $("#" + array[0]).removeClass("notAvailable");
 
-                    console.log(array[0] + " array[0]");
-                    console.log(array[1] + " array[1]");
-
                     $("#" + array[0]).css('background-color', '#F5F6D4');
                     $("#" + array[1]).css('background-color', '#F5F6D4');
                 }
 
                 waitingforMoveCheckAnswer = "noOne";
-
-
             }
         }
         positionsArray = [];
@@ -260,7 +223,6 @@ $(document).on('click', '.marker', function () {
 //No match
 hubConnectionMemory.on('noMatch', data => {
     $('#divInfo').html("<br/><span><strong>No match for player: " + playerName + "! " + data + " </strong></span>");
-    console.log(data + "noMatch");
 });
 
 //Game over
@@ -313,11 +275,10 @@ hubConnectionMemory.on('opponentFoundMemory', (data, image) => {
     $("#divGameBoard").html(" ");
     $("#divGameBoardMemory").html(" ");
     for (var i = 0; i < 16; i++) {
-        $("#divGameBoard").append("<span class='marker' id=" + i + " style='display:block;border:2px solid black;height:35px;width:35px;float:left;margin:5px;'> </span>");
+        $("#divGameBoard").append("<span class='marker' id=" + i + " style='display:block;border:2px solid #493F0B;border-radius:5px;height:35px;width:35px;float:left;margin:5px;'> </span>");
     }
     hubConnectionMemory.invoke('GetPositionsArrayMemory');
     hubConnectionMemory.invoke('WaitingforMoveCheck');
-
 });
 
 $(document).ready(function () {
