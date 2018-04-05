@@ -1,7 +1,7 @@
 ﻿body {
   background-color: #F5F6D4;
   color: #493F0B;
-  font-family: corbel; }
+  font-family: "Roboto", sans-serif; }
 
 a {
   color: #493F0B;
@@ -73,18 +73,21 @@ div.left {
 	border: 2px solid $primary-header;
 	border-radius:5px;*/
   float: left;
-  width: 48%;
+  width: 38%;
   margin-left: 1%;
-  padding: 10px; }
+  padding: 0px; }
 
-div.right {
+div#recentGames {
   background-color: #F5F6D4;
   border: 2px solid #493F0B;
   border-radius: 5px;
-  float: right;
-  width: 48%;
-  margin-right: 1%;
   padding: 10px; }
+
+div.right {
+  float: right;
+  width: 58%;
+  margin-right: 1%;
+  padding: 0px; }
 
 div.loggo {
   position: absolute;
@@ -161,10 +164,33 @@ span.box {
   box-shadow: none; }
 
 #txtMessage {
-  width: 89%;
-  height: 25px;
+  width: 85%;
+  height: 30px;
   border-radius: 3px;
-  box-shadow: none; }
+  box-shadow: none;
+  width: 100%; }
+
+div#chatMessDiv {
+  float: left;
+  margin-left: 0;
+  width: 90%; }
+
+div#chatBtnDiv {
+  float: right;
+  margin-right: 0;
+  width: 10%;
+  padding-left: 5px; }
+
+#btnSend {
+  background-color: #A7C520;
+  border-color: #493F0B;
+  color: #493F0B;
+  font-weight: 700;
+  font-family: 'Audiowide', cursive;
+  width: 100%;
+  height: 30px;
+  text-align: center;
+  padding: 0; }
 
 .notAvailable {
   background: center;
@@ -209,21 +235,8 @@ span.marker {
 .mathNotAvailable {
   background-color: gray; }
 
-table.ranking {
-  /*border: none; //1px solid beige;
-	border-collapse: collapse;
-	text-align: center;
-	padding: 2px;
-	padding-left: 8px;
-	padding-right: 8px;
-	font-size: 14px;
-	text-align: left;
-	color: #2F343B;*/ }
-  table.ranking td {
-    /*padding-left: 4px;
-		padding-right: 4px;*/ }
-  table.ranking tr:nth-child(even) {
-    background-color: #ebedaa; }
+table.ranking tr:nth-child(even) {
+  background-color: #ebedaa; }
 
 .rankingDiv {
   background-color: #F5F6D4;
@@ -252,4 +265,8 @@ table.ranking {
   background-color: #F5F6D4;
   border: 2px solid #493F0B;
   border-radius: 5px;
+  padding: 10px;
+  margin-top: 0; }
+
+#logoBig {
   padding: 10px; }

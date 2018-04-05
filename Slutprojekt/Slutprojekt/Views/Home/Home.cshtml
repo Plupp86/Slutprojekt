@@ -7,86 +7,86 @@
 	<br />
 
 	<div class="left">
-		<p>
+		@foreach (var item in Model.RecentNews)
+		{
+			<div class="news">
+				<div class="author">@item.Author</div><div class="date">
+					@item.Date.ToString("yyyy-MM-dd HH:mm")
+				</div><br />
+				<div class="newsStory">@item.Story</div>
+			</div>
+			<br />
+		}
 
-			@foreach (var item in Model.RecentNews)
-			{
-				<div class="news">
-					<div class="author">@item.Author</div><div class="date">@item.Date</div><br />
-					<div class="newsStory">@item.Story</div>
-				</div>
-				<br />
-			}
+
+		@if (Model.OldNews != null)
+		{
+			<span id="toggleOldNews" style="cursor:pointer">Load more news</span>
+		}
 
 
+		<div id="oldNews">
 			@if (Model.OldNews != null)
 			{
-				<span id="toggleOldNews" style="cursor:pointer">Load more news</span>
-			}
-
-
-			<div id="oldNews">
-				@if (Model.OldNews != null)
+				@foreach (var item in Model.OldNews)
 				{
-					@foreach (var item in Model.OldNews)
-					{
-						<div class="news">
-							<div class="author">@item.Author</div><div class="date">@item.Date</div><br />
-							<div class="newsStory">@item.Story</div>
-						</div>
-						<br />
-					}
+					<div class="news">
+						<div class="author">@item.Author</div><div class="date">@item.Date</div><br />
+						<div class="newsStory">@item.Story</div>
+					</div>
+					<br />
 				}
-			</div>
-		</p>
-
+			}
+		</div>
 	</div>
 
 	<div class="right">
 		<center>
-			<img src="~/Images/prototype_log4_white_smaller.png" />
-		</center><br />
-		<p>
-			<strong>Recent Games:</strong><br />
-		</p>
-		<ul>
-			@foreach (var item in Model.recentMatches)
-			{
-				@if (item.Player1 == item.Winner)
+			@*<img src="~/Images/prototype_log4_white_smaller.png" id="logoBig"/>*@
+		</center>
+		<div id="recentGames">
+			<p>
+				<strong>Recent Games:</strong><br />
+			</p>
+			<ul>
+				@foreach (var item in Model.recentMatches)
 				{
-					<li>
-						<strong>@(item.Player1)</strong> played against <strong>@(item.Player2)</strong> in a game of @(item.Game).
-						@if (item.Draw)
-						{
-							<span>The game ended in a draw.</span>
-						}
-						else
-						{
-							<span>The winner was <strong>@(item.Winner)</strong>.</span>
-						}
-					</li>
+					@if (item.Player1 == item.Winner)
+					{
+						<li>
+							<strong>@(item.Player1)</strong> played against <strong>@(item.Player2)</strong> in a game of @(item.Game).
+							@if (item.Draw)
+							{
+								<span>The game ended in a draw.</span>
+							}
+							else
+							{
+								<span>The winner was <strong>@(item.Winner)</strong>.</span>
+							}
+						</li><br />
+
+					}
+					else
+					{
+						<li>
+							<strong>@(item.Player1)</strong> played against	<strong>@(item.Player2)</strong>
+							in a game of @(item.Game).
+
+							@if (item.Draw)
+							{
+								<span>The game ended in a draw.</span>
+							}
+							else
+							{
+								<span>The winner was <strong>@(item.Winner)</strong>.</span>
+							}
+						</li><br />
+
+					}
 
 				}
-				else
-				{
-					<li>
-						<strong>@(item.Player1)</strong> played against	<strong>@(item.Player2)</strong>
-						in a game of @(item.Game).
-
-						@if (item.Draw)
-						{
-							<span>The game ended in a draw.</span>
-						}
-						else
-						{
-							<span>The winner was <strong>@(item.Winner)</strong>.</span>
-						}
-					</li>
-
-				}
-
-			}
-		</ul>
+			</ul>
+		</div>
 	</div>
 	<div class="clear-fix"></div>
 
