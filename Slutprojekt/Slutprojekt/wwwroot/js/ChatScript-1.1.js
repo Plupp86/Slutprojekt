@@ -9,12 +9,6 @@ $("#startGame").click(function () {
 let chat = new signalR.HubConnection('/chat');
 
 chat.start();
-//.done(function () {
-//	chat.invoke('GetOnlineUsers')
-//		.done(function () { chat.invoke('RegisterChatUser', userName) });	
-//});
-
-
 
 chat.on('listOfChatUsers', data => {
     $("#onlineUsers").empty();
@@ -23,7 +17,6 @@ chat.on('listOfChatUsers', data => {
         var br = document.createElement('br');
         $("#onlineUsers").append(br);
     })
-    //$("#onlineUsers").append(data[0].UserName);
 });
 
 
@@ -51,7 +44,10 @@ $(document).ready(function () {
 });
 
 $(document).ready(function () {
-    setTimeout(function () { chat.invoke('RegisterChatUser', userName); }, 1000);
+	setTimeout(function () {
+		var userAndGame = userName + " - " + gameName;
+		chat.invoke('RegisterChatUser', userAndGame);
+	}, 1000);
 });
 
 $("#listbtn").click(() => {

@@ -8,5 +8,6 @@ namespace Slutprojekt.Models.ViewModels
     public class LobbyVM
     {
 		public string UserName { get; set; }
+		public string GameName { get; set; }
 	}
 }

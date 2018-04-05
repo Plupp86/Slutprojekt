@@ -112,6 +112,7 @@ namespace Slutprojekt.Controllers
 
 			var model = new LobbyVM();
 			model.UserName = User.Identity.Name;
+			model.GameName = "Tic-Tac-Toe";
 			return View(model);
 
 		}
@@ -122,6 +123,7 @@ namespace Slutprojekt.Controllers
 
 			var model = new LobbyVM();
 			model.UserName = User.Identity.Name;
+			model.GameName = "MathGame";
 			return View(model);
 
 		}
@@ -132,6 +134,7 @@ namespace Slutprojekt.Controllers
 
 			var model = new LobbyVM();
 			model.UserName = User.Identity.Name;
+			model.GameName = "Memory";
 			return View(model);
 		}
 
