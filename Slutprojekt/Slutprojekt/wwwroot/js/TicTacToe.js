@@ -52,7 +52,7 @@ hubConnection.on('opponentFound', (data, image) => {
 	$('#divOpponentPlayer').show();
 	opponentImage = image;
 	$('#opponentImage').attr('src', opponentImage);
-	$('#divGameInfo').html("<br/><span><strong> Hey " + playerName + "! You are playing against <i>" + data + "</i></strong></span>");
+	$('#divGameInfo').html("<br/><span><strong>You are playing against <i>" + data + "</i></strong></span>");
 	$("#divGameBoard").html(" ");
 	for (var i = 0; i < 9; i++) {
         $("#divGameBoard").append("<span class='marker' id=" + i + " style='display:block;border:2px solid #493F0B;border-radius:5px;height:50px;width:50px;float:left;margin:5px;'> </span>");
