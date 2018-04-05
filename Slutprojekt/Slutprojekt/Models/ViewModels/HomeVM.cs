@@ -12,5 +12,9 @@ namespace Slutprojekt.Models.ViewModels
 
 		public Match[] recentMatches { get; set; }
 
+		public News[] RecentNews { get; set; }
+
+		public News[] OldNews { get; set; }
+
 	}
 }

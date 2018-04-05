@@ -1,0 +1,31 @@
+﻿@model AddNewsVM
+
+
+	<div class="form-group">
+		<form asp-controller="Home" asp-action="AddNews" method="post">
+			<table class="repMatch">
+				<tr>
+					<td>
+						Authour: @Model.UserName
+						
+					</td>
+				</tr>
+				<tr><td><hr /></td></tr>
+				<tr>
+				<tr>
+					<td>
+						<label asp-for="TheNews"></label>
+						<input asp-for="TheNews" class="form-control" />
+						<span asp-validation-for="TheNews" style="color:red"></span>
+					</td>
+				</tr>
+				<tr><td><hr /></td></tr>
+				<tr>
+				<tr>
+					<td style="text-align:center">
+						<input type="submit" value="Add News Story" class="form-control" />
+					</td>
+				</tr>
+			</table>
+		</form>
+</div>

@@ -126,4 +126,42 @@
   .login {
     margin-top: 130px; }
   .create {
-    margin-top: 130px; } }
+    margin-top: 130px; }
+  /* Link */
+  .navbar-default .navbar-nav > li > a {
+    color: #493F0B;
+    font-size: 14px;
+    font-family: "Audiowide", cursive; }
+  .navbar-default .navbar-nav > li > a:hover {
+    color: #493F0B;
+    font-size: 14px;
+    font-family: "Audiowide", cursive; }
+  .logo {
+    width: 75px;
+    margin-top: 10px;
+    padding-right: 10px; }
+  .navbar-default .navbar-brand {
+    color: #85DB18;
+    font-size: 14px;
+    font-family: "Audiowide", cursive; }
+  .navbar-default .navbar-brand:hover,
+  .navbar-default .navbar-brand:focus {
+    color: #85DB18; }
+  div.left {
+    /*background-color: red;
+	border: 2px solid red;*/
+    float: none;
+    width: 95%;
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 5px;
+    margin-top: 5px; }
+  div.right {
+    /*background-color: blue;
+	border: 2px solid red;*/
+    float: none;
+    width: 95%;
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 5px;
+    margin-top: 5px; } }

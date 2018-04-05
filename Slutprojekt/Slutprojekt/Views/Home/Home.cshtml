@@ -3,88 +3,101 @@
 
 
 <div class="content">
-    <h3>Welcome</h3>
-    <br />
+	<h3>Welcome!</h3>
+	<br />
 
-    <div class="left">
-        <p>
-            <strong>Welcome to SpelPortalen</strong><br />
-            <br />
-            <strong>2018-04-04</strong>
-            All rejoice!! SpelPortalen is now out of beta and in production.
-            <br />
-            <strong>2018-04-02</strong>
-            Try the new game Colour Memory!!
-            <br />
-            <strong>2018-04-01</strong>
-            The official beta of SpelPortalen is released.
-            <br />
-            <strong>2018-04-01</strong>
-            The MathGame is now online!!
-            <br />
-            <strong>2018-03-30</strong>
-            Tic-Tac-Toe is now realesed!!
-            <br />
-            <strong>2018-03-30</strong>
-            Now introducing our Chat!!
-            <br />
-            <strong>2018-03-29</strong>
-            First Alpha of SpelPortalen is up!
-            <br />
+	<div class="left">
+		<p>
 
-        </p>
+			@foreach (var item in Model.RecentNews)
+			{
+				<div class="news">
+					<div class="author">@item.Author</div><div class="date">@item.Date</div><br />
+					<div class="newsStory">@item.Story</div>
+				</div>
+				<br />
+			}
 
-    </div>
 
-    <div class="right">
-        <center>
-            @*<img src="~/Images/granny.png" width="200px" />*@
-            <img src="~/Images/prototype_log4_white_smaller.v1.png" />
-        </center><br />
-        <p>
-            <strong>Recent Games:</strong><br />
-        </p>
-        <ul>
-            @foreach (var item in Model.recentMatches)
-            {
-                @if (item.Player1 == item.Winner)
-                {
-                    <li>
-                        <strong>@(item.Player1)</strong> played against <strong>@(item.Player2)</strong> in a game of @(item.Game).
-                        @if (item.Draw)
-                        {
-                            <span>The game ended in a draw.</span>
-                        }
-                        else
-                        {
-                            <span>The winner was <strong>@(item.Winner)</strong>.</span>
-                        }
-                    </li>
+			@if (Model.OldNews != null)
+			{
+				<span id="toggleOldNews" style="cursor:pointer">Load more news</span>
+			}
 
-                }
-                else
-                {
-                    <li>
-                        <strong>@(item.Player1)</strong> played against	<strong>@(item.Player2)</strong>
-                        in a game of @(item.Game).
 
-                        @if (item.Draw)
-                        {
-                            <span>The game ended in a draw.</span>
-                        }
-                        else
-                        {
-                            <span>The winner was <strong>@(item.Winner)</strong>.</span>
-                        }
-                    </li>
+			<div id="oldNews">
+				@if (Model.OldNews != null)
+				{
+					@foreach (var item in Model.OldNews)
+					{
+						<div class="news">
+							<div class="author">@item.Author</div><div class="date">@item.Date</div><br />
+							<div class="newsStory">@item.Story</div>
+						</div>
+						<br />
+					}
+				}
+			</div>
+		</p>
 
-                }
+	</div>
 
-            }
-        </ul>
-    </div>
+	<div class="right">
+		<center>
+			<img src="~/Images/prototype_log4_white_smaller.png" />
+		</center><br />
+		<p>
+			<strong>Recent Games:</strong><br />
+		</p>
+		<ul>
+			@foreach (var item in Model.recentMatches)
+			{
+				@if (item.Player1 == item.Winner)
+				{
+					<li>
+						<strong>@(item.Player1)</strong> played against <strong>@(item.Player2)</strong> in a game of @(item.Game).
+						@if (item.Draw)
+						{
+							<span>The game ended in a draw.</span>
+						}
+						else
+						{
+							<span>The winner was <strong>@(item.Winner)</strong>.</span>
+						}
+					</li>
 
-    <div class="clear-fix"></div>
-    @*<span> Welcome user: @Model.User </span>*@
-    <br />
+				}
+				else
+				{
+					<li>
+						<strong>@(item.Player1)</strong> played against	<strong>@(item.Player2)</strong>
+						in a game of @(item.Game).
+
+						@if (item.Draw)
+						{
+							<span>The game ended in a draw.</span>
+						}
+						else
+						{
+							<span>The winner was <strong>@(item.Winner)</strong>.</span>
+						}
+					</li>
+
+				}
+
+			}
+		</ul>
+	</div>
+	<div class="clear-fix"></div>
+
+	@*<span> Welcome user: @Model.User </span>*@
+	<br />
 </div>
+
+<script src="~/lib/jquery/dist/jquery.js"></script>
+<script>
+	$("#oldNews").hide();
+	$("#toggleOldNews").on('click', function () {
+		$("#oldNews").toggle();
+	});
+</script>

@@ -102,6 +102,8 @@ namespace Slutprojekt.Controllers
 		{
 			var model = new HomeVM();
 			model.User = User.Identity.Name;
+			model.RecentNews = statsRep.GetTheNews();
+			model.OldNews = statsRep.GetOldNews();
 			model.recentMatches = statsRep.GetRecentMatches();
 			return View(model);
 		}
@@ -146,6 +148,24 @@ namespace Slutprojekt.Controllers
 			model.MemoryUsers = statsRep.GetMemoryUsers();
 			model.TicUsers = statsRep.GetTicUsers();
 			return View(model);
+		}
+
+		[Route("AddNews")]
+		[HttpGet]
+		public IActionResult AddNews()
+		{
+			var model = new AddNewsVM();
+			model.UserName = User.Identity.Name;
+			return View(model);
+		}
+
+		[Route("AddNews")]
+		[HttpPost]
+		public IActionResult AddNews(AddNewsVM model)
+		{
+			model.UserName = User.Identity.Name;
+			statsRep.ReportTheNews(model);
+			return RedirectToAction(nameof(HomeController.Home));
 		}
 	}
 }
