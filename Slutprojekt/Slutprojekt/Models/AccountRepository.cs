@@ -68,28 +68,6 @@ namespace Slutprojekt.Models
 			await signInManager.SignOutAsync();
 		}
 
-		//public MemberVM GetUserInfo(HttpContext httpcontext)
-		//{
-		//	MemberVM model = new MemberVM();
-		//	string userId = userManager.GetUserId(httpcontext.User);
-		//	var user = context.User
-		//		.SingleOrDefault(u => u.Id == userId);
-
-		//	if (user != null)
-		//	{
-		//		model.FirstName = user.FirstName;
-		//		model.LastName = user.LastName;
-		//	}
-
-
-		//	return model;
-		//}
-
-		//public async Task<string> GetUserName()
-		//{
-		//	var name = userManager.GetUserId(HttpContext.User);
-		//	return " ";
-		//}
 	}
 
 }
