@@ -5,7 +5,16 @@ $text-color: #493F0B;
 $contrast: #85DB18;
 $backup: #A7C520;
 $header-font: 'Audiowide', cursive;
-$text-font: corbel;
+$text-font: 'Roboto', sans-serif;
+
+/*$primary-bg: #F5F6D4;
+$secondary-bg: gray;
+$primary-header: lightblue;
+$text-color: black;
+$contrast: gray;
+$backup: gray;
+$header-font: 'Audiowide', cursive;
+$text-font: 'Roboto', sans-serif;*/
 
 /* navbar */
 .navbar-default {
@@ -167,16 +176,65 @@ $text-font: corbel;
 }
 
 @media only screen and (max-width: 410px) {
+
+	.navbar-nav .open .dropdown-menu {
+		position: absolute;
+		padding: 1px;
+		clear: both;
+		font-size: 16px;
+		/*line-height: 1.42857143;*/
+		white-space: nowrap;
+		background-color: $secondary-bg;
+		color: $primary-header;
+		border: 2px solid $primary-header;
+		border-radius: 5px;
+		font-family: $header-font;
+		a{
+			color: $primary-header;
+		}
+	}
+	.navbar-default .navbar-nav .open .dropdown-menu > li > a {
+		color: $primary-header;
+	}
+
+	.navbar-nav > li > .dropdown-menu {
+		margin-top: 0;
+		border-top-left-radius: 0;
+		border-top-right-radius: 0;
+	}
+
+	.dropdown-menu {
+		/*display: block;*/
+		padding: 1px;
+		clear: both;
+		font-size: 16px;
+		/*line-height: 1.42857143;*/
+		white-space: nowrap;
+		background-color: $secondary-bg;
+		color: $primary-header;
+		border: 2px solid $primary-header;
+		border-radius: 5px;
+		font-family: $header-font;
+
+		li {
+			width: 100%;
+		}
+	}
+
+	.dropdown-menu > li > a:hover {
+		background-color: $backup; //darken($secondary-bg,10%);
+	}
+
 	.content {
-		margin-top: 130px;
+		margin-top: 85px;
 		width:98%;
 	}
 	.login {
-		margin-top: 130px;
+		margin-top: 85px;
 	}
 
 	.create {
-		margin-top: 130px;
+		margin-top: 85px;
 	}
 
 	/* Link */

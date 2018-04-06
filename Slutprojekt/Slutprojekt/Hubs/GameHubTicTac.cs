@@ -190,10 +190,12 @@ namespace Slutprojekt
 				statsRep.ReportMatch(match);
 
 				Remove<Game>(games, game);
+
 				Clients.Client(game.Player1.ConnectionId).InvokeAsync(Constants.GameOver, $"The winner is {player.Name}");
 				Clients.Client(game.Player2.ConnectionId).InvokeAsync(Constants.GameOver, $"The winner is {player.Name}");
 				player.IsPlaying = false;
 				player.Opponent.IsPlaying = false;
+
 				this.Clients.Client(player.ConnectionId).InvokeAsync(Constants.RegistrationComplete);
 				this.Clients.Client(player.Opponent.ConnectionId).InvokeAsync(Constants.RegistrationComplete);
 			}

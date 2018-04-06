@@ -1,4 +1,12 @@
-﻿body {
+﻿/*$primary-bg: #F5F6D4;
+$secondary-bg: gray;
+$primary-header: lightblue;
+$text-color: black;
+$contrast: gray;
+$backup: gray;
+$header-font: 'Audiowide', cursive;
+$text-font: 'Roboto', sans-serif;*/
+body {
   background-color: #F5F6D4;
   color: #493F0B;
   font-family: "Roboto", sans-serif; }
@@ -240,6 +248,11 @@ span.marker {
 table.ranking tr:nth-child(even) {
   background-color: #ebedaa; }
 
+/*table.ranking {
+	tr:nth-child(even) {
+		background-color: lighten($primary-header, 50%)
+	}
+}*/
 .rankingDiv {
   background-color: #F5F6D4;
   border: 2px solid #493F0B;

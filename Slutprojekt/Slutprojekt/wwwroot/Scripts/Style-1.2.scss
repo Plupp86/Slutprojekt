@@ -7,6 +7,15 @@ $backup: #A7C520;
 $header-font: 'Audiowide', cursive;
 $text-font: 'Roboto', sans-serif;
 
+/*$primary-bg: #F5F6D4;
+$secondary-bg: gray;
+$primary-header: lightblue;
+$text-color: black;
+$contrast: gray;
+$backup: gray;
+$header-font: 'Audiowide', cursive;
+$text-font: 'Roboto', sans-serif;*/
+
 body {
 	background-color: $primary-bg;
 	color: $text-color;
@@ -295,6 +304,12 @@ table.ranking {
 		background-color: darken($primary-bg, 10%)
 	}
 }
+
+/*table.ranking {
+	tr:nth-child(even) {
+		background-color: lighten($primary-header, 50%)
+	}
+}*/
 
 .rankingDiv {
 	background-color: $primary-bg;

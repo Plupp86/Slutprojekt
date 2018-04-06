@@ -10,5 +10,13 @@
   {
     "outputFile": "wwwroot/Scripts/Bootstrap_style.css",
     "inputFile": "wwwroot/Scripts/Bootstrap_style.scss"
+  },
+  {
+    "outputFile": "wwwroot/Scripts/Bootstrap_style-1.2.css",
+    "inputFile": "wwwroot/Scripts/Bootstrap_style-1.2.scss"
+  },
+  {
+    "outputFile": "wwwroot/Scripts/Style-1.2.css",
+    "inputFile": "wwwroot/Scripts/Style-1.2.scss"
   }
 ]

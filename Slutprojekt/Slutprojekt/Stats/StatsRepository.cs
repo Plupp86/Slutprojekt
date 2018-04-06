@@ -23,7 +23,10 @@ namespace Slutprojekt.Stats
 
 			foreach (var item in users)
 			{
+				if (!context.User.Any(u => u.UserName == item))
+				{
 				context.User.Add(new User { UserName = item });
+				}
 			}
 			context.SaveChanges();
 		}
@@ -157,6 +160,13 @@ namespace Slutprojekt.Stats
 				.Skip(5)
 				.Take(5)
 				.ToArray();
+		}
+
+		internal void CreateUser(User user)
+		{
+			context.User.Add(user);
+			context.SaveChanges();
+
 		}
 	}
 }

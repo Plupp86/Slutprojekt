@@ -36,15 +36,15 @@ namespace Slutprojekt.Controllers
 		}
 
 
-		//[Route("UpdateDB")]
-		//[HttpGet]
-		//[AllowAnonymous]
-		//public IActionResult UpdateDB()
-		//{
-		//	var users = repository.GetAllUserNames();
-		//	statsRep.MoveExistingUsers(users);
-		//	return RedirectToAction(nameof(HomeController.Index));
-		//}
+		[Route("UpdateDB")]
+		[HttpGet]
+		[AllowAnonymous]
+		public IActionResult UpdateDB()
+		{
+			var users = repository.GetAllUserNames();
+			statsRep.MoveExistingUsers(users);
+			return RedirectToAction(nameof(HomeController.Index));
+		}
 
 
 		[Route("Index")]
@@ -83,7 +83,10 @@ namespace Slutprojekt.Controllers
 				return View(model);
 			}
 
+			var player = new User();
+			player.UserName = model.UserName;
 			var (succes, mess) = await repository.CreateUserAsync(model);
+			statsRep.CreateUser(player);
 
 			if (!succes)
 			{

@@ -40,8 +40,13 @@
 		<div class="form-group">
 			<textarea id="txtChat" readonly></textarea>
 		</div>
-		<input type="text" id="txtMessage">
-		<button type="submit" class="btn submitBtn" id="btnSend">Submit</button>
+		<div id="chatMessDiv">
+			<input type="text" id="txtMessage">
+		</div>
+		<div id="chatBtnDiv">
+			<button type="submit" class="btn" id="btnSend">Submit</button>
+		</div>
+		<div class="clear-fix"></div>
 	</div>
 </div>
 
@@ -56,6 +61,6 @@
 	var gameName = '@Model.GameName.ToString()';
 </script>
 
-<script src="~/js/MathGame-1.1.js"></script>
-<script src="~/js/ChatScript-1.1.js"></script>
+<script src="~/js/MathGame-1.2.js"></script>
+<script src="~/js/ChatScript-1.2.js"></script>
 
