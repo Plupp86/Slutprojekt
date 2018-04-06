@@ -19,7 +19,7 @@
             </div>
             <div id="divFindOpponentPlayer">
                 <fieldset>
-                    <legend>Find a player to play against!</legend>
+                    <h3>Tic-Tac-Toe</h3>
                     <div class="form-group">
                         <span style="margin:50px"><input type="button" class="btn btn-block findPlayerBtn" id="btnFindOpponentPlayer" value="Find Opponent Player" /></span>
                         @*<span style="margin:50px"><input type="button" class="btn btn-block findPlayerBtn" id="btnFindOpponentPlayerMemory" value="Find Opponent Player Memory" /></span>*@
@@ -40,7 +40,6 @@
             </div>
             <div id="divGame" style="clear:both">
                 <fieldset>
-                    <legend>Game On</legend>
                     <div id="divGameBoard" style="width:190px">
                         <div id="divGameBoardMemory" style="width:190px">
                         </div>
@@ -72,8 +71,6 @@
 
 
 <script src="~/lib/jquery/dist/jquery.js"></script>
-@*<script src="~/js/signalr-clientES5-1.0.0-alpha1-final.js"></script>
-<script src="~/js/signalr-msgpackprotocol-1.0.0-alpha1-final.js"></script>*@
 <script src="~/js/signalr-client-1.0.0-alpha2-final.js"></script>
 <script>
 	var userName = '@Model.UserName.ToString()';
@@ -82,4 +79,3 @@
 
 <script src="~/js/TicTacToe.js"></script>
 <script src="~/js/ChatScript-1.1.js"></script>
-@*<script src="~/js/Memory.js"></script>*@

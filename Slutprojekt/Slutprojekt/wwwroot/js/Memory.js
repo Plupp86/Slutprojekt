@@ -271,7 +271,7 @@ hubConnectionMemory.on('opponentFoundMemory', (data, image) => {
     $('#divOpponentPlayer').show();
     opponentImage = image;
     $('#opponentImage').attr('src', opponentImage);
-    $('#divGameInfo').html("<br/><span><strong> Hey " + playerName + "! You are playing against <i>" + data + "</i></strong></span>");
+    $('#divGameInfo').html("<br/><span><strong> You are playing against <i>" + data + "</i></strong></span>");
     $("#divGameBoard").html(" ");
     $("#divGameBoardMemory").html(" ");
     for (var i = 0; i < 16; i++) {
