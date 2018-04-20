@@ -53,10 +53,10 @@ namespace Slutprojekt
 			services.AddIdentity<IdentityUser, IdentityRole>(o =>
 			{
 				o.Password.RequireNonAlphanumeric = false;
-				o.Password.RequiredLength = 6;
-				o.Password.RequireDigit = true;
-				o.Password.RequireLowercase = true;
-				o.Password.RequireUppercase = true;
+				o.Password.RequiredLength = 2;
+				o.Password.RequireDigit = false;
+				o.Password.RequireLowercase = false;
+				o.Password.RequireUppercase = false;
 			})
 				.AddEntityFrameworkStores<IdentityDbContext>()
 				.AddDefaultTokenProviders();

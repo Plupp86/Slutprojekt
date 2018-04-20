@@ -4,11 +4,7 @@
 <br />
 
 
-@if (!string.IsNullOrEmpty(Model.Message))
-{
-<span style="color:red"> @Model.Message  </span>
 
-}
 	<div class="create">
 		<h3>Create new user</h3>
 		<br />
@@ -27,7 +23,11 @@
 					<input asp-for="Password" class="form-control" />
 					<span asp-validation-for="Password"></span>
 				</div>
+				@if (!string.IsNullOrEmpty(Model.Message))
+	{
+			<span style="color:red"> @Model.Message  </span>
 
+}
 				<div class="inputbox">
 					<br />
 					<label asp-for="Email"></label>
